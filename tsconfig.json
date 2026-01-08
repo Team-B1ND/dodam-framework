@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/components" },
+    { "path": "./packages/color" },
+    { "path": "./packages/iconography" },
+    { "path": "./packages/typography" },
+    { "path": "./packages/shape" }
+  ]
+}
