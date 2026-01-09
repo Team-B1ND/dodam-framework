@@ -1,12 +1,27 @@
 {
-  "name": "@dds/iconography",
+  "name": "@dds-web/iconography",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./illustration": {
+      "types": "./dist/illustration/index.d.ts",
+      "import": "./dist/illustration/index.js"
+    },
+    "./mono": {
+      "types": "./dist/mono/index.d.ts",
+      "import": "./dist/mono/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
+    "build": "tsc -p tsconfig.build.json && node ./scripts/copy-assets.mjs",
+    "prepack": "pnpm run build",
     "typecheck": "tsc -b"
   },
   "peerDependencies": {
