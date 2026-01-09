@@ -4,6 +4,6 @@
     "composite": true,
     "baseUrl": "."
   },
-  "include": ["src", "test.ts"],
+  "include": ["src"],
   "references": []
 }
