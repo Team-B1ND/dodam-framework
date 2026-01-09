@@ -24,5 +24,3 @@ export const Schedule = ({
     />
   );
 };
-
-export default Schedule;

@@ -39,5 +39,3 @@ export const Tent = ({ size = 24, onClick = () => {}, pointer }: IconProps) => {
     </svg>
   );
 };
-
-export default Tent;
