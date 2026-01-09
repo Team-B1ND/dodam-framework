@@ -20,7 +20,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node ./scripts/copy-assets.mjs",
     "prepack": "pnpm run build",
     "typecheck": "tsc -b"
   },
