@@ -2,9 +2,9 @@
   "files": [],
   "references": [
     { "path": "./packages/components" },
-    { "path": "./packages/color" },
+    { "path": "./packages/colors" },
     { "path": "./packages/iconography" },
     { "path": "./packages/typography" },
-    { "path": "./packages/shape" }
+    { "path": "./packages/shapes" }
   ]
 }

@@ -45,6 +45,15 @@ importers:
         specifier: ^6.0.7
         version: 6.4.1
 
+  packages/colors:
+    dependencies:
+      react:
+        specifier: '>=19'
+        version: 19.2.3
+      react-dom:
+        specifier: '>=19'
+        version: 19.2.3(react@19.2.3)
+
   packages/components:
     dependencies:
       react:
@@ -63,7 +72,7 @@ importers:
         specifier: '>=19'
         version: 19.2.3(react@19.2.3)
 
-  packages/shape:
+  packages/shapes:
     dependencies:
       react:
         specifier: '>=19'

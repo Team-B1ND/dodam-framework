@@ -1,1 +1,2 @@
-// export color tokens
+export * from "./light-colors";
+export * from "./dark-colors";
