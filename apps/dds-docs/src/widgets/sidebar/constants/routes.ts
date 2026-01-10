@@ -17,7 +17,7 @@ export const COMPONENT_ROUTES: Route[] = [
   { title: "체크박스", href: "/components/checkbox" },
   { title: "다이얼로그", href: "/components/dialog" },
   { title: "인디케이터", href: "/components/indicator" },
-  { title: "데이트&타임 피커", href: "/components/pickers" },
+  { title: "데이트&타임 피커", href: "/components/picker" },
   { title: "태그", href: "/components/tag" },
   { title: "텍스트필드", href: "/components/textfield" },
   { title: "드롭다운", href: "/components/dropdown" },
