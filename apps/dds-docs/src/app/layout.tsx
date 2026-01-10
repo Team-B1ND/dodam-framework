@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/widgets/header/ui/Header";
 import { themeInitScript } from "@/shared/theme";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
+import Footer from "@/widgets/footer/ui/Footer";
 import { LoadingBar } from "@cher1shrxd/loading";
 
 export const metadata: Metadata = {
@@ -25,7 +26,10 @@ export default function RootLayout({
         <Header />
         <div className="w-full max-w-360 mx-auto px-2 flex items-start pt-14">
           <Sidebar />
-          <main className="flex-1 pl-50 pt-16">{children}</main>
+          <main className="flex-1 pl-50 pt-16">
+            <div className="min-h-body">{children}</div>
+            <Footer />
+          </main>
         </div>
       </body>
     </html>

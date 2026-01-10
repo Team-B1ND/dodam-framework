@@ -140,3 +140,7 @@ html[data-theme="dark"] {
   --color-static-white: var(--dds-color-static-white);
   --color-static-black: var(--dds-color-static-black);
 }
+
+.min-h-body {
+  min-height: calc(100vh - 320px);
+}
