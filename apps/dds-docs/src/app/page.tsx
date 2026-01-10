@@ -31,13 +31,11 @@ const INSTALL_COMMAND =
   "pnpm add @dds-web/components @dds-web/typography @dds-web/iconography @dds-web/shapes @dds-web/colors @dds-web/themes";
 
 const USAGE_EXAMPLE = `import { Button } from "@dds-web/components";
-import { Heading } from "@dds-web/typography";
 import { ArrowRight } from "@dds-web/iconography/mono";
 
 export default function App() {
   return (
     <div>
-      <Heading level={1}>Hello DDS</Heading>
       <Button>
         시작하기 <ArrowRight />
       </Button>
@@ -45,10 +43,9 @@ export default function App() {
   );
 }`;
 
-export default function GettingStarted() {
+export default function GettingStartedPage() {
   return (
     <article className="w-full pb-16">
-      {/* Hero */}
       <header className="pb-8 border-b border-border-subtle">
         <span className="inline-block px-2.5 py-1 mb-4 text-xs font-medium rounded-full bg-brand-secondary text-static-white">
           Guide
@@ -61,7 +58,6 @@ export default function GettingStarted() {
         </p>
       </header>
 
-      {/* Packages */}
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-text-primary">Packages</h2>
         <p className="mt-2 text-text-secondary">
@@ -83,7 +79,6 @@ export default function GettingStarted() {
         </ul>
       </section>
 
-      {/* Installation */}
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-text-primary">
           Installation
