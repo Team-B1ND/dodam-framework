@@ -11,7 +11,8 @@ export const ROUTES: Route[] = [
 ]
 
 export const COMPONENT_ROUTES: Route[] = [
-  { title: "문서 예시", href: "/components/example" },
+  { title: "MDX 예시", href: "/components/example" },
+  { title: "문서 템플릿", href: "/components/template" },
   { title: "아바타", href: "/components/avatar" },
   { title: "뱃지", href: "/components/badge" },
   { title: "버튼", href: "/components/button" },

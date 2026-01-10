@@ -57,7 +57,7 @@ const components: MDXComponents = {
   pre: (props) => (
     <pre
       {...omitRef(props)}
-      className={`bg-fill-primary border border-border-normal rounded-lg p-4 overflow-x-auto my-4 ${props.className ?? ""}`}
+      className={`bg-background-surface text-text-secondary border border-border-normal rounded-lg p-4 overflow-x-auto my-4 ${props.className ?? ""}`}
     />
   ),
   code: (props) => {
