@@ -12,19 +12,11 @@ export const typoCss = (
   weight: TypographyWeight,
 ) => {
   const weightKey = getWeightKey(weight);
-  
-
-  const token = {
-    fontSize: typographyTokens[level].size,
-    lineHeight: typographyTokens[level].lineHeight,
-    letterSpacing: typographyTokens[level].letterSpacing,
-    fontWeight: weightTokens[typographyTokens[level].weights[weightKey]]
-  }
 
   return css`
-    font-size: ${token.fontSize};
-    line-height: ${token.lineHeight};
-    letter-spacing: ${token.letterSpacing};
-    font-weight: ${token.fontWeight};
+    font-size: ${typographyTokens[level].size};
+    line-height: ${typographyTokens[level].lineHeight};
+    letter-spacing: ${typographyTokens[level].letterSpacing};
+    font-weight: ${weightTokens[typographyTokens[level].weights[weightKey]]};
   `
 }
