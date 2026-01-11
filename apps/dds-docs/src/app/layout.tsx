@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/widgets/header/ui/Header";
-import { themeInitScript } from "@/shared/theme";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import Footer from "@/widgets/footer/ui/Footer";
 import { LoadingBar } from "@cher1shrxd/loading";
+import { ThemeSetter } from "@dds-web/themes/next";
 
 export const metadata: Metadata = {
   title: "DDS docs",
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <ThemeSetter />
       </head>
       <body className="antialiased bg-background-default text-text-primary">
         <LoadingBar color="var(--dds-color-brand-primary)" />
