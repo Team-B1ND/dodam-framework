@@ -1,31 +1,5 @@
+import { INDEXES } from "@/shared/constants/indexes";
 import { Link } from "@cher1shrxd/loading";
-
-const PACKAGES = [
-  {
-    name: "@dds-web/components",
-    description: "버튼, 인풋 등 UI 컴포넌트",
-  },
-  {
-    name: "@dds-web/typography",
-    description: "텍스트 스타일 시스템",
-  },
-  {
-    name: "@dds-web/iconography",
-    description: "일러스트레이션, 모노 아이콘 팩",
-  },
-  {
-    name: "@dds-web/shapes",
-    description: "도형 라운딩 가이드",
-  },
-  {
-    name: "@dds-web/colors",
-    description: "컬러 팔레트 토큰",
-  },
-  {
-    name: "@dds-web/themes",
-    description: "테마 시스템",
-  },
-] as const;
 
 const INSTALL_COMMAND =
   "pnpm add @dds-web/components @dds-web/typography @dds-web/iconography @dds-web/shapes @dds-web/colors @dds-web/themes";
@@ -66,13 +40,13 @@ export default function GettingStartedPage() {
         </p>
 
         <ul className="mt-6 space-y-2">
-          {PACKAGES.map((pkg) => (
-            <li key={pkg.name} className="flex items-baseline gap-3">
-              <a href={`https://www.npmjs.com/package/${pkg.name}`} target="_blank" className="text-sm font-mono text-brand-primary">
-                {pkg.name}
+          {INDEXES.map((idx) => (
+            <li key={idx.package} className="flex items-baseline gap-3">
+              <a href={`https://www.npmjs.com/package/${idx.package}`} target="_blank" className="text-sm font-mono text-brand-primary">
+                {idx.package}
               </a>
               <span className="text-sm text-text-tertiary">
-                — {pkg.description}
+                — {idx.description}
               </span>
             </li>
           ))}
@@ -178,50 +152,20 @@ export default function GettingStartedPage() {
         </p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          <Link
-            href="/components"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Components</h3>
-            <p className="mt-1 text-sm text-text-tertiary">
-              Button, Input 등 UI 컴포넌트 사용법
-            </p>
-          </Link>
-          <Link
-            href="/iconography"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Iconography</h3>
-            <p className="mt-1 text-sm text-text-tertiary">
-              아이콘 목록 및 사용 가이드
-            </p>
-          </Link>
-          <Link
-            href="/colors"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Colors</h3>
-            <p className="mt-1 text-sm text-text-tertiary">
-              컬러 팔레트 시스템
-            </p>
-          </Link>
-          <Link
-            href="/typography"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Typography</h3>
-            <p className="mt-1 text-sm text-text-tertiary">
-              텍스트 스타일 가이드
-            </p>
-          </Link>
-          <Link
-            href="/shapes"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Shapes</h3>
-            <p className="mt-1 text-sm text-text-tertiary">라운딩 가이드</p>
-          </Link>
-          <Link
-            href="/themes"
-            className="p-4 rounded-xl border border-border-subtle bg-background-surface">
-            <h3 className="font-semibold text-text-primary">Themes</h3>
-            <p className="mt-1 text-sm text-text-tertiary">테마 시스템</p>
-          </Link>
+          {
+            INDEXES.map((idx) => (
+              <Link
+                key={idx.package}
+                href={idx.href}
+                className="p-4 rounded-xl border border-border-subtle bg-background-surface"
+              >
+                <h3 className="font-semibold text-text-primary">{idx.title}</h3>
+                <p className="mt-1 text-sm text-text-tertiary">
+                  {idx.description}
+                </p>
+              </Link>
+            ))
+          }
         </div>
       </section>
     </article>

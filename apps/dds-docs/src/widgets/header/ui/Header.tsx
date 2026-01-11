@@ -11,12 +11,12 @@ const Header = () => {
   return (
     <header className="w-full h-14 fixed top-0 bg-background-default z-50">
       <div className="w-full max-w-360 mx-auto h-full flex items-center gap-1 px-2">
-        <Link href="/" className="h-full flex">
+        <Link href="/" className="h-full flex items-center gap-1">
           <Image
             src="/logo.svg"
             alt="dodam dodam logo"
-            width={88}
-            height={22}
+            width={42}
+            height={32}
           />
           <h1 className="text-brand-primary font-bold self-end mb-2">
             Design System

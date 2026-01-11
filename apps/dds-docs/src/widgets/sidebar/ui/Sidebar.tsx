@@ -15,7 +15,7 @@ const Sidebar = () => {
       <h2 className="text-text-placeholder text-sm mt-16 mb-4">Components</h2>
       <nav className="flex flex-col border-l border-border-normal pl-2 pr-4">
         {COMPONENT_ROUTES.map((route) => (
-          <Route key={route.href} {...route} />
+          <Route key={route.href} href={route.href} title={route.name} />
         ))}
       </nav>
     </aside>
