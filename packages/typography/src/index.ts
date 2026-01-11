@@ -1,1 +1,1 @@
-// export typography tokens
+export * from "./emotion";
