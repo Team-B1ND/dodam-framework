@@ -1,5 +1,3 @@
-/* 나중에 @dds-web/shapes, @dds-web/colors, @dds-web/themes로 전환 */
-
 @import "tailwindcss";
 @import "@dds-web/themes/theme.tailwind.css";
 @import "@dds-web/colors/colors.css";
