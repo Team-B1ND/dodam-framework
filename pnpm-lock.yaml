@@ -47,6 +47,9 @@ importers:
       '@dds-web/shapes':
         specifier: workspace:*
         version: link:../../packages/shapes
+      '@dds-web/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       '@dds-web/typography':
         specifier: workspace:*
         version: link:../../packages/typography
@@ -147,6 +150,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@18.3.27)(react@19.2.3))(@types/react@18.3.27)(react@19.2.3)
+      next:
+        specifier: '>=16'
+        version: 16.1.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: '>=19'
         version: 19.2.3
