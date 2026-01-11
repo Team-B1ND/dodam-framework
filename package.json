@@ -1,6 +1,6 @@
 {
   "name": "dds-web",
-  "private": true,
+  "private": false,
   "packageManager": "pnpm@9.15.3",
   "workspaces": [
     "apps/*",
