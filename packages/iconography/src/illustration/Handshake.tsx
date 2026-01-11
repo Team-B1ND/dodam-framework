@@ -2,7 +2,7 @@
 
 import { IconProps } from "../types";
 
-export const HandShake = ({
+export const Handshake = ({
   size = 24,
   onClick = () => {},
   pointer,
