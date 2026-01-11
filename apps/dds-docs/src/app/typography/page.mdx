@@ -1,0 +1,319 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+
+# Typography
+
+DDS 타이포그래피 시스템은 일관된 텍스트 스타일을 제공합니다.
+
+## Installation
+
+```bash
+pnpm add @dds-web/typography
+```
+
+## Usage
+
+### Emotion (CSS-in-JS)
+
+```tsx
+import { typoCss } from "@dds-web/typography/emotion";
+import styled from "@emotion/styled";
+
+const Title = styled.h1`
+  ${typoCss("Title1", "Bold")}
+`;
+
+const Body = styled.p`
+  ${typoCss("Body1", "Regular")}
+`;
+```
+
+### Tailwind CSS
+
+```css
+/* globals.css */
+@import "@dds-web/typography/tokens.tailwind.css";
+```
+
+```tsx
+// 사용 예시
+<h1 className="text-title1 font-extrabold">제목</h1>
+<p className="text-body1 font-normal">본문</p>
+```
+
+---
+
+## Typography Scale
+
+### Titles
+
+대제목에 사용됩니다. ExtraBold, Medium, Regular weight를 지원합니다.
+
+<div className="space-y-6 my-6 p-6 bg-background-surface rounded-lg border border-border-normal">
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Title1 · 36px · ExtraBold</p>
+    <p className="text-[36px] leading-[130%] tracking-[-0.03em] font-extrabold text-text-primary">대시보드 디자인 시스템</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Title2 · 28px · ExtraBold</p>
+    <p className="text-[28px] leading-[130%] tracking-[-0.03em] font-extrabold text-text-primary">대시보드 디자인 시스템</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Title3 · 24px · ExtraBold</p>
+    <p className="text-[24px] leading-[130%] tracking-[-0.03em] font-extrabold text-text-primary">대시보드 디자인 시스템</p>
+  </div>
+</div>
+
+### Headings
+
+섹션 제목에 사용됩니다. ExtraBold, Medium, Regular weight를 지원합니다.
+
+<div className="space-y-6 my-6 p-6 bg-background-surface rounded-lg border border-border-normal">
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Heading1 · 22px · ExtraBold</p>
+    <p className="text-[22px] leading-[130%] tracking-[-0.02em] font-extrabold text-text-primary">섹션 헤딩 텍스트</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Heading2 · 20px · ExtraBold</p>
+    <p className="text-[20px] leading-[140%] tracking-[-0.01em] font-extrabold text-text-primary">섹션 헤딩 텍스트</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Headline · 18px · Bold</p>
+    <p className="text-[18px] leading-[150%] tracking-[0em] font-bold text-text-primary">섹션 헤딩 텍스트</p>
+  </div>
+</div>
+
+### Body
+
+본문에 사용됩니다. SemiBold, Medium, Regular weight를 지원합니다.
+
+<div className="space-y-6 my-6 p-6 bg-background-surface rounded-lg border border-border-normal">
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Body1 · 16px · Regular</p>
+    <p className="text-[16px] leading-[150%] tracking-[0.01em] font-normal text-text-primary">본문 텍스트입니다. 일반적인 문장에 사용됩니다.</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Body2 · 15px · Regular</p>
+    <p className="text-[15px] leading-[140%] tracking-[0.01em] font-normal text-text-primary">본문 텍스트입니다. 일반적인 문장에 사용됩니다.</p>
+  </div>
+</div>
+
+### Label & Caption
+
+레이블, 캡션 등 작은 텍스트에 사용됩니다. SemiBold, Medium, Regular weight를 지원합니다.
+
+<div className="space-y-6 my-6 p-6 bg-background-surface rounded-lg border border-border-normal">
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Label · 14px · Medium</p>
+    <p className="text-[14px] leading-[140%] tracking-[0.02em] font-medium text-text-primary">레이블 텍스트</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Caption1 · 13px · Regular</p>
+    <p className="text-[13px] leading-[130%] tracking-[0.03em] font-normal text-text-primary">캡션 텍스트입니다.</p>
+  </div>
+  <div>
+    <p className="text-text-tertiary text-xs mb-1">Caption2 · 12px · Regular</p>
+    <p className="text-[12px] leading-[130%] tracking-[0.03em] font-normal text-text-primary">작은 캡션 텍스트입니다.</p>
+  </div>
+</div>
+
+---
+
+## Token Reference
+
+### Typography Levels
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Level</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Size</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Line Height</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Letter Spacing</th>
+				<th className="px-4 py-3 text-left font-semibold">Weights</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Title1</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">36px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-0.03em</td>
+				<td className="px-4 py-3 text-text-tertiary">ExtraBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Title2</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">28px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-0.03em</td>
+				<td className="px-4 py-3 text-text-tertiary">ExtraBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Title3</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">24px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-0.03em</td>
+				<td className="px-4 py-3 text-text-tertiary">ExtraBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Heading1</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">22px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-0.02em</td>
+				<td className="px-4 py-3 text-text-tertiary">ExtraBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Heading2</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">20px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">140%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-0.01em</td>
+				<td className="px-4 py-3 text-text-tertiary">ExtraBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Headline</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">18px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">150%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0em</td>
+				<td className="px-4 py-3 text-text-tertiary">Bold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Body1</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">16px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">150%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0.01em</td>
+				<td className="px-4 py-3 text-text-tertiary">SemiBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Body2</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">15px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">140%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0.01em</td>
+				<td className="px-4 py-3 text-text-tertiary">SemiBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Label</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">14px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">140%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0.02em</td>
+				<td className="px-4 py-3 text-text-tertiary">SemiBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Caption1</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">13px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0.03em</td>
+				<td className="px-4 py-3 text-text-tertiary">SemiBold, Medium, Regular</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Caption2</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">12px</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">130%</td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">0.03em</td>
+				<td className="px-4 py-3 text-text-tertiary">SemiBold, Medium, Regular</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+### Font Weights
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Weight</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Value</th>
+				<th className="px-4 py-3 text-left font-semibold">Preview</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">ExtraBold</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">800</td>
+				<td className="px-4 py-3 text-text-primary font-extrabold">Typography</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Bold</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">700</td>
+				<td className="px-4 py-3 text-text-primary font-bold">Typography</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">SemiBold</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">600</td>
+				<td className="px-4 py-3 text-text-primary font-semibold">Typography</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Medium</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">500</td>
+				<td className="px-4 py-3 text-text-primary font-medium">Typography</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Regular</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">400</td>
+				<td className="px-4 py-3 text-text-primary font-normal">Typography</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+## Examples
+
+### 페이지 레이아웃
+
+```tsx
+import styled from "@emotion/styled";
+import { typoCss } from "@dds-web/typography/emotion";
+import { colors } from "@dds-web/colors";
+
+const PageTitle = styled.h1`
+  ${typoCss("Title1", "Bold")}
+  color: ${colors.text.primary};
+`;
+
+const SectionTitle = styled.h2`
+  ${typoCss("Heading1", "Bold")}
+  color: ${colors.text.primary};
+`;
+
+const Paragraph = styled.p`
+  ${typoCss("Body1", "Regular")}
+  color: ${colors.text.secondary};
+`;
+```
+
+<ComponentBlock>
+  <div className="w-full space-y-4">
+    <h1 className="text-[36px] leading-[130%] tracking-[-0.03em] font-extrabold text-text-primary">페이지 제목</h1>
+    <h2 className="text-[22px] leading-[130%] tracking-[-0.02em] font-extrabold text-text-primary">섹션 제목</h2>
+    <p className="text-[16px] leading-[150%] tracking-[0.01em] font-normal text-text-secondary">본문 텍스트입니다. 일반적인 설명이나 안내 문구에 사용됩니다.</p>
+  </div>
+</ComponentBlock>
+
+### 카드 컴포넌트
+
+```tsx
+import styled from "@emotion/styled";
+import { typoCss } from "@dds-web/typography/emotion";
+
+const CardTitle = styled.h3`
+  ${typoCss("Headline", "Bold")}
+`;
+
+const CardDescription = styled.p`
+  ${typoCss("Body2", "Regular")}
+`;
+
+const CardMeta = styled.span`
+  ${typoCss("Caption1", "Regular")}
+`;
+```
+
+<ComponentBlock>
+  <div className="w-full p-5 bg-background-surface border border-border-normal rounded-xl">
+    <h3 className="text-[18px] leading-[150%] tracking-[0em] font-bold text-text-primary">카드 제목</h3>
+    <p className="text-[15px] leading-[140%] tracking-[0.01em] font-normal text-text-secondary mt-2">카드 설명 텍스트입니다. 간단한 내용을 담습니다.</p>
+    <span className="text-[13px] leading-[130%] tracking-[0.03em] font-normal text-text-tertiary mt-3 block">2025.01.11</span>
+  </div>
+</ComponentBlock>
