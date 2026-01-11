@@ -1,0 +1,96 @@
+
+# MDX 스타일 확인용 예시 글
+
+_이 글은 DDS Docs에서 MDX 렌더링 스타일을 한 번에 점검하기 위한 샘플입니다._
+
+## 0. TL;DR
+
+이 페이지 하나로 **헤딩 / 문단 / 링크 / 인라인 코드 / 코드 블록 / 리스트 / 인용문 / 구분선 / 표 / 이미지 / JSX** 를 확인할 수 있어요.
+
+---
+
+## 1. 문단과 인라인 요소
+
+기본 문단입니다. **굵게(bold)**, *기울임(italic)*, ***굵게+기울임*** 같은 인라인 마크업을 확인합니다.
+
+링크 스타일 확인: [DDS Web](https://github.com/Team-B1ND/dds-web) 그리고 같은 문장 안에 `inline code`도 섞어봅니다.
+
+긴 문장도 확인해봅니다. 한국어 문장 길이가 길어졌을 때 줄바꿈/행간이 자연스러운지, 그리고 영문 단어가 길게 이어질 때(예: supercalifragilisticexpialidocious) 레이아웃이 깨지지 않는지 확인합니다.
+
+### 1-1. 작은 섹션(Heading 3)
+
+여기는 h3 섹션입니다. 아래에 구분선을 추가합니다.
+
+---
+
+## 2. 리스트
+
+### 2-1. 순서 없는 리스트
+
+- 첫 번째 항목
+- 두 번째 항목 (안에 **강조**와 `inline code`)
+- 세 번째 항목
+
+### 2-2. 순서 있는 리스트
+
+1. 1번
+2. 2번
+3. 3번
+
+## 3. 인용문(Quote)
+
+> “디자인 시스템은 단순히 컴포넌트 모음이 아니라, 팀이 합의한 **제품 언어**다.”
+>
+> 두 줄 이상 인용문이 들어갔을 때 간격/보더가 잘 보이는지 확인해요.
+
+## 4. 코드
+
+### 4-1. 인라인 코드
+
+예: `pnpm dev` / `@dds-web/components` / `useMDXComponents()`
+
+### 4-2. 코드 블록 (TSX)
+
+```tsx
+type AvatarProps = {
+	name: string;
+	size?: "sm" | "md" | "lg";
+};
+
+export function Avatar({ name, size = "md" }: AvatarProps) {
+	return (
+		<div className={"rounded-full border border-border-normal"}>
+			{name.slice(0, 1)}
+		</div>
+	);
+}
+```
+
+### 4-3. 코드 블록 (Bash)
+
+```bash
+pnpm dev --filter ./apps/dds-docs
+pnpm lint --filter ./apps/dds-docs
+```
+
+## 5. 이미지
+
+아래 이미지는 렌더링/여백/라운드 처리(없으면 기본)를 확인하기 위한 예시입니다.
+
+![Placeholder](https://placehold.co/960x480/png?text=MDX+Image)
+
+## 6. JSX(선택)
+
+MDX에서는 아래처럼 JSX도 섞을 수 있어요.
+
+<div className="bg-background-surface border border-border-normal rounded-lg p-4 my-6">
+	<div className="text-text-primary font-semibold">JSX 박스</div>
+	<div className="text-text-tertiary text-sm">여기서 spacing / border / 배경 토큰 확인</div>
+</div>
+
+---
+
+## 7. 마무리
+
+여기까지가 “전체 요소 확인용” 샘플 글입니다. 스타일이 마음에 안 드는 요소가 있으면(예: 표/코드/인용문) 어떤 요소인지 말해주면 그 부분만 더 예쁘게 다듬어줄게요.
+

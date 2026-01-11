@@ -1,5 +1,5 @@
 {
-  "name": "@dds/shape",
+  "name": "@dds-web/shapes",
   "version": "0.0.0",
   "private": true,
   "type": "module",

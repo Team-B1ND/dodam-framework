@@ -1,0 +1,146 @@
+/* 나중에 @dds-web/shapes, @dds-web/colors, @dds-web/themes로 전환 */
+
+@import "tailwindcss";
+
+@media (prefers-reduced-motion: no-preference) {
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: 180ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+:root {
+  /* brand */
+  --dds-color-brand-primary: #0083F0;
+  --dds-color-brand-secondary: #0083f0a6;
+
+  /* text */
+  --dds-color-text-primary: #0F0F10;
+  --dds-color-text-secondary: #383A3B;
+  --dds-color-text-tertiary: #5D5F60;
+  --dds-color-text-placeholder: #747678;
+  --dds-color-text-disabled: #E6E6E7;
+  --dds-color-text-inverse: #F5F5F5;
+
+  /* background */
+  --dds-color-background-default: #F5F5F5;
+  --dds-color-background-surface: #FFFFFF;
+
+  /* border */
+  --dds-color-border-normal: #DCDDDE;
+  --dds-color-border-strong: #C4C5C6;
+  --dds-color-border-subtle: #E6E6E7;
+  --dds-color-border-disabled: #E6E6E7;
+
+  /* fill */
+  --dds-color-fill-primary: #F5F5F5;
+  --dds-color-fill-secondary: #DCDDDE;
+  --dds-color-fill-hover: #E0E1E2;
+  --dds-color-fill-disabled: #f5f5f580;
+
+  /* status */
+  --dds-color-status-success: #00BF40;
+  --dds-color-status-error: #FF4242;
+  --dds-color-status-warning: #FFC800;
+  --dds-color-status-info: #0083F0;
+
+  /* overlay */
+  --dds-color-overlay-dim: #00000033;
+
+  /* static */
+  --dds-color-static-white: #FFFFFF;
+  --dds-color-static-black: #121212;
+}
+
+html[data-theme="dark"] {
+  /* brand */
+  --dds-color-brand-primary: #0083F0;
+  --dds-color-brand-secondary: #0083f0a6;
+
+  /* text */
+  --dds-color-text-primary: #F5F5F5;
+  --dds-color-text-secondary: #DCDDDE;
+  --dds-color-text-tertiary: #C4C5C6;
+  --dds-color-text-placeholder: #9B9D9F;
+  --dds-color-text-disabled: #48494A;
+  --dds-color-text-inverse: #0F0F01;
+
+  /* background */
+  --dds-color-background-default: #191A1A;
+  --dds-color-background-surface: #232424;
+
+  /* border */
+  --dds-color-border-normal: #48494A;
+  --dds-color-border-strong: #747678;
+  --dds-color-border-subtle: #383A3B;
+  --dds-color-border-disabled: #383A3B;
+
+  /* fill */
+  --dds-color-fill-primary: #2A2B2C;
+  --dds-color-fill-secondary: #383A3B;
+  --dds-color-fill-hover: #323435;
+  --dds-color-fill-disabled: #2a2b2c80;
+
+  /* status */
+  --dds-color-status-success: #00BF40;
+  --dds-color-status-error: #FF4242;
+  --dds-color-status-warning: #FFC800;
+  --dds-color-status-info: #0083F0;
+
+  /* overlay */
+  --dds-color-overlay-dim: #00000033;
+
+  /* static */
+  --dds-color-static-white: #FFFFFF;
+  --dds-color-static-black: #121212;
+}
+
+@theme {
+  /* brand */
+  --color-brand-primary: var(--dds-color-brand-primary);
+  --color-brand-secondary: var(--dds-color-brand-secondary);
+
+  /* text */
+  --color-text-primary: var(--dds-color-text-primary);
+  --color-text-secondary: var(--dds-color-text-secondary);
+  --color-text-tertiary: var(--dds-color-text-tertiary);
+  --color-text-placeholder: var(--dds-color-text-placeholder);
+  --color-text-disabled: var(--dds-color-text-disabled);
+  --color-text-inverse: var(--dds-color-text-inverse);
+
+  /* background */
+  --color-background-default: var(--dds-color-background-default);
+  --color-background-surface: var(--dds-color-background-surface);
+
+  /* border */
+  --color-border-normal: var(--dds-color-border-normal);
+  --color-border-strong: var(--dds-color-border-strong);
+  --color-border-subtle: var(--dds-color-border-subtle);
+  --color-border-disabled: var(--dds-color-border-disabled);
+
+  /* fill */
+  --color-fill-primary: var(--dds-color-fill-primary);
+  --color-fill-secondary: var(--dds-color-fill-secondary);
+  --color-fill-hover: var(--dds-color-fill-hover);
+  --color-fill-disabled: var(--dds-color-fill-disabled);
+
+  /* status */
+  --color-status-success: var(--dds-color-status-success);
+  --color-status-error: var(--dds-color-status-error);
+  --color-status-warning: var(--dds-color-status-warning);
+  --color-status-info: var(--dds-color-status-info);
+
+  /* overlay */
+  --color-overlay-dim: var(--dds-color-overlay-dim);
+
+  /* static */
+  --color-static-white: var(--dds-color-static-white);
+  --color-static-black: var(--dds-color-static-black);
+}
+
+.min-h-body {
+  min-height: calc(100vh - 320px);
+}

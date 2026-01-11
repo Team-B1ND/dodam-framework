@@ -1,5 +1,5 @@
 {
-  "name": "@dds/components",
+  "name": "@dds-web/components",
   "version": "0.0.0",
   "private": true,
   "type": "module",
