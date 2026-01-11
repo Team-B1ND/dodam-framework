@@ -1,12 +1,7 @@
-"use client";
-
-import Script from "next/script";
-import { initTheme } from "../init-theme";
-
 export const ThemeSetter = () => {
+  const themeScript = `(function(){try{var s=localStorage.getItem("dds-theme");var m=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";var t=s==="dark"||s==="light"?s:m;document.documentElement.dataset.theme=t;}catch(e){}})();`;
+
   return (
-    <Script strategy="beforeInteractive" id="dds-theme">
-      {`(${initTheme.toString()})();`}
-    </Script>
+    <script id="dds-theme" dangerouslySetInnerHTML={{ __html: themeScript }} />
   );
 };
