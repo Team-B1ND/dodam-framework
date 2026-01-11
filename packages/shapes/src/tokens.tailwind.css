@@ -1,0 +1,7 @@
+@theme {
+  --radius-extrasmall: 8px;
+  --radius-small: 10px;
+  --radius-medium: 12px;
+  --radius-large: 18px;
+  --radius-extralarge: 28px;
+}
