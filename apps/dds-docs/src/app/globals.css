@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@dds-web/themes/theme.tailwind.css";
+@import "@dds-web/colors/colors.css";
+@import "@dds-web/shapes/tokens.tailwind.css";
+@import "@dds-web/typography/tokens.tailwind.css";
+
+.min-h-body {
+  min-height: calc(100vh - 320px);
+}

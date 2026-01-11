@@ -1,0 +1,52 @@
+@media (prefers-reduced-motion: no-preference) {
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-duration: 100ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+@theme {
+  /* brand */
+  --color-brand-primary: var(--dds-color-brand-primary);
+  --color-brand-secondary: var(--dds-color-brand-secondary);
+
+  /* text */
+  --color-text-primary: var(--dds-color-text-primary);
+  --color-text-secondary: var(--dds-color-text-secondary);
+  --color-text-tertiary: var(--dds-color-text-tertiary);
+  --color-text-placeholder: var(--dds-color-text-placeholder);
+  --color-text-disabled: var(--dds-color-text-disabled);
+  --color-text-inverse: var(--dds-color-text-inverse);
+
+  /* background */
+  --color-background-default: var(--dds-color-background-default);
+  --color-background-surface: var(--dds-color-background-surface);
+
+  /* border */
+  --color-border-normal: var(--dds-color-border-normal);
+  --color-border-strong: var(--dds-color-border-strong);
+  --color-border-subtle: var(--dds-color-border-subtle);
+  --color-border-disabled: var(--dds-color-border-disabled);
+
+  /* fill */
+  --color-fill-primary: var(--dds-color-fill-primary);
+  --color-fill-secondary: var(--dds-color-fill-secondary);
+  --color-fill-hover: var(--dds-color-fill-hover);
+  --color-fill-disabled: var(--dds-color-fill-disabled);
+
+  /* status */
+  --color-status-success: var(--dds-color-status-success);
+  --color-status-error: var(--dds-color-status-error);
+  --color-status-warning: var(--dds-color-status-warning);
+  --color-status-info: var(--dds-color-status-info);
+
+  /* overlay */
+  --color-overlay-dim: var(--dds-color-overlay-dim);
+
+  /* static */
+  --color-static-white: var(--dds-color-static-white);
+  --color-static-black: var(--dds-color-static-black);
+}

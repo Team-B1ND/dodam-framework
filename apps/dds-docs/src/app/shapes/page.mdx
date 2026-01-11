@@ -1,0 +1,180 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+
+# Shapes
+
+DDS의 Shape 토큰은 컴포넌트의 border-radius 값을 일관되게 관리합니다.
+
+## Installation
+
+```bash
+pnpm add @dds-web/shapes
+```
+
+## Usage
+
+### Emotion / Styled-Components
+
+```tsx
+import styled from "@emotion/styled";
+import { shapes } from "@dds-web/shapes";
+
+const Card = () => (
+  <Div>
+    Content
+  </Div>
+);
+
+const Div = styled.div`
+  border-radius: ${shapes.large};
+`;
+
+```
+
+### Tailwind CSS
+
+```css
+/* globals.css */
+@import "@dds-web/shapes/tokens.tailwind.css";
+```
+
+```tsx
+// 사용 예시
+<div className="rounded-medium">Content</div>
+```
+
+---
+
+## Tokens
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Token</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Value</th>
+				<th className="px-4 py-3 text-left font-semibold">Preview</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">extraSmall</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">8px</code></td>
+				<td className="px-4 py-3">
+					<div className="w-16 h-10 bg-brand-primary rounded-extrasmall" />
+				</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">small</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">10px</code></td>
+				<td className="px-4 py-3">
+					<div className="w-16 h-10 bg-brand-primary rounded-small" />
+				</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">medium</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">12px</code></td>
+				<td className="px-4 py-3">
+					<div className="w-16 h-10 bg-brand-primary rounded-medium" />
+				</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">large</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">18px</code></td>
+				<td className="px-4 py-3">
+					<div className="w-16 h-10 bg-brand-primary rounded-large" />
+				</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">extraLarge</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">28px</code></td>
+				<td className="px-4 py-3">
+					<div className="w-16 h-10 bg-brand-primary rounded-extralarge" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+## Examples
+
+### 카드 컴포넌트
+
+```tsx
+import { shapes } from "@dds-web/shapes";
+
+const Card = ({ children }) => (
+  <div 
+    style={{ 
+      borderRadius: shapes.large,
+      padding: "20px",
+      backgroundColor: colors.background.surface,
+    }}
+  >
+    {children}
+  </div>
+);
+```
+
+<ComponentBlock>
+  <div className="p-5 bg-background-surface border border-border-normal rounded-large w-full">
+    <p className="text-text-primary font-medium">카드 컨텐츠</p>
+    <p className="text-text-tertiary text-sm mt-1">shapes.large (18px) 적용</p>
+  </div>
+</ComponentBlock>
+
+### 버튼
+
+```tsx
+import { shapes } from "@dds-web/shapes";
+
+const Button = ({ children }) => (
+  <button 
+    style={{ 
+      borderRadius: shapes.small,
+      padding: "8px 16px"
+    }}
+  >
+    {children}
+  </button>
+);
+```
+
+<ComponentBlock>
+  <button className="px-4 py-2 bg-brand-primary text-white rounded-small">
+    Small Button
+  </button>
+  <button className="px-4 py-2 bg-brand-primary text-white rounded-medium">
+    Medium Button
+  </button>
+  <button className="px-4 py-2 bg-brand-primary text-white rounded-large">
+    Large Button
+  </button>
+</ComponentBlock>
+
+### Pill / Chip
+
+```tsx
+import { shapes } from "@dds-web/shapes";
+
+const Chip = ({ children }) => (
+  <span 
+    style={{ 
+      borderRadius: shapes.extraLarge,
+      padding: "4px 12px"
+    }}
+  >
+    {children}
+  </span>
+);
+```
+
+<ComponentBlock>
+  <span className="px-3 py-1 bg-brand-primary text-white text-sm rounded-extralarge">
+    Chip Label
+  </span>
+  <span className="px-3 py-1 bg-fill-secondary text-text-primary text-sm rounded-extralarge">
+    Another Chip
+  </span>
+</ComponentBlock>

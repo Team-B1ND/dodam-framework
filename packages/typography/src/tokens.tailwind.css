@@ -1,0 +1,45 @@
+@theme {
+  --text-title1: 36px;
+  --text-title1--line-height: 130%;
+  --text-title1--letter-spacing: -0.03em;
+
+  --text-title2: 28px;
+  --text-title2--line-height: 130%;
+  --text-title2--letter-spacing: -0.03em;
+
+  --text-title3: 24px;
+  --text-title3--line-height: 130%;
+  --text-title3--letter-spacing: -0.03em;
+
+  --text-heading1: 22px;
+  --text-heading1--line-height: 130%;
+  --text-heading1--letter-spacing: -0.02em;
+
+  --text-heading2: 20px;
+  --text-heading2--line-height: 140%;
+  --text-heading2--letter-spacing: -0.01em;
+  
+  --text-headline: 18px;
+  --text-headline--line-height: 150%;
+  --text-headline--letter-spacing: 0em;
+
+  --text-body1: 16px;
+  --text-body1--line-height: 150%;
+  --text-body1--letter-spacing: 0.01em;
+
+  --text-body2: 15px;
+  --text-body2--line-height: 140%;
+  --text-body2--letter-spacing: 0.01em;
+
+  --text-label: 14px;
+  --text-label--line-height: 140%;
+  --text-label--letter-spacing: 0.02em;
+
+  --text-caption1: 13px;
+  --text-caption1--line-height: 130%;
+  --text-caption1--letter-spacing: 0.03em;
+
+  --text-caption2: 12px;
+  --text-caption2--line-height: 130%;
+  --text-caption2--letter-spacing: 0.03em;
+}

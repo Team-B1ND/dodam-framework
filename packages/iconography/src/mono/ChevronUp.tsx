@@ -1,0 +1,26 @@
+"use client";
+
+import { IconWithColorProps } from "../types";
+
+export const ChevronUp = ({
+  size = 24,
+  onClick = () => {},
+  color = "#0F0F10",
+  pointer,
+}: IconWithColorProps) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      onClick={onClick}
+      style={{ cursor: pointer ? "pointer" : "default" }}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M11.999 6.25C11.6149 6.2541 11.2839 6.3977 10.991 6.702L2.37099 15.507C2.12404 15.7635 2 16.0691 2 16.4384C2 17.1655 2.57072 17.75 3.30457 17.75C3.66223 17.75 3.99323 17.6044 4.25035 17.3523L11.997 9.403L19.7477 17.3523C20.0027 17.6024 20.3264 17.75 20.6954 17.75C21.4273 17.75 22 17.1655 22 16.4384C22 16.0732 21.876 15.7635 21.6197 15.507L13.0069 6.702C12.7048 6.3956 12.381 6.25 11.999 6.25Z"
+        fill={color}
+      />
+    </svg>
+  );
+};
