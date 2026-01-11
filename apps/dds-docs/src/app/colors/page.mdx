@@ -1,0 +1,300 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+
+# Colors
+
+DDS 컬러 시스템은 시맨틱 토큰을 기반으로 라이트/다크 테마를 지원합니다.
+
+## Installation
+
+```bash
+pnpm add @dds-web/colors
+```
+
+## Usage
+
+### TypeScript
+
+```tsx
+import { colors } from "@dds-web/colors";
+
+const Text = () => (
+  <p style={{ color: colors.text.primary }}>
+    Hello World
+  </p>
+);
+```
+
+### Tailwind CSS
+
+```css
+/* globals.css */
+@import "@dds-web/colors/colors.css";
+```
+
+```tsx
+// 사용 예시
+<p className="text-text-primary">Hello World</p>
+<div className="bg-background-surface border-border-normal">...</div>
+```
+
+---
+
+## Color Categories
+
+### Brand
+
+브랜드 아이덴티티를 나타내는 핵심 색상입니다.
+
+<div className="grid grid-cols-2 gap-4 my-6">
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-16 bg-brand-primary rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">brand.primary</p>
+    <p className="text-text-tertiary text-xs mt-1">#0083F0</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-16 bg-brand-secondary rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">brand.secondary</p>
+    <p className="text-text-tertiary text-xs mt-1">#0083f0a6</p>
+  </div>
+</div>
+
+### Text
+
+텍스트에 사용되는 색상 토큰입니다.
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Token</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Description</th>
+				<th className="px-4 py-3 text-left font-semibold">Preview</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.primary</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">주요 텍스트</td>
+				<td className="px-4 py-3 text-text-primary font-medium">Sample Text</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.secondary</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">보조 텍스트</td>
+				<td className="px-4 py-3 text-text-secondary font-medium">Sample Text</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.tertiary</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">부가 텍스트</td>
+				<td className="px-4 py-3 text-text-tertiary font-medium">Sample Text</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.placeholder</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">플레이스홀더</td>
+				<td className="px-4 py-3 text-text-placeholder font-medium">Sample Text</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.disabled</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">비활성화 텍스트</td>
+				<td className="px-4 py-3 text-text-disabled font-medium">Sample Text</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text.inverse</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">반전 텍스트</td>
+				<td className="px-4 py-3 text-text-inverse font-medium">Sample Text</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+### Background
+
+배경에 사용되는 색상 토큰입니다.
+
+<div className="grid grid-cols-2 gap-4 my-6">
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-16 bg-background-default rounded-md mb-3 border border-border-subtle" />
+    <p className="text-text-primary font-medium text-sm">background.default</p>
+    <p className="text-text-tertiary text-xs mt-1">기본 배경색</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-16 bg-background-surface rounded-md mb-3 border border-border-subtle" />
+    <p className="text-text-primary font-medium text-sm">background.surface</p>
+    <p className="text-text-tertiary text-xs mt-1">표면 배경색</p>
+  </div>
+</div>
+
+### Border
+
+테두리에 사용되는 색상 토큰입니다.
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+  <div className="p-4 rounded-lg bg-background-surface">
+    <div className="w-full h-12 border-2 border-border-normal rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">border.normal</p>
+  </div>
+  <div className="p-4 rounded-lg bg-background-surface">
+    <div className="w-full h-12 border-2 border-border-strong rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">border.strong</p>
+  </div>
+  <div className="p-4 rounded-lg bg-background-surface">
+    <div className="w-full h-12 border-2 border-border-subtle rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">border.subtle</p>
+  </div>
+  <div className="p-4 rounded-lg bg-background-surface">
+    <div className="w-full h-12 border-2 border-border-disabled rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">border.disabled</p>
+  </div>
+</div>
+
+### Fill
+
+채우기 색상 토큰입니다.
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-fill-primary rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">fill.primary</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-fill-secondary rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">fill.secondary</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-fill-hover rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">fill.hover</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-fill-disabled rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">fill.disabled</p>
+  </div>
+</div>
+
+### Status
+
+상태를 나타내는 색상 토큰입니다.
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-status-success rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">status.success</p>
+    <p className="text-text-tertiary text-xs mt-1">#00BF40</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-status-error rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">status.error</p>
+    <p className="text-text-tertiary text-xs mt-1">#FF4242</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-status-warning rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">status.warning</p>
+    <p className="text-text-tertiary text-xs mt-1">#FFC800</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-status-info rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">status.info</p>
+    <p className="text-text-tertiary text-xs mt-1">#0083F0</p>
+  </div>
+</div>
+
+### Static
+
+테마에 영향 받지 않는 고정 색상입니다.
+
+<div className="grid grid-cols-2 gap-4 my-6">
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-static-white rounded-md mb-3 border border-border-subtle" />
+    <p className="text-text-primary font-medium text-sm">static.white</p>
+    <p className="text-text-tertiary text-xs mt-1">#FFFFFF</p>
+  </div>
+  <div className="p-4 rounded-lg border border-border-normal">
+    <div className="w-full h-12 bg-static-black rounded-md mb-3" />
+    <p className="text-text-primary font-medium text-sm">static.black</p>
+    <p className="text-text-tertiary text-xs mt-1">#121212</p>
+  </div>
+</div>
+
+---
+
+## Theme Support
+
+DDS 컬러는 CSS 변수 기반으로 라이트/다크 테마를 자동 지원합니다.
+
+```tsx
+import { colors } from "@dds-web/colors";
+
+// CSS 변수를 반환하므로 테마 변경 시 자동으로 색상이 변경됩니다.
+console.log(colors.text.primary); // "var(--dds-color-text-primary)"
+```
+
+### Raw Color Values
+
+테마별 실제 색상값이 필요한 경우:
+
+```tsx
+import { lightColors, darkColors } from "@dds-web/colors";
+
+// Light theme
+console.log(lightColors.text.primary); // "#0F0F10"
+
+// Dark theme
+console.log(darkColors.text.primary); // "#F5F5F5"
+```
+
+---
+
+## Examples
+
+### 카드 컴포넌트
+
+```tsx
+import { colors } from "@dds-web/colors";
+
+const Card = ({ title, description }) => (
+  <div
+    style={{
+      backgroundColor: colors.background.surface,
+      border: `1px solid ${colors.border.normal}`,
+      borderRadius: "12px",
+      padding: "20px",
+    }}
+  >
+    <h3 style={{ color: colors.text.primary }}>{title}</h3>
+    <p style={{ color: colors.text.secondary }}>{description}</p>
+  </div>
+);
+```
+
+<ComponentBlock>
+  <div className="w-full p-5 bg-background-surface border border-border-normal rounded-xl">
+    <h3 className="text-text-primary font-semibold">Card Title</h3>
+    <p className="text-text-secondary text-sm mt-1">Card description text</p>
+  </div>
+</ComponentBlock>
+
+### 상태 표시
+
+```tsx
+import { colors } from "@dds-web/colors";
+
+const StatusBadge = ({ status }) => {
+  const statusColors = {
+    success: colors.status.success,
+    error: colors.status.error,
+    warning: colors.status.warning,
+    info: colors.status.info,
+  };
+
+  return (
+    <span style={{ color: statusColors[status] }}>
+      ● {status}
+    </span>
+  );
+};
+```
+
+<ComponentBlock>
+  <span className="text-status-success font-medium">● Success</span>
+  <span className="text-status-error font-medium">● Error</span>
+  <span className="text-status-warning font-medium">● Warning</span>
+  <span className="text-status-info font-medium">● Info</span>
+</ComponentBlock>

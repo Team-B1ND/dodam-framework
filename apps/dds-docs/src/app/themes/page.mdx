@@ -1,0 +1,245 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import ThemeToggleDemo from "@/widgets/themeToggle/ui/ThemeToggleDemo";
+import ThemeSelectorDemo from "@/widgets/themeToggle/ui/ThemeSelectorDemo";
+
+# Themes
+
+DDS 테마 시스템은 라이트/다크 모드를 손쉽게 관리합니다.
+
+## Installation
+
+```bash
+pnpm add @dds-web/themes
+```
+
+## Setup
+
+### Next.js
+
+- `ThemeSetter` 컴포넌트를 `<head>` 내에 배치하여 깜빡임 없이 초기 테마를 적용합니다.
+- `suppressHydrationWarning` 속성을 `<html>` 태그에 추가하여 hydration 경고를 방지합니다.
+
+```tsx
+// app/layout.tsx
+import { ThemeSetter } from "@dds-web/themes/next";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ko" suppressHydrationWarning>
+      <head>
+        <ThemeSetter />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Vite + React
+- `init-theme.iife.js` 스크립트를 HTML `<head>`에 추가하여 초기 테마를 설정합니다.
+```html
+//index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <script src="node_modules/@dds-web/themes/dist/init-theme.iife.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tem2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+---
+
+## API Reference
+
+### Theme Type
+
+```tsx
+type Theme = "light" | "dark";
+```
+
+### Functions
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Function</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal">Return</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">initTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Theme</code></td>
+				<td className="px-4 py-3 text-text-secondary">저장된 테마 또는 시스템 테마를 적용하고 반환</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">getCurrentTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Theme | null</code></td>
+				<td className="px-4 py-3 text-text-secondary">현재 적용된 테마 반환</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">applyTheme(theme)</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">void</code></td>
+				<td className="px-4 py-3 text-text-secondary">테마를 적용하고 localStorage에 저장</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">toggleTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">void</code></td>
+				<td className="px-4 py-3 text-text-secondary">라이트/다크 테마 토글</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">getSystemTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Theme</code></td>
+				<td className="px-4 py-3 text-text-secondary">시스템 테마 반환</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">getStoredTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Theme | null</code></td>
+				<td className="px-4 py-3 text-text-secondary">localStorage에 저장된 테마 반환</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">resolveInitialTheme()</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Theme</code></td>
+				<td className="px-4 py-3 text-text-secondary">저장된 테마 또는 시스템 테마 반환</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+### Hooks
+
+#### useTheme
+
+현재 테마를 반환하는 React Hook입니다.
+
+```tsx
+import { useTheme } from "@dds-web/themes";
+
+function Component() {
+  const theme = useTheme(); // "light" | "dark"
+  
+  return <div>Current theme: {theme}</div>;
+}
+```
+
+---
+
+## Examples
+
+### 테마 토글 버튼
+
+```tsx
+"use client";
+
+import { useTheme, toggleTheme } from "@dds-web/themes";
+import { Sun, Moon } from "lucide-react";
+
+function ThemeToggle() {
+  const theme = useTheme();
+
+  return (
+    <button onClick={toggleTheme}>
+      {theme === "light" ? <Moon /> : <Sun />}
+    </button>
+  );
+}
+```
+
+<ThemeToggleDemo />
+
+### 테마별 스타일링
+
+```tsx
+import { useTheme } from "@dds-web/themes";
+
+function ThemedCard() {
+  const theme = useTheme();
+  
+  return (
+    <div
+      style={{
+        backgroundColor: theme === "light" ? "#FFFFFF" : "#232424",
+        color: theme === "light" ? "#0F0F10" : "#F5F5F5",
+      }}
+    >
+      Theme-aware content
+    </div>
+  );
+}
+```
+
+<ComponentBlock>
+  <div className="w-full p-5 bg-background-surface border border-border-normal rounded-xl text-text-primary">
+    이 카드는 현재 테마에 따라 색상이 변경됩니다.
+  </div>
+</ComponentBlock>
+
+### 특정 테마 적용
+
+```tsx
+import { applyTheme } from "@dds-web/themes";
+
+function ThemeSelector() {
+  return (
+    <div>
+      <button onClick={() => applyTheme("light")}>Light</button>
+      <button onClick={() => applyTheme("dark")}>Dark</button>
+    </div>
+  );
+}
+```
+
+<ThemeSelectorDemo />
+
+---
+
+## How It Works
+
+### 테마 적용 흐름
+
+1. **초기화**: `ThemeSetter` 또는 `init-theme.iife.js`가 localStorage와 시스템 설정을 확인
+2. **적용**: `document.documentElement.dataset.theme`에 테마 값 설정
+3. **CSS 변수**: `[data-theme="dark"]` 선택자로 스타일 적용 (data-theme이 없다면 :root 적용)
+4. **저장**: 테마 변경 시 localStorage에 저장되어 새로고침 후에도 유지
+
+### CSS 변수 구조
+
+```css
+:root {
+  --dds-color-text-primary: #0F0F10;
+  --dds-color-background-default: #F5F5F5;
+  /* ... */
+}
+
+[data-theme="dark"] {
+  --dds-color-text-primary: #F5F5F5;
+  --dds-color-background-default: #191A1A;
+  /* ... */
+}
+```
+
+### Flash 방지
+
+Next.js에서 `ThemeSetter`는 `<head>` 내부에서 동기적으로 실행되어 hydration 전에 테마를 적용합니다. 이로 인해 페이지 로드 시 깜빡임(flash)이 발생하지 않습니다.
+
+```tsx
+// ThemeSetter가 생성하는 스크립트
+(function() {
+  try {
+    var s = localStorage.getItem("dds-theme");
+    var m = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    var t = s === "dark" || s === "light" ? s : m;
+    document.documentElement.dataset.theme = t;
+  } catch(e) {}
+})();
+```
