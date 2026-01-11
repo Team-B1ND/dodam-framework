@@ -1,13 +1,12 @@
 import type { Theme } from "./types";
-import { THEME_STORAGE_KEY } from "./constants";
 
-const THEME_CHANGE_EVENT = "dds-docs-theme-change";
+const THEME_CHANGE_EVENT = "dds-theme-change";
 
 export const getSystemTheme = (): Theme =>
   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 export const getStoredTheme = (): Theme | null => {
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  const stored = localStorage.getItem("dds-theme");
   if (stored === "dark" || stored === "light") return stored;
   return null;
 };
@@ -22,7 +21,7 @@ export const getCurrentTheme = (): Theme | null => {
 
 export const applyTheme = (theme: Theme) => {
   document.documentElement.dataset.theme = theme;
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
+  localStorage.setItem("dds-theme", theme);
   window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 };
 
