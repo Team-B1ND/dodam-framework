@@ -29,12 +29,13 @@ export const Calender = styled.div`
   border-radius: ${shapes.extraLarge};
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
+  left: -2px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   cursor: default;
+  z-index: 2;
 `;
 
 export const Title = styled.h2`
