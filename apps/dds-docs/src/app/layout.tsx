@@ -5,6 +5,8 @@ import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import Footer from "@/widgets/footer/ui/Footer";
 import { LoadingBar } from "@cher1shrxd/loading";
 import { ThemeSetter } from "@dds-web/themes/next";
+import { DdsRegistry } from "@dds-web/components";
+import { colors } from "@dds-web/colors";
 
 export const metadata: Metadata = {
   title: "DDS docs",
@@ -22,12 +24,14 @@ export default function RootLayout({
         <ThemeSetter />
       </head>
       <body className="antialiased bg-background-default text-text-primary">
-        <LoadingBar color="var(--dds-color-brand-primary)" />
+        <LoadingBar color={colors.brand.primary} />
         <Header />
         <div className="w-full max-w-360 mx-auto px-2 flex items-start pt-14">
           <Sidebar />
           <main className="flex-1 pl-50 pt-16">
-            <div className="min-h-body">{children}</div>
+            <div className="min-h-body">
+              <DdsRegistry>{children}</DdsRegistry>
+            </div>
             <Footer />
           </main>
         </div>
