@@ -14,7 +14,6 @@ export const DatePicker = ({
   onChangeDate = () => {},
   disablePast = false,
   title = "날짜 선택",
-  ...props
 }: DatePickerProps) => {
   const {
     isOpen,
@@ -31,7 +30,6 @@ export const DatePicker = ({
   return (
     <S.Container
       ref={containerRef}
-      {...props}
       onClick={() => setIsOpen((prev) => !prev)}>
       <S.DateText>{parseDate(date)}</S.DateText>
       <Calendar size={16} color={colors.text.primary} pointer />
