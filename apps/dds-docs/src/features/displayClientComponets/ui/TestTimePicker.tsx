@@ -1,18 +1,17 @@
 "use client";
 
-import { getCurrentTime, TimePicker, type Time } from "@dds-web/components";
+import {
+  getCurrentTime,
+  TimePicker,
+  TimePickerProps,
+  type Time,
+} from "@dds-web/components";
 import { useState } from "react";
 
-const TestTimePicker = () => {
+const TestTimePicker = (props: TimePickerProps) => {
   const [time, setTime] = useState<Time>(getCurrentTime());
 
-  return (
-    <TimePicker
-      time={time}
-      onChangeTime={setTime}
-      title="test 시간 선택"
-    />
-  )
-}
+  return <TimePicker {...props} time={time} onChangeTime={setTime} />;
+};
 
-export default TestTimePicker
+export default TestTimePicker;

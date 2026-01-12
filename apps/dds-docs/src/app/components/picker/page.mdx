@@ -1,5 +1,191 @@
-import TestDatePicker from '@/features/displayClientComponets/ui/TestDatePicker';
-import TestTimePicker from '@/features/displayClientComponets/ui/TestTimePicker';
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestDatePicker from "@/features/displayClientComponets/ui/TestDatePicker";
+import TestTimePicker from "@/features/displayClientComponets/ui/TestTimePicker";
 
-<TestDatePicker />
-<TestTimePicker /> 
+# Picker
+
+날짜/시간을 선택할 수 있는 Picker 컴포넌트 모음입니다.
+
+---
+
+## DatePicker
+
+달력을 통해 날짜를 선택합니다. 과거 날짜 선택 방지(`disablePast`)와 제목 커스터마이징을 지원합니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestDatePicker />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 설치
+
+```bash
+pnpm add @dds-web/components
+```
+
+> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+```tsx
+"use client";
+
+import { DatePicker } from "@dds-web/components";
+import { useState } from "react";
+
+export default function Example() {
+  const [date, setDate] = useState(new Date());
+
+  return <DatePicker date={date} onChangeDate={setDate} />;
+}
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">date</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Date</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">new Date()</code></td>
+				<td className="px-4 py-3 text-text-secondary">현재 선택된 날짜</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangeDate</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(date: Date) =&gt; void</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">선택 버튼 클릭 시 호출되는 콜백</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">disablePast</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">false</code></td>
+				<td className="px-4 py-3 text-text-secondary">과거 날짜를 비활성화 처리</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"날짜 선택"</code></td>
+				<td className="px-4 py-3 text-text-secondary">달력 상단 제목</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+### Examples
+
+#### 과거 날짜 선택 방지
+
+<ComponentBlock>
+  <TestDatePicker disablePast />
+</ComponentBlock>
+
+---
+
+## TimePicker
+
+휠 스크롤로 시간/분을 선택합니다. 스크롤은 무한히 회전하며, 실제 값 반영은 “선택” 버튼 클릭 시에만 이루어집니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestTimePicker />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { getCurrentTime, TimePicker, type Time } from "@dds-web/components";
+import { useState } from "react";
+
+export default function Example() {
+  const [time, setTime] = useState<Time>(getCurrentTime());
+
+  return <TimePicker time={time} onChangeTime={setTime} />;
+}
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">time</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Time</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-</td>
+				<td className="px-4 py-3 text-text-secondary">현재 선택된 시간</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangeTime</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(time: Time) =&gt; void</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">선택 버튼 클릭 시 호출되는 콜백</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"시간 선택"</code></td>
+				<td className="px-4 py-3 text-text-secondary">피커 상단 제목</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+### Utilities
+
+#### getCurrentTime()
+
+현재 시스템 시간을 `Time` 형태로 반환합니다.
+
+```ts
+import { getCurrentTime, type Time } from "@dds-web/components";
+
+const time: Time = getCurrentTime();
+// { hour: number; minute: number }
+```
+
+---
+
+## Notes
+
+- 바깥 영역을 클릭하면 Picker가 닫힙니다.
+- 실제 값 반영은 “선택” 버튼 클릭 시에만 발생합니다.
