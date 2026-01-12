@@ -34,7 +34,7 @@ export const DatePicker = ({
       <S.DateText>{parseDate(date)}</S.DateText>
       <Calendar size={16} color={colors.text.primary} pointer />
       {isOpen && (
-        <S.Calender onClick={(e) => e.stopPropagation()}>
+        <S.Calender $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
           <S.Title>{title}</S.Title>
 
           <S.Header>

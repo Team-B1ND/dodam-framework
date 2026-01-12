@@ -32,7 +32,7 @@ export const TimePicker = ({
       </S.DateText>
       <Clock size={16} color={colors.text.primary} pointer />
       {isOpen && (
-        <S.Timer onClick={(e) => e.stopPropagation()}>
+        <S.Timer $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
           <S.Title>{title}</S.Title>
 
           <S.Picker>

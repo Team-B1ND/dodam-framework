@@ -24,7 +24,7 @@ export const DateText = styled.span`
   user-select: none;
 `;
 
-export const Calender = styled.div`
+export const Calender = styled.div<{ $isOpen: boolean }>`
   background-color: ${colors.background.surface};
   border-radius: ${shapes.extraLarge};
   position: absolute;
@@ -35,7 +35,7 @@ export const Calender = styled.div`
   flex-direction: column;
   gap: 16px;
   cursor: default;
-  z-index: 2;
+  z-index: ${({ $isOpen }) => ($isOpen ? 1000 : -1)};
 `;
 
 export const Title = styled.h2`

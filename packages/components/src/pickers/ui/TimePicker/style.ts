@@ -23,7 +23,7 @@ export const DateText = styled.span`
   user-select: none;
 `;
 
-export const Timer = styled.div`
+export const Timer = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 8px);
   left: -2px;
@@ -34,6 +34,7 @@ export const Timer = styled.div`
   flex-direction: column;
   gap: 16px;
   cursor: default;
+  z-index: ${({ $isOpen }) => ($isOpen ? 1000 : -1)};
 `;
 
 export const Title = styled.h2`
