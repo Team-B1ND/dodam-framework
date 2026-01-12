@@ -3,14 +3,35 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "pnpm run build",
     "typecheck": "tsc -b"
   },
   "peerDependencies": {
+    "@dds-web/colors": "^1.0.0",
+    "@dds-web/iconography": "^1.0.0",
+    "@dds-web/shapes": "^1.0.0",
+    "@dds-web/themes": "^1.0.0",
+    "@dds-web/typography": "^1.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@emotion/cache": "^11.14.0",
+    "next": ">=16",
     "react": ">=19",
-    "react-dom": ">=19"
+    "react-dom": ">=19",
+    "zustand": "^5.0.10"
   }
 }

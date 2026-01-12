@@ -7,3 +7,7 @@
 .min-h-body {
   min-height: calc(100vh - 320px);
 }
+
+* {
+  word-break: keep-all;
+}
