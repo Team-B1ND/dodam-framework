@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { Phase } from "../types/phase";
 import { FADE_IN_MS, FADE_OUT_MS } from "../constants";
 
-export const useTransition = (pages: ReactNode[], current: number) => {
+export const useTransition = (pages: ReactNode[], current: number, animated: boolean) => {
   const [rendered, setRendered] = useState<ReactNode>(pages[current] ?? null);
   const [phase, setPhase] = useState<Phase>("idle");
   const lastIndexRef = useRef<number>(current);
@@ -33,13 +33,13 @@ export const useTransition = (pages: ReactNode[], current: number) => {
 
       const inTimer = window.setTimeout(() => {
         setPhase("idle");
-      }, FADE_IN_MS);
+      }, animated ? FADE_IN_MS : 0);
 
       return () => window.clearTimeout(inTimer);
-    }, FADE_OUT_MS);
+    }, animated ? FADE_OUT_MS : 0);
 
     return () => window.clearTimeout(outTimer);
-  }, [current, pages]);
+  }, [current, pages, animated]);
 
   return { phase, rendered };
 };

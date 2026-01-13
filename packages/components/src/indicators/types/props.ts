@@ -9,4 +9,5 @@ export interface IndicatorProps {
 export interface SwitcherProps {
   pages?: React.ReactNode[];
   current?: number;
+  animated?: boolean;
 }
