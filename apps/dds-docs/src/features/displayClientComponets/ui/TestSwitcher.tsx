@@ -7,10 +7,10 @@ const TestSwitcher = (props: SwitcherProps) => {
   const [page, setPage] = useState(0);
 
   return (
-    <>
-      <Switcher pages={props.pages} current={page} />
+    <div>
+      <Switcher pages={props.pages} current={page} animated={props.animated} />
       <Indicator current={page} onChangePage={setPage} total={props.pages?.length} />
-    </>
+    </div>
   );
 };
 
