@@ -31,12 +31,9 @@ pnpm add @dds-web/components
 ```tsx
 // app/layout.tsx
 import { DialogProvider } from "@dds-web/components";
+import { PropsWithChildren } from "react";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ko">
       <body>
