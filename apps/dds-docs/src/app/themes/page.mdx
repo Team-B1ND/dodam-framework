@@ -22,8 +22,9 @@ pnpm add @dds-web/themes
 ```tsx
 // app/layout.tsx
 import { ThemeSetter } from "@dds-web/themes/next";
+import { PropsWithChildren } from "react";
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>

@@ -5,7 +5,7 @@ import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import Footer from "@/widgets/footer/ui/Footer";
 import { LoadingBar } from "@cher1shrxd/loading";
 import { ThemeSetter } from "@dds-web/themes/next";
-import { DdsRegistry } from "@dds-web/components";
+import { DdsRegistry, DialogProvider } from "@dds-web/components";
 import { colors } from "@dds-web/colors";
 
 export const metadata: Metadata = {
@@ -25,6 +25,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-background-default text-text-primary">
         <LoadingBar color={colors.brand.primary} />
+        <DialogProvider />
         <Header />
         <div className="w-full max-w-360 mx-auto px-2 flex items-start pt-14">
           <Sidebar />
