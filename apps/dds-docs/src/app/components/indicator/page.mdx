@@ -4,13 +4,13 @@ import TestSwitcher from "@/features/displayClientComponets/ui/TestSwitcher";
 
 # Indicators
 
-페이지/캐러셀 전환을 보조하는 Indicator 컴포넌트 모음입니다.
+캐러셀 페이지 전환을 보조하는 Indicator 컴포넌트 모음입니다.
 
 ---
 
 ## Indicator
 
-현재 페이지 위치를 점(dot)으로 표시하고, 사용자가 점을 클릭해 페이지를 변경할 수 있습니다.
+현재 캐러셀 페이지 위치를 표시하고, 사용자가 인디케이터를 클릭해 캐러셀 페이지를 변경할 수 있습니다.
 
 ---
 
@@ -66,31 +66,31 @@ export default function Example() {
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">total</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code></td>
-				<td className="px-4 py-3 text-text-secondary">전체 페이지 수</td>
+				<td className="px-4 py-3 text-text-secondary">전체 캐러셀 페이지 수</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">current</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code></td>
-				<td className="px-4 py-3 text-text-secondary">현재 페이지 인덱스</td>
+				<td className="px-4 py-3 text-text-secondary">현재 캐러셀 페이지 인덱스</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangePage</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(page: number) =&gt; void</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
-				<td className="px-4 py-3 text-text-secondary">페이지 변경 콜백</td>
+				<td className="px-4 py-3 text-text-secondary">캐러셀 페이지 변경 콜백</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">10</code></td>
-				<td className="px-4 py-3 text-text-secondary">dot 크기</td>
+				<td className="px-4 py-3 text-text-secondary">점 크기</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">color</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">colors.brand.primary</code></td>
-				<td className="px-4 py-3 text-text-secondary">활성 dot 색상</td>
+				<td className="px-4 py-3 text-text-secondary">활성화된 점 색상</td>
 			</tr>
 		</tbody>
 	</table>
@@ -100,7 +100,7 @@ export default function Example() {
 
 ## Switcher
 
-`<Indicator />` 에 맞는 페이지를 렌더링하는 스위처 컴포넌트입니다. `animated` 속성을 통해 페이지가 변경될 때 애니메이션 효과를 제어할 수 있습니다.
+`<Indicator />` 에 맞는 캐러셀 페이지를 렌더링하는 스위처 컴포넌트입니다. `animated` 속성을 통해 페이지가 변경될 때 애니메이션 효과를 제어할 수 있습니다.
 
 ---
 
@@ -178,7 +178,7 @@ export default function Example() {
         <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
           <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">[]</code>
         </td>
-        <td className="px-4 py-3 text-text-secondary">전환될 페이지 목록</td>
+        <td className="px-4 py-3 text-text-secondary">전환될 캐러셀 페이지 목록</td>
       </tr>
       <tr className="hover:bg-fill-primary transition-colors">
         <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
@@ -190,7 +190,7 @@ export default function Example() {
         <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
           <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code>
         </td>
-        <td className="px-4 py-3 text-text-secondary">현재 페이지 인덱스</td>
+        <td className="px-4 py-3 text-text-secondary">현재 캐러셀 페이지 인덱스</td>
       </tr>
       <tr className="hover:bg-fill-primary transition-colors">
         <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
