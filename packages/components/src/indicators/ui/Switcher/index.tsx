@@ -4,7 +4,7 @@ import { useTransition } from "../../hooks/useTransition";
 import { SwitcherProps } from "../../types/props";
 import { Container } from "./style";
 
-export const Switcher = ({ pages = [], current = 0, animated = true }: SwitcherProps) => {
+export const Switcher = ({ pages = [], current = 0, animated = false }: SwitcherProps) => {
   const { phase, rendered } = useTransition(pages, current, animated);
 
   return (
