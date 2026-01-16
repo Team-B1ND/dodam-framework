@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "@dds-web/iconography/mono";
 import { colors } from "@dds-web/colors";
 import { DropdownProps } from "../../types/props";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import * as S from "./style";
 
 export const Dropdown = ({
@@ -13,14 +14,17 @@ export const Dropdown = ({
   customStyle,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const containerRef = useOutsideClick(isOpen, () => setIsOpen(false));
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: string, e: React.MouseEvent) => {
+    e.stopPropagation();
     onSelectedItemChange(item);
     setIsOpen(false);
   };
 
   return (
     <S.Container
+      ref={containerRef}
       onClick={() => setIsOpen((prev) => !prev)}
       $customStyle={customStyle}
     >
@@ -35,7 +39,7 @@ export const Dropdown = ({
       {isOpen && (
         <S.OptionWrap>
           {items.map((item, idx) => (
-            <S.Option key={idx} onClick={() => handleItemClick(item)}>
+            <S.Option key={idx} onClick={(e) => handleItemClick(item, e)}>
               {item}
             </S.Option>
           ))}
