@@ -1,29 +1,8 @@
-import { colors } from "@dds-web/colors";
 import { typoCss } from "@dds-web/typography";
 import styled from "@emotion/styled";
 import { CSSObject } from "@emotion/react";
 import { TagColor } from "../../types/props";
-
-const getBackgroundColor = (color: TagColor) => {
-  switch (color) {
-    case "red":
-      return colors.status.error;
-    case "blue":
-      return colors.brand.primary;
-    case "default":
-      return colors.fill.secondary;
-  }
-};
-
-const getTextColor = (color: TagColor) => {
-  switch (color) {
-    case "red":
-    case "blue":
-      return colors.static.white;
-    case "default":
-      return colors.text.primary;
-  }
-};
+import { getBackgroundColor, getTextColor } from "../../utils/get-tag-colors";
 
 export const Container = styled.div<{
   $color: TagColor;
