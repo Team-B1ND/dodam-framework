@@ -19,10 +19,10 @@ const Container = styled.div<{
   $backgroundColor: string;
   $dotCustomStyle: CSSObject
 }>`
-  ${({ $dotCustomStyle }) => $dotCustomStyle}
   width: ${({ $size }) => `${$size}px`};
   min-width: ${({ $size }) => `${$size}px`};
   aspect-ratio: 1 / 1;
   border-radius: 100%;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
+  ${({ $dotCustomStyle }) => $dotCustomStyle};
 `;

@@ -25,8 +25,6 @@ const Container = styled.div<{
   $backgroundColor: string;
   $badgeCustomStyle: CSSObject;
 }>`
-  ${({ $badgeCustomStyle }) => $badgeCustomStyle}
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,4 +34,6 @@ const Container = styled.div<{
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   ${typoCss("Label", "Medium")};
   color: ${colors.static.white};
+
+  ${({ $badgeCustomStyle }) => $badgeCustomStyle};
 `
