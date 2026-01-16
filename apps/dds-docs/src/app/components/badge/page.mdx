@@ -1,9 +1,10 @@
 import ComponentBlock from "@/shared/ui/ComponentBlock";
 import TestDot from "@/features/displayClientComponents/ui/TestDot";
+import TestBadge from "@/features/displayClientComponents/ui/TestBadge";
 
 # Badges
 
-숫자나 텍스트 등 특정 요소를 뱃지로 표시 / 강조하는 컴포넌트입니다.
+숫자를 뱃지로 표시 / 강조하는 컴포넌트 모음입니다.
 
 ---
 
@@ -32,12 +33,13 @@ pnpm add @dds-web/components
 ```
 
 > `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
 ### 기본 사용법
 ```tsx
 "use client";
 
 import { colors } from "@dds-web/colors"
-import { DatePicker } from "@dds-web/components";
+import { Dot } from "@dds-web/components";
 
 export default function Example() {
   return (
@@ -90,3 +92,87 @@ export default function Example() {
 </div>
 
 ---
+
+## Badge
+
+일반적인 뱃지로, 숫자 표시합니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+	<TestBadge number={1}/>
+	<TestBadge number={1000}/>
+</ComponentBlock>
+
+---
+
+### Usage
+
+### 기본 사용법
+
+```tsx
+"use client"
+
+import { colors } from "@dds-web/colors";
+import { Badge } from "@dds-web/components";
+import { useState } from "react";
+
+export default function Example() {
+  const [number, setNumber] = useState(1); 
+  return (
+    <Badge 
+      number={number} 
+      maxNumber={999} 
+      backgroundColor={colors.status.success} 
+      badgeCustomStyle={{ 
+  	    zIndex: 1 
+      }} 
+    /> 
+  );
+}
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
+				<td className="px-4 py-3 text-text-secondary">표시될 숫자</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">maxNumber</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">999</code></td>
+				<td className="px-4 py-3 text-text-secondary">표시될 숫자의 최대치 ( 초과 시 + 로 표시 )</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">backgroundColor</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">#FF4242</code></td>
+				<td className="px-4 py-3 text-text-secondary">dds 내부 색상 사용 권장</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">badgeCustomStyle</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">커스텀 스타일</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
