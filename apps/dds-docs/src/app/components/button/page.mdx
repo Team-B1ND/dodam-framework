@@ -1,0 +1,161 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestFilledButton from "@/features/displayClientComponets/ui/TestFilledButton";
+
+# Buttons
+
+다양한 방식으로 사용되는 Button 컴포넌트 모음입니다.
+
+---
+
+## FilledButton
+
+가장 기본이 되는 버튼입니다.
+배경 색상이 채워진 것이 특징입니다.
+
+---
+
+### Preview
+
+role - primary ( default )
+<ComponentBlock>
+  <TestFilledButton size="large">
+    large
+  </TestFilledButton>
+  <TestFilledButton size="large" disabled>
+    large
+  </TestFilledButton>
+  <TestFilledButton size="mideum">
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="mideum" disabled>
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="small">
+    small
+  </TestFilledButton>
+  <TestFilledButton size="small" disabled>
+    small
+  </TestFilledButton>
+</ComponentBlock>
+
+role - assistive
+<ComponentBlock>
+  <TestFilledButton size="large" role="assistive">
+    large
+  </TestFilledButton>
+  <TestFilledButton size="large" role="assistive" disabled>
+    large
+  </TestFilledButton>
+  <TestFilledButton size="mideum" role="assistive">
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="mideum" role="assistive" disabled>
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="small" role="assistive">
+    small
+  </TestFilledButton>
+  <TestFilledButton size="small" role="assistive" disabled>
+    small
+  </TestFilledButton>
+</ComponentBlock>
+
+role - negative
+<ComponentBlock>
+  <TestFilledButton size="large" role="negative">
+    large
+  </TestFilledButton>
+  <TestFilledButton size="large" role="negative" disabled>
+    large
+  </TestFilledButton>
+  <TestFilledButton size="mideum" role="negative">
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="mideum" role="negative" disabled>
+    mideum
+  </TestFilledButton>
+  <TestFilledButton size="small" role="negative">
+    small
+  </TestFilledButton>
+  <TestFilledButton size="small" role="negative" disabled>
+    small
+  </TestFilledButton>
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 설치
+
+```bash
+pnpm add @dds-web/components
+```
+
+> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { FilledButton } from "@dds-web/components";
+
+export default function Example() {
+  return (
+    <FilledButton 
+      role="assistive" 
+      size="large" 
+      onClick={() => {}} 
+      buttonCustomStyle={{
+        zIndex: 1
+      }}
+    />
+  )
+}
+```
+
+---
+
+### Props 
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">role</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">enum</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary"</code></td>
+				<td className="px-4 py-3 text-text-secondary">버튼 기본 색상 설정 / "primary" | "assistive" | "negative"</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">enum</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum"</code></td>
+				<td className="px-4 py-3 text-text-secondary">버튼 크기 / "large" | "mideum" | "small"</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">클릭 이벤트 콜백</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">buttonCustomStyle</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">커스텀 CSS</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
