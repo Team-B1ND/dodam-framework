@@ -5,3 +5,10 @@ export interface DotProps {
   backgroundColor: string;
   dotCustomStyle: CSSObject;
 }
+
+export interface BadgeProps {
+  backgroundColor?: string;
+  badgeCustomStyle?: CSSObject;
+  number: number;
+  maxNumber?: number;
+}
