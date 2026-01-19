@@ -6,5 +6,11 @@ export interface FilledButtonProps extends ComponentProps<"button"> {
   role: FilledButtonRoles;
   size: ButtonSizes;
   onClick: () => void;
-  buttonCustomStyle: CSSObject
+  buttonCustomStyle: CSSObject;
+}
+
+export interface TextButtonProps extends ComponentProps<"button"> {
+  size: ButtonSizes;
+  onClick: () => void;
+  buttonCustomStyle: CSSObject;
 }
