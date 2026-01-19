@@ -11,8 +11,8 @@ export const Container = styled.button<{
   $disabled: string;
   $buttonCustomStyle: CSSObject;
 }>`
-  ${({ $buttonCustomStyle }) => $buttonCustomStyle};
   all: unset;
+  ${({ $buttonCustomStyle }) => $buttonCustomStyle};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,4 +45,9 @@ export const Container = styled.button<{
     : $size === "small" ? "32px" 
     : ""};
   cursor: pointer;
+
+  transition: all 0.1s linear;
+  &:hover{
+    opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 0.7)};
+  }
 `;
