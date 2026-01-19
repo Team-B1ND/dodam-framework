@@ -1,5 +1,6 @@
 import ComponentBlock from "@/shared/ui/ComponentBlock";
 import TestFilledButton from "@/features/displayClientComponets/ui/TestFilledButton";
+import TestTextButton from "@/features/displayClientComponets/ui/TestTextButton";
 
 # Buttons
 
@@ -136,6 +137,109 @@ export default function Example() {
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary"</code></td>
 				<td className="px-4 py-3 text-text-secondary">버튼 기본 색상 설정</td>
 			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"large" | "mideum" | "small"</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum"</code></td>
+				<td className="px-4 py-3 text-text-secondary">버튼 크기</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">클릭 이벤트 콜백</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">buttonCustomStyle</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">커스텀 CSS</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+
+## TextButton
+
+배경 색상 없이 텍스트만 존재하는 버튼입니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestTextButton size="large">
+    large
+  </TestTextButton>
+  <TestTextButton size="large" disabled>
+    large
+  </TestTextButton>
+  <TestTextButton size="mideum">
+    mideum
+  </TestTextButton>
+  <TestTextButton size="mideum" disabled>
+    mideum
+  </TestTextButton>
+  <TestTextButton size="small">
+    small
+  </TestTextButton>
+  <TestTextButton size="small" disabled>
+    small
+  </TestTextButton>
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 설치
+
+```bash
+pnpm add @dds-web/components
+```
+
+> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { TextButton } from "@dds-web/components";
+
+export default function Example() {
+  return (
+    <TextButton 
+      size="large" 
+      onClick={() => {}} 
+      buttonCustomStyle={{
+        zIndex: 1
+      }}
+    >
+      Text
+    </TextButton>
+  )
+}
+```
+
+---
+
+### Props 
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
 			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"large" | "mideum" | "small"</code></td>
