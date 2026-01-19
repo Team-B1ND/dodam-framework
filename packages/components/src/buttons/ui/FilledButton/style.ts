@@ -4,6 +4,7 @@ import { colors } from "@dds-web/colors";
 import { shapes } from "@dds-web/shapes";
 import styled, { CSSObject } from "@emotion/styled";
 import { ButtonSizes, FilledButtonRoles } from "../../types/buttonSize";
+import { typoCss } from "@dds-web/typography";
 
 export const Container = styled.button<{
   $size: ButtonSizes;
@@ -50,4 +51,10 @@ export const Container = styled.button<{
   &:hover{
     opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 0.7)};
   }
+
+  ${({ $size }) => 
+    $size === "large" ? typoCss("Body1", "Medium") 
+  : $size === "mideum" ? typoCss("Body2", "Medium") 
+  : $size === "small" ? typoCss("Caption2", "Bold") 
+  : ""};
 `;
