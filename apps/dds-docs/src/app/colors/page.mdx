@@ -12,6 +12,14 @@ pnpm add @dds-web/colors
 
 ## Usage
 
+### CSS
+
+```css
+/* globals.css */
+@import "@dds-web/colors/colors.css";
+```
+- 스타일링 방식과 상관없이 반드시 위와 같이 전역 CSS에 `@dds-web/colors/colors.css` 를 임포트해주셔야 합니다.
+
 ### TypeScript
 
 ```tsx
@@ -25,11 +33,6 @@ const Text = () => (
 ```
 
 ### Tailwind CSS
-
-```css
-/* globals.css */
-@import "@dds-web/colors/colors.css";
-```
 
 ```tsx
 // 사용 예시

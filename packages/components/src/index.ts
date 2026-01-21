@@ -2,3 +2,8 @@ export * from "./pickers";
 export * from "./next";
 export * from "./indicators";
 export * from "./buttons";
+export * from "./dialogs";
+export * from "./badges";
+export * from "./tag";
+export * from "./avatar";
+export * from "./dropdown";
