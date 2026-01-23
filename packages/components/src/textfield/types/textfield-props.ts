@@ -1,18 +1,13 @@
 import { CSSObject } from "@emotion/react";
-import { ChangeEventHandler, CSSProperties, KeyboardEventHandler } from "react";
+import { ComponentProps, CSSProperties } from "react";
 
 export type InputType = "text" | "password";
 
-export interface TextFieldProps {
-  id: string;
-  name: string;
+export interface TextFieldProps extends ComponentProps<"input"> {
   type: InputType;
-  value: string;
   label: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
   isError?: boolean;
   showIcon?: boolean;
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   isDisabled?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
