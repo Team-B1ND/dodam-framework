@@ -1,0 +1,689 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestFilledTextField from "@/features/displayClientComponents/ui/TestFilledTextField";
+import TestTextField from "@/features/displayClientComponents/ui/TestTextField";
+
+# TextField
+
+텍스트 입력을 위한 필드 컴포넌트입니다. 일반 텍스트와 비밀번호 입력을 지원하며, 에러 상태, 비활성화 상태 등 다양한 옵션을 제공합니다.
+
+---
+
+## FilledTextField
+
+배경이 채워진 스타일의 텍스트 필드입니다. 라벨이 항상 표시되며, Material Design의 Filled TextField 스타일을 따릅니다.
+
+### Preview
+
+<ComponentBlock>
+  <TestFilledTextField />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 설치
+
+```bash
+pnpm add @dds-web/components
+```
+
+> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { FilledTextField } from "@dds-web/components";
+
+const Example = () => {
+  const [text, setText] = useState("");
+
+  return (
+    <FilledTextField
+      type="text"
+      label="텍스트 입력"
+      placeholder="텍스트를 입력하세요"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+    />
+  );
+};
+
+export default Example;
+```
+
+#### Password 필드
+
+```tsx
+<FilledTextField
+  type="password"
+  label="비밀번호"
+  placeholder="비밀번호를 입력하세요"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
+```
+
+#### Error 상태
+
+```tsx
+<FilledTextField
+  type="text"
+  label="이메일"
+  placeholder="example@domain.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  isError={hasError}
+  supportingText="올바른 이메일 형식이 아닙니다."
+/>
+```
+
+#### 비활성화 상태
+
+```tsx
+<FilledTextField
+  type="text"
+  label="비활성화된 필드"
+  placeholder="비활성화된 필드"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  isDisabled
+/>
+```
+
+#### 커스텀 스타일
+
+```tsx
+<FilledTextField
+  type="text"
+  label="커스텀 스타일"
+  placeholder="텍스트를 입력하세요"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  customStyle={{
+    backgroundColor: "#f5f5f5",
+  }}
+/>
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+  <table className="w-full text-sm border-collapse">
+    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+      <tr>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Prop
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Type
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Default
+        </th>
+        <th className="px-4 py-3 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border-normal">
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          type
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          "text" | "password"
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          입력 필드 타입
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          label
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 라벨
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          value
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          입력 값
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          placeholder
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          플레이스홀더 텍스트
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onChange
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          ChangeEventHandler
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          값 변경 이벤트 핸들러
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          isError
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          false
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          에러 상태 여부
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          width
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          number
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 너비 (px)
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          name
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          input 요소의 name 속성
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          isDisabled
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          false
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          비활성화 상태 여부
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          supportingText
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 하단에 표시되는 도움말 텍스트
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          showIcon
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          true
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          아이콘 표시 여부 (clear, error, password toggle)
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          customStyle
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          CSSObject
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          커스텀 스타일 객체
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onKeyDown
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          KeyboardEventHandler
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          키보드 이벤트 핸들러
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onRemoveClick
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          () => void
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          클리어 아이콘 클릭 핸들러
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## TextField
+
+아웃라인 스타일의 텍스트 필드입니다. 라벨이 필드 내부에 위치하며, 포커스 시 위로 이동하는 Material Design의 Outlined TextField 스타일을 따릅니다.
+
+### Preview
+
+<ComponentBlock>
+  <TestTextField />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { TextField } from "@dds-web/components";
+
+const Example = () => {
+  const [text, setText] = useState("");
+
+  return (
+    <TextField
+      id="text-field-1"
+      name="text"
+      type="text"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      label="텍스트를 입력하세요"
+    />
+  );
+};
+
+export default Example;
+```
+
+#### Password 필드
+
+```tsx
+<TextField
+  id="password-field-1"
+  name="password"
+  type="password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  label="비밀번호를 입력하세요"
+/>
+```
+
+#### Enter 키 이벤트
+
+```tsx
+<TextField
+  id="enter-field-1"
+  name="text"
+  type="text"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  onKeyDown={(e) => {
+    alert(`입력된 값: ${e.currentTarget.value}`);
+  }}
+  label="Enter를 눌러보세요"
+/>
+```
+
+#### Error 상태
+
+```tsx
+<TextField
+  id="email-field-1"
+  name="email"
+  type="text"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  isError={hasError}
+  supportingText="올바른 이메일 형식이 아닙니다."
+  label="이메일"
+/>
+```
+
+#### 커스텀 라벨 스타일
+
+```tsx
+<TextField
+  id="custom-field-1"
+  name="custom"
+  type="text"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  label="커스텀 라벨"
+  labelStyle={{
+    color: "#008BFF",
+    fontWeight: "bold",
+  }}
+/>
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+  <table className="w-full text-sm border-collapse">
+    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+      <tr>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Prop
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Type
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Default
+        </th>
+        <th className="px-4 py-3 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border-normal">
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          id
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          input 요소의 id 속성
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          name
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          input 요소의 name 속성
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          type
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          "text" | "password"
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          입력 필드 타입
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          value
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          입력 값
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          label
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          "텍스트를 입력하세요."
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 라벨
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onChange
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          ChangeEventHandler
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          값 변경 이벤트 핸들러
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          isError
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          false
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          에러 상태 여부
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          showIcon
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          true
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          아이콘 표시 여부 (clear, error, password toggle)
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onKeyDown
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          KeyboardEventHandler
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          키보드 이벤트 핸들러 (Enter 키 전용)
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          isDisabled
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          boolean
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          false
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          비활성화 상태 여부
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          labelStyle
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          CSSProperties
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          라벨 커스텀 스타일
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          width
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          number
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 너비 (px)
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          supportingText
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          필드 하단에 표시되는 도움말 텍스트
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          customStyle
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          CSSObject
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          커스텀 스타일 객체
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onRemoveClick
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          () => void
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          클리어 아이콘 클릭 핸들러
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## 특징
+
+### 비밀번호 표시/숨김 토글
+
+`type="password"`로 설정하면 자동으로 비밀번호 표시/숨김 토글 아이콘이 표시됩니다.
+
+### 자동 클리어 아이콘
+
+`type="text"`일 때 값이 입력되면 자동으로 클리어 아이콘이 표시됩니다. 클릭하면 `onRemoveClick` 핸들러가 호출됩니다.
+
+### 에러 상태 아이콘
+
+`isError={true}`로 설정하면 에러 아이콘이 표시됩니다.
+
+### 아이콘 비활성화
+
+`showIcon={false}`로 설정하면 모든 아이콘이 표시되지 않습니다.
