@@ -1,0 +1,98 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestCheckbox from "@/features/displayClientComponents/ui/TestCheckbox";
+
+# Checkbox
+
+활성 / 비활성 상태로 나뉘는 체크박스입니다.
+
+---
+
+## Preview
+
+<ComponentBlock>
+  <TestCheckbox />
+  <TestCheckbox size="small" />
+  <TestCheckbox type="error" />
+  <TestCheckbox type="error" size="small" />
+  <TestCheckbox disabled />
+  <TestCheckbox size="small" disabled />
+</ComponentBlock>
+
+---
+
+## Usage
+
+```tsx
+import { Checkbox, CheckboxProps } from '@dds-web/components'
+import { useState } from "react"
+
+export default function Example() {
+  const [selected, setSelected] = useState(false);
+  return (
+    <Checkbox 
+      selected={selected} 
+      onClick={() => setSelected(prev => !prev)} 
+      disabled={false}
+      type="primay"
+      size="mideum"
+      checkboxCustomStyle={{
+        zIndex: 1
+      }}
+    />
+  )
+}
+```
+
+---
+
+## Props
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+  <table className="w-full text-sm border-collapse">
+    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+      <tr>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+        <th className="px-4 py-3 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border-normal">
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum" | "small"</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum"</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스의 크기</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">selected</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 선택 여부</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 클릭 이벤트</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">disabled</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">false</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 비활성 여부</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">type</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary" | "error"</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary"</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 배경 색상</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">checkboxCustomStyle</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 커스텀 CSS</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
