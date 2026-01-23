@@ -7,3 +7,4 @@ export * from "./badges";
 export * from "./tag";
 export * from "./avatar";
 export * from "./dropdown";
+export * from "./checkbox";
