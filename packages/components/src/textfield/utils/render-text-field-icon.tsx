@@ -9,7 +9,7 @@ import { colors } from "@dds-web/colors";
 
 export interface RenderTextFieldIconParams {
   showIcon: boolean;
-  value: string;
+  value?: string | number | readonly string[];
   isError: boolean;
   type: "text" | "password";
   isShowValue: boolean;
@@ -32,7 +32,10 @@ export const renderTextFieldIcon = ({
   IconWrapper,
   eyeSlashColor = colors.text.tertiary,
 }: RenderTextFieldIconParams): React.ReactNode => {
-  if (!showIcon || value.trim().length === 0) return null;
+  const raw = value ?? "";
+  const valueStr = Array.isArray(raw) ? raw.join("") : String(raw);
+
+  if (!showIcon || valueStr.trim().length === 0) return null;
 
   if (isError) {
     return (

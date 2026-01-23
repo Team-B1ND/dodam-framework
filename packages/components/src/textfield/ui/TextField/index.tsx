@@ -6,54 +6,47 @@ import { renderTextFieldIcon } from "../../utils/render-text-field-icon";
 import * as S from "./style";
 
 export const TextField = ({
-  id,
-  name,
-  type,
-  value,
-  width,
   label = "텍스트를 입력하세요.",
   showIcon = true,
-  onChange,
-  onKeyDown,
-  isDisabled = false,
   labelStyle,
   isError = false,
   supportingText,
   customStyle,
   onRemoveClick,
+  type,
+  width,
+  ...props
 }: TextFieldProps) => {
   const { isShowValue, toggleVisibility } = usePasswordVisibility();
 
   const inputType = type === "password" && !isShowValue ? "password" : "text";
+  const disabled = props.disabled ?? false;
 
   return (
     <div style={{ position: "relative" }}>
       <S.Container $width={width} $isError={isError} $customStyle={customStyle}>
         <S.Input
+          {...props}
           required
-          disabled={isDisabled}
-          id={id}
-          name={name}
+          disabled={disabled}
           type={inputType}
           $isError={isError}
-          onChange={onChange}
-          value={value}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onKeyDown?.(e);
+              props.onKeyDown?.(e);
             }
           }}
         />
         <label style={labelStyle}>{label}</label>
         {renderTextFieldIcon({
           showIcon,
-          value,
+          value: props.value,
           isError,
           type,
           isShowValue,
           onToggleVisibility: toggleVisibility,
           onRemoveClick,
-          onChange,
+          onChange: props.onChange,
           IconWrapper: S.IconWrapper,
         })}
         {supportingText && (

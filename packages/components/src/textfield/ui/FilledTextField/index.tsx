@@ -7,23 +7,21 @@ import { renderTextFieldIcon } from "../../utils/render-text-field-icon";
 import * as S from "./style";
 
 export const FilledTextField = ({
-  type,
   label,
   isError = false,
   width,
-  name,
-  value,
-  isDisabled = false,
   supportingText,
-  placeholder,
   showIcon = true,
   customStyle,
-  onChange,
-  onKeyDown,
   onRemoveClick,
+  type,
+  ...props
 }: FilledTextFieldProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const { isShowValue, toggleVisibility } = usePasswordVisibility();
+
+  const { disabled, value } = props;
+  const isDisabled = disabled ?? false;
 
   const inputType = type === "password" && !isShowValue ? "password" : "text";
 
@@ -43,13 +41,9 @@ export const FilledTextField = ({
           $isError={isError}
         >
           <input
-            name={name}
+            {...props}
             type={inputType}
             disabled={isDisabled}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onKeyDown={onKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -61,7 +55,7 @@ export const FilledTextField = ({
             isShowValue,
             onToggleVisibility: toggleVisibility,
             onRemoveClick,
-            onChange,
+            onChange: props.onChange,
             IconWrapper: S.IconWrapper,
           })}
         </S.InputWrapper>
