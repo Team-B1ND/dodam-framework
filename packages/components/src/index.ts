@@ -8,3 +8,4 @@ export * from "./tag";
 export * from "./avatar";
 export * from "./dropdown";
 export * from "./textfield";
+export * from "./checkbox";
