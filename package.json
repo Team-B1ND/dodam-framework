@@ -1,5 +1,5 @@
 {
-  "name": "dds-web",
+  "name": "dodam-framework",
   "private": false,
   "packageManager": "pnpm@9.15.3",
   "workspaces": [

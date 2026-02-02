@@ -7,15 +7,23 @@ DDS 컬러 시스템은 시맨틱 토큰을 기반으로 라이트/다크 테마
 ## Installation
 
 ```bash
-pnpm add @dds-web/colors
+pnpm add dodam-design-system/colors
 ```
 
 ## Usage
 
+### CSS
+
+```css
+/* globals.css */
+@import "dodam-design-system/colors/colors.css";
+```
+- 스타일링 방식과 상관없이 반드시 위와 같이 전역 CSS에 `dodam-design-system/colors/colors.css` 를 임포트해주셔야 합니다.
+
 ### TypeScript
 
 ```tsx
-import { colors } from "@dds-web/colors";
+import { colors } from "dodam-design-system/colors";
 
 const Text = () => (
   <p style={{ color: colors.text.primary }}>
@@ -25,11 +33,6 @@ const Text = () => (
 ```
 
 ### Tailwind CSS
-
-```css
-/* globals.css */
-@import "@dds-web/colors/colors.css";
-```
 
 ```tsx
 // 사용 예시
@@ -220,7 +223,7 @@ const Text = () => (
 DDS 컬러는 CSS 변수 기반으로 라이트/다크 테마를 자동 지원합니다.
 
 ```tsx
-import { colors } from "@dds-web/colors";
+import { colors } from "dodam-design-system/colors";
 
 // CSS 변수를 반환하므로 테마 변경 시 자동으로 색상이 변경됩니다.
 console.log(colors.text.primary); // "var(--dds-color-text-primary)"
@@ -231,7 +234,7 @@ console.log(colors.text.primary); // "var(--dds-color-text-primary)"
 테마별 실제 색상값이 필요한 경우:
 
 ```tsx
-import { lightColors, darkColors } from "@dds-web/colors";
+import { lightColors, darkColors } from "dodam-design-system/colors";
 
 // Light theme
 console.log(lightColors.text.primary); // "#0F0F10"
@@ -247,7 +250,7 @@ console.log(darkColors.text.primary); // "#F5F5F5"
 ### 카드 컴포넌트
 
 ```tsx
-import { colors } from "@dds-web/colors";
+import { colors } from "dodam-design-system/colors";
 
 const Card = ({ title, description }) => (
   <div
@@ -274,7 +277,7 @@ const Card = ({ title, description }) => (
 ### 상태 표시
 
 ```tsx
-import { colors } from "@dds-web/colors";
+import { colors } from "dodam-design-system/colors";
 
 const StatusBadge = ({ status }) => {
   const statusColors = {

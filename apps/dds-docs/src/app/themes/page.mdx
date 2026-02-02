@@ -9,7 +9,7 @@ DDS 테마 시스템은 라이트/다크 모드를 손쉽게 관리합니다.
 ## Installation
 
 ```bash
-pnpm add @dds-web/themes
+pnpm add dodam-design-system/themes
 ```
 
 ## Setup
@@ -21,9 +21,10 @@ pnpm add @dds-web/themes
 
 ```tsx
 // app/layout.tsx
-import { ThemeSetter } from "@dds-web/themes/next";
+import { ThemeSetter } from "dodam-design-system/next";
+import { PropsWithChildren } from "react";
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
@@ -44,7 +45,7 @@ export default function RootLayout({ children }) {
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <script src="node_modules/@dds-web/themes/dist/init-theme.iife.js"></script>
+    <script src="node_modules/dodam-design-system/themes/dist/init-theme.iife.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tem2</title>
   </head>
@@ -123,7 +124,7 @@ type Theme = "light" | "dark";
 현재 테마를 반환하는 React Hook입니다.
 
 ```tsx
-import { useTheme } from "@dds-web/themes";
+import { useTheme } from "dodam-design-system/themes";
 
 function Component() {
   const theme = useTheme(); // "light" | "dark"
@@ -141,7 +142,7 @@ function Component() {
 ```tsx
 "use client";
 
-import { useTheme, toggleTheme } from "@dds-web/themes";
+import { useTheme, toggleTheme } from "dodam-design-system/themes";
 import { Sun, Moon } from "lucide-react";
 
 function ThemeToggle() {
@@ -160,7 +161,7 @@ function ThemeToggle() {
 ### 테마별 스타일링
 
 ```tsx
-import { useTheme } from "@dds-web/themes";
+import { useTheme } from "dodam-design-system/themes";
 
 function ThemedCard() {
   const theme = useTheme();
@@ -187,7 +188,7 @@ function ThemedCard() {
 ### 특정 테마 적용
 
 ```tsx
-import { applyTheme } from "@dds-web/themes";
+import { applyTheme } from "dodam-design-system/themes";
 
 function ThemeSelector() {
   return (

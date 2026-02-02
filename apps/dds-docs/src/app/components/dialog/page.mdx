@@ -1,0 +1,150 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestDialog from "@/features/displayClientComponents/ui/TestDialog";
+
+# Dialog
+
+사용자에게 중요한 정보를 전달하거나 간단한 작업을 요청할 때 사용하는 모달 컴포넌트입니다. `dialog.open()` 함수를 호출하여 사용합니다.
+
+---
+
+## Preview
+
+<ComponentBlock>
+	<TestDialog />
+</ComponentBlock>
+
+---
+
+## Usage
+
+### 설치
+
+```bash
+pnpm add dodam-design-system/components
+```
+> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+### 기본 사용법
+
+`dialog`를 사용하기 위해서는 먼저 어플리케이션 최상단에 `DialogProvider`를 추가해야 합니다.
+
+```tsx
+// app/layout.tsx
+import { DialogProvider } from "dodam-design-system/components";
+import { PropsWithChildren } from "react";
+
+export default function RootLayout({ children }: PropsWithChildren) {
+  return (
+    <html lang="ko">
+      <body>
+        {children}
+        <DialogProvider />
+      </body>
+    </html>
+  );
+}
+```
+
+`DialogProvider`가 추가되었다면, `dialog.open()` 함수를 통해 어디서든 `dialog`를 열 수 있습니다.
+
+```tsx
+"use client";
+
+import { dialog } from "dodam-design-system/components";
+
+const Example = () => {
+  const openDialog = () => {
+    dialog.open({
+      title: "Dialog Title",
+      message: "This is a dialog message.",
+      buttons: [
+        <button key="ok" onClick={dialog.close}>
+          OK
+        </button>,
+        <button key="cancel" onClick={dialog.close}>
+          Cancel
+        </button>,
+      ],
+    });
+  };
+
+  return <button onClick={openDialog}>Open Dialog</button>;
+};
+
+export default Example;
+```
+
+---
+
+## Props
+
+`dialog.open()` 함수는 다음과 같은 `object`를 인자로 받습니다.
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-secondary">다이어로그의 제목</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">message</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-secondary">다이어로그의 내용</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">buttons</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">React.ReactNode[]</code></td>
+				<td className="px-4 py-3 text-text-secondary">다이어로그에 표시될 버튼</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+## API
+
+`dialog` 객체는 다음과 같은 함수들을 제공합니다.
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">API</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">dialog.open(content)</code></td>
+				<td className="px-4 py-3 text-text-secondary">새로운 다이어로그를 엽니다. `content` 객체에 대한 설명은 `Props` 섹션을 참고해주세요.</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">dialog.close()</code></td>
+				<td className="px-4 py-3 text-text-secondary">가장 최근에 열린 다이어로그를 닫습니다.</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">dialog.closeAll()</code></td>
+				<td className="px-4 py-3 text-text-secondary">모든 다이어로그를 닫습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+## Accessibility
+
+- Dialog가 열리면, 포커스가 Dialog 내부로 이동합니다.
+- Dialog가 열려 있는 동안에는, Tab키를 눌러도 Dialog 외부로 포커스가 이동하지 않습니다.
+- `ESC`키를 누르면 Dialog가 닫힙니다.
+- 스크린 리더에서 올바르게 읽힙니다.

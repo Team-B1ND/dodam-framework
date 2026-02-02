@@ -2,10 +2,10 @@ import { INDEXES } from "@/shared/constants/indexes";
 import { Link } from "@cher1shrxd/loading";
 
 const INSTALL_COMMAND =
-  "pnpm add @dds-web/components @dds-web/typography @dds-web/iconography @dds-web/shapes @dds-web/colors @dds-web/themes";
+  "pnpm add dodam-design-system";
 
-const USAGE_EXAMPLE = `import { Button } from "@dds-web/components";
-import { ArrowRight } from "@dds-web/iconography/mono";
+const USAGE_EXAMPLE = `import { Button } from "dodam-design-system/components";
+import { ArrowRight } from "dodam-design-system/icons/mono";
 
 export default function App() {
   return (

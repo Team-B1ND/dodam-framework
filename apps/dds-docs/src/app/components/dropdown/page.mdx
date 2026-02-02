@@ -1,0 +1,161 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestDropdown from "@/features/displayClientComponents/ui/TestDropdown";
+
+# Dropdown
+
+선택 가능한 옵션 목록을 표시하는 드롭다운 컴포넌트입니다. 사용자가 여러 옵션 중 하나를 선택할 수 있습니다.
+
+---
+
+## Preview
+
+<ComponentBlock>
+  <TestDropdown />
+</ComponentBlock>
+
+---
+
+## Usage
+
+### 설치
+
+```bash
+pnpm add dodam-design-system/components
+```
+
+> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+### 기본 사용법
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { Dropdown } from "dodam-design-system/components";
+
+const Example = () => {
+  const [selected, setSelected] = useState<string>("Option 1");
+  const items = ["Option 1", "Option 2", "Option 3"];
+
+  return (
+    <Dropdown
+      items={items}
+      value={selected}
+      onSelectedItemChange={setSelected}
+    />
+  );
+};
+
+export default Example;
+```
+
+### 커스텀 스타일
+
+`customStyle` prop을 사용하여 추가 스타일을 적용할 수 있습니다.
+
+```tsx
+<Dropdown
+  items={items}
+  value={selected}
+  onSelectedItemChange={setSelected}
+  customStyle={{
+    width: "200px",
+    backgroundColor: "#f5f5f5",
+  }}
+/>
+```
+
+---
+
+## Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+  <table className="w-full text-sm border-collapse">
+    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+      <tr>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Prop
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Type
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Default
+        </th>
+        <th className="px-4 py-3 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border-normal">
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          items
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string[]
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          드롭다운에 표시할 옵션 목록
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          value
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          string
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">현재 선택된 값</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          onSelectedItemChange
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          (item: string) =&gt; void
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">
+          옵션 선택 시 실행될 콜백 함수
+        </td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          customStyle
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          CSSObject
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          -
+        </td>
+        <td className="px-4 py-3 text-text-secondary">추가 커스텀 스타일</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Best Practices
+
+- 옵션이 너무 많으면 검색 기능이 있는 다른 컴포넌트를 고려하세요.
+- 현재 선택된 값을 명확하게 표시하세요.
+- 드롭다운 외부 클릭 시 자동으로 닫히도록 구현되어 있습니다.
+- 옵션 텍스트는 간결하고 명확하게 작성하세요.
+
+---
+
+## Accessibility
+
+- 키보드 네비게이션을 지원합니다.
+- 클릭 가능한 영역이 충분히 크게 설정되어 있습니다.
+- 호버 시 시각적 피드백을 제공합니다.
+- 화살표 아이콘으로 드롭다운 상태를 명확히 표시합니다.

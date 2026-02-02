@@ -1,7 +1,7 @@
 "use client";
 
-import { useTheme, toggleTheme } from "@dds-web/themes";
-import { colors } from "@dds-web/colors";
+import { useTheme, toggleTheme } from "dodam-design-system/themes";
+import { colors } from "dodam-design-system/colors";
 import { Moon, Sun } from "lucide-react";
 
 const ThemeToggleDemo = () => {

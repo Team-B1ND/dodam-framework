@@ -1,0 +1,215 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestIndicator from "@/features/displayClientComponents/ui/TestIndicator";
+import TestSwitcher from "@/features/displayClientComponents/ui/TestSwitcher";
+
+# Indicators
+
+캐러셀 페이지 전환을 보조하는 Indicator 컴포넌트 모음입니다.
+
+---
+
+## Indicator
+
+현재 캐러셀 페이지 위치를 표시하고, 사용자가 인디케이터를 클릭해 캐러셀 페이지를 변경할 수 있습니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestIndicator total={5} />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 설치
+
+```bash
+pnpm add dodam-design-system/components
+```
+
+> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { Indicator } from "dodam-design-system/components";
+import { useState } from "react";
+
+export default function Example() {
+  const [page, setPage] = useState(0);
+
+  return <Indicator total={5} current={page} onChangePage={setPage} />;
+}
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+	<table className="w-full text-sm border-collapse">
+		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+			<tr>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
+				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
+				<th className="px-4 py-3 text-left font-semibold">Description</th>
+			</tr>
+		</thead>
+		<tbody className="divide-y divide-border-normal">
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">total</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code></td>
+				<td className="px-4 py-3 text-text-secondary">전체 캐러셀 페이지 수</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">current</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code></td>
+				<td className="px-4 py-3 text-text-secondary">현재 캐러셀 페이지 인덱스</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangePage</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(page: number) =&gt; void</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-secondary">캐러셀 페이지 변경 콜백</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">10</code></td>
+				<td className="px-4 py-3 text-text-secondary">점 크기</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">color</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">colors.brand.primary</code></td>
+				<td className="px-4 py-3 text-text-secondary">활성화된 점 색상</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+---
+
+## Switcher
+
+`<Indicator />` 에 맞는 캐러셀 페이지를 렌더링하는 스위처 컴포넌트입니다. `animated` 속성을 통해 페이지가 변경될 때 애니메이션 효과를 제어할 수 있습니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestSwitcher
+    pages={[
+      <ComponentBlock>Page 1</ComponentBlock>,
+      <ComponentBlock>Page 2</ComponentBlock>,
+      <ComponentBlock>Page 3</ComponentBlock>,
+    ]}
+    animated
+  />
+</ComponentBlock>
+
+---
+
+### Usage
+
+#### 기본 사용법
+
+```tsx
+"use client";
+
+import { Switcher, Indicator } from "dodam-design-system/components";
+import { useState } from "react";
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+
+export default function Example() {
+  const pages = [
+    <ComponentBlock>Page 1</ComponentBlock>,
+    <ComponentBlock>Page 2</ComponentBlock>,
+    <ComponentBlock>Page 3</ComponentBlock>,
+  ];
+  const [page, setPage] = useState(0);
+
+  return (
+    <div>
+      <Switcher pages={pages} current={page} animated />
+      <Indicator total={pages.length} current={page} onChangePage={setPage} />
+    </div>
+  );
+}
+```
+
+---
+
+### Props
+
+<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
+  <table className="w-full text-sm border-collapse">
+    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
+      <tr>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Prop
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Type
+        </th>
+        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
+          Default
+        </th>
+        <th className="px-4 py-3 text-left font-semibold">Description</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border-normal">
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">pages</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">ReactNode[]</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">[]</code>
+        </td>
+        <td className="px-4 py-3 text-text-secondary">전환될 캐러셀 페이지 목록</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">current</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">number</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">0</code>
+        </td>
+        <td className="px-4 py-3 text-text-secondary">현재 캐러셀 페이지 인덱스</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">animated</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code>
+        </td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
+          <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">false</code>
+        </td>
+        <td className="px-4 py-3 text-text-secondary">애니메이션 적용 여부</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Notes
+
+- `Switcher`는 `current` 변경 시 자동으로 페이드 전환이 적용됩니다.

@@ -1,36 +1,36 @@
 export const INDEXES = [
   {
-    package: "@dds-web/components",
+    package: "dodam-design-system/components",
     title: "Components",
     description: "버튼, 인풋 등 UI 컴포넌트",
     href: "/components",
   },
   {
-    package: "@dds-web/typography",
+    package: "dodam-design-system/typography",
     title: "Typography",
     description: "텍스트 스타일 시스템",
     href: "/typography",
   },
   {
-    package: "@dds-web/iconography",
+    package: "dodam-design-system/icons",
     title: "Iconography",
     description: "일러스트레이션, 모노 아이콘 팩",
     href: "/iconography",
   },
   {
-    package: "@dds-web/shapes",
+    package: "dodam-design-system/shapes",
     title: "Shapes",
     description: "도형 라운딩 가이드",
     href: "/shapes",
   },
   {
-    package: "@dds-web/colors",
+    package: "dodam-design-system/colors",
     title: "Colors",
     description: "컬러 팔레트 토큰",
     href: "/colors",
   },
   {
-    package: "@dds-web/themes",
+    package: "dodam-design-system/themes",
     title: "Themes",
     description: "테마 시스템",
     href: "/themes",
