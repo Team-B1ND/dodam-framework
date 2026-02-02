@@ -9,6 +9,7 @@ import TestCheckbox from "@/features/displayClientComponents/ui/TestCheckbox";
 
 ## Preview
 
+variant - filled (default)
 <ComponentBlock>
   <TestCheckbox />
   <TestCheckbox size="small" />
@@ -16,6 +17,16 @@ import TestCheckbox from "@/features/displayClientComponents/ui/TestCheckbox";
   <TestCheckbox type="error" size="small" />
   <TestCheckbox disabled />
   <TestCheckbox size="small" disabled />
+</ComponentBlock>
+
+variant - outlined
+<ComponentBlock>
+  <TestCheckbox variant="outlined" />
+  <TestCheckbox variant="outlined" size="small" />
+  <TestCheckbox variant="outlined" type="error" />
+  <TestCheckbox variant="outlined" type="error" size="small" />
+  <TestCheckbox variant="outlined" disabled />
+  <TestCheckbox variant="outlined" size="small" disabled />
 </ComponentBlock>
 
 ---
@@ -86,6 +97,12 @@ export default function Example() {
         <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary" | "error"</code></td>
         <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary"</code></td>
         <td className="px-4 py-3 text-text-secondary">체크박스 배경 색상</td>
+      </tr>
+      <tr className="hover:bg-fill-primary transition-colors">
+        <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">variant</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"outlined" | "filled"</code></td>
+        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"filled"</code></td>
+        <td className="px-4 py-3 text-text-secondary">체크박스 스타일 (outlined: 보더 없이 체크마크만)</td>
       </tr>
       <tr className="hover:bg-fill-primary transition-colors">
         <td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">checkboxCustomStyle</code></td>
