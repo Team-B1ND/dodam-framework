@@ -1,79 +1,183 @@
 "use client";
 
-import { TimePickerProps } from "../../types/props";
+import { memo, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Time } from "../../types/time";
 import * as S from "./style";
 import { HOURS, MINUTES } from "../../constants";
 import { pad } from "../../utils/pad";
-import { useTimePicker } from "../../hooks/useTimePicker";
-import { colors } from "../../../../colors";
-import { Clock } from "../../../../icons/mono";
+import { useTimePickerContent } from "../../hooks/useTimePickerContent";
+import { FilledButton } from "../../../buttons";
 
-export const TimePicker = ({
-  title = "시간 선택",
-  time,
-  onChangeTime,
-}: TimePickerProps) => {
-  const {
-    isOpen,
-    setIsOpen,
-    selected,
-    hourRef,
-    minuteRef,
-    handleScroll,
-    containerRef,
-    infiniteHours,
-    infiniteMinutes,
-  } = useTimePicker(time);
+const MotionContainer = motion.create(S.Container);
+const MotionPopupContainer = motion.create(S.PopupContainer);
 
-  return (
-    <S.Container ref={containerRef} onClick={() => setIsOpen((prev) => !prev)}>
-      <S.DateText>
-        {pad(time.hour)}:{pad(time.minute)}
-      </S.DateText>
-      <Clock size={16} color={colors.text.primary} pointer />
-      {isOpen && (
-        <S.Timer $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
-          <S.Title>{title}</S.Title>
+export interface TimePickerContentProps {
+  title?: string;
+  time: Time;
+  onChangeTime: (time: Time) => void;
+  onClose?: () => void;
+}
 
-          <S.Picker>
-            <S.Wheel
-              ref={hourRef}
-              onScroll={handleScroll(hourRef, HOURS, infiniteHours, "hour")}>
-              {infiniteHours.map((h, i) => (
-                <S.Item key={i} active={h === selected.hour}>
-                  {pad(h)}
-                </S.Item>
-              ))}
-            </S.Wheel>
+const TimePickerContent = memo(
+  ({
+    title = "시간 선택",
+    time,
+    onChangeTime,
+    onClose,
+  }: TimePickerContentProps) => {
+    const {
+      selected,
+      hourRef,
+      minuteRef,
+      handleScroll,
+      infiniteHours,
+      infiniteMinutes,
+    } = useTimePickerContent(time, true);
 
-            <S.Colon>:</S.Colon>
+    const handleConfirm = useCallback(() => {
+      onChangeTime(selected);
+      onClose?.();
+    }, [onChangeTime, selected, onClose]);
 
-            <S.Wheel
-              ref={minuteRef}
-              onScroll={handleScroll(
-                minuteRef,
-                MINUTES,
-                infiniteMinutes,
-                "minute"
-              )}>
-              {infiniteMinutes.map((m, i) => (
-                <S.Item key={i} active={m === selected.minute}>
-                  {pad(m)}
-                </S.Item>
-              ))}
-            </S.Wheel>
+    return (
+      <MotionPopupContainer
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.15 }}
+      >
+        <S.Title>{title}</S.Title>
 
-            <S.Highlight />
-          </S.Picker>
-          <S.Button
-            onClick={() => {
-              onChangeTime(selected);
-              setIsOpen(false);
-            }}>
-            선택
-          </S.Button>
-        </S.Timer>
-      )}
-    </S.Container>
-  );
-};
+        <S.Picker>
+          <S.Wheel
+            ref={hourRef}
+            onScroll={handleScroll(hourRef, HOURS, infiniteHours, "hour")}
+          >
+            {infiniteHours.map((h, i) => (
+              <S.Item key={i} active={h === selected.hour}>
+                {pad(h)}
+              </S.Item>
+            ))}
+          </S.Wheel>
+
+          <S.Colon>:</S.Colon>
+
+          <S.Wheel
+            ref={minuteRef}
+            onScroll={handleScroll(minuteRef, MINUTES, infiniteMinutes, "minute")}
+          >
+            {infiniteMinutes.map((m, i) => (
+              <S.Item key={i} active={m === selected.minute}>
+                {pad(m)}
+              </S.Item>
+            ))}
+          </S.Wheel>
+
+          <S.Highlight />
+        </S.Picker>
+
+        <FilledButton size="large" display="fill" onClick={handleConfirm}>
+          선택
+        </FilledButton>
+      </MotionPopupContainer>
+    );
+  }
+);
+
+TimePickerContent.displayName = "TimePickerContent";
+
+export interface TimePickerProps {
+  open: boolean;
+  title?: string;
+  time: Time;
+  onChangeTime: (time: Time) => void;
+  onClose?: () => void;
+  onExited?: () => void;
+  setDimClickHandler?: (handler: () => void) => void;
+}
+
+const TimePickerBase = memo(
+  ({
+    open,
+    title = "시간 선택",
+    time,
+    onChangeTime,
+    onClose,
+    onExited,
+    setDimClickHandler,
+  }: TimePickerProps) => {
+    const {
+      selected,
+      hourRef,
+      minuteRef,
+      handleScroll,
+      infiniteHours,
+      infiniteMinutes,
+    } = useTimePickerContent(time, open);
+
+    const handleConfirm = useCallback(() => {
+      onChangeTime(selected);
+      onClose?.();
+    }, [onChangeTime, selected, onClose]);
+
+    useEffect(() => {
+      if (onClose) {
+        setDimClickHandler?.(onClose);
+      }
+    }, [setDimClickHandler, onClose]);
+
+    return (
+      <AnimatePresence onExitComplete={onExited}>
+        {open && (
+          <MotionContainer
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          >
+            <S.Title>{title}</S.Title>
+
+            <S.Picker>
+              <S.Wheel
+                ref={hourRef}
+                onScroll={handleScroll(hourRef, HOURS, infiniteHours, "hour")}
+              >
+                {infiniteHours.map((h, i) => (
+                  <S.Item key={i} active={h === selected.hour}>
+                    {pad(h)}
+                  </S.Item>
+                ))}
+              </S.Wheel>
+
+              <S.Colon>:</S.Colon>
+
+              <S.Wheel
+                ref={minuteRef}
+                onScroll={handleScroll(minuteRef, MINUTES, infiniteMinutes, "minute")}
+              >
+                {infiniteMinutes.map((m, i) => (
+                  <S.Item key={i} active={m === selected.minute}>
+                    {pad(m)}
+                  </S.Item>
+                ))}
+              </S.Wheel>
+
+              <S.Highlight />
+            </S.Picker>
+
+            <FilledButton size="large" display="fill" onClick={handleConfirm}>
+              선택
+            </FilledButton>
+          </MotionContainer>
+        )}
+      </AnimatePresence>
+    );
+  }
+);
+
+TimePickerBase.displayName = "TimePicker";
+
+export const TimePicker = Object.assign(TimePickerBase, {
+  Content: TimePickerContent,
+});

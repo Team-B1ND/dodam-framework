@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "@emotion/styled";
 import { ITEM_HEIGHT, VISIBLE_COUNT } from "../../constants";
 import { typoCss } from "../../../../typography";
@@ -5,28 +7,6 @@ import { shapes } from "../../../../shapes";
 import { colors } from "../../../../colors";
 
 export const Container = styled.div`
-  width: 160px;
-  background-color: ${colors.background.surface};
-  border: 1px solid ${colors.border.normal};
-  border-radius: ${shapes.extraSmall};
-  padding: 8px;
-  color: ${colors.text.primary};
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-`;
-
-export const DateText = styled.span`
-  ${typoCss("Label", "Regular")}
-  flex: 1;
-  user-select: none;
-`;
-
-export const Timer = styled.div<{ $isOpen: boolean }>`
-  position: absolute;
-  top: calc(100% + 8px);
-  left: -2px;
   padding: 24px;
   border-radius: ${shapes.extraLarge};
   background-color: ${colors.background.surface};
@@ -34,7 +14,17 @@ export const Timer = styled.div<{ $isOpen: boolean }>`
   flex-direction: column;
   gap: 16px;
   cursor: default;
-  z-index: ${({ $isOpen }) => ($isOpen ? 1000 : -1)};
+`;
+
+export const PopupContainer = styled.div`
+  padding: 24px;
+  border-radius: ${shapes.extraLarge};
+  background-color: ${colors.background.surface};
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: default;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 `;
 
 export const Title = styled.h2`
@@ -68,8 +58,10 @@ export const Wheel = styled.div`
 `;
 
 export const Item = styled.div<{ active?: boolean }>`
-  ${({ active }) => (active ? typoCss("Title3", "Medium") : typoCss("Heading1", "Regular"))};
+  ${({ active }) =>
+    active ? typoCss("Title3", "Medium") : typoCss("Heading1", "Regular")};
   height: ${ITEM_HEIGHT}px;
+  min-width: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,6 +69,7 @@ export const Item = styled.div<{ active?: boolean }>`
   color: ${({ active }) => (active ? colors.text.primary : colors.text.tertiary)};
   opacity: ${({ active }) => (active ? 1 : 0.5)};
   user-select: none;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const Colon = styled.div`
@@ -100,13 +93,3 @@ export const Highlight = styled.div`
   z-index: 1;
 `;
 
-export const Button = styled.button`
-  ${typoCss("Body1", "Bold")};
-  padding: 12px 28px;
-  width: 100%;
-  border-radius: ${shapes.medium};
-  border: none;
-  background: ${colors.brand.primary};
-  color: ${colors.static.white};
-  cursor: pointer;
-`;
