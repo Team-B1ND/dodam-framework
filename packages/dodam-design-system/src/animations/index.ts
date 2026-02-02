@@ -19,13 +19,6 @@ export type {
   SwitchAnimationResult,
 } from "./useSwitchAnimation";
 
-// Dialog animations
-export { useDialogAnimation } from "./useDialogAnimation";
-export type {
-  DialogAnimationConfig,
-  DialogAnimationResult,
-} from "./useDialogAnimation";
-
 // Scale animations
 export { useScaleAnimation } from "./useScaleAnimation";
 export type {
