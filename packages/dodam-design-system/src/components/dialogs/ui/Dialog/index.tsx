@@ -1,13 +1,12 @@
 "use client";
 
-import { PropsWithChildren, ComponentProps, useCallback, memo } from "react";
+import { PropsWithChildren, ComponentProps, useCallback, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as S from "./style";
 import { FilledButton } from "../../../buttons";
 import { TextButton } from "../../../buttons";
-import {useDialogAnimation} from "../../animations/useDialogAnimation";
+import { useDialogAnimation } from "../../animations/useDialogAnimation";
 
-const MotionOverlay = motion.create(S.Overlay);
 const MotionModal = motion.create(S.Modal);
 
 interface DialogProps {
@@ -17,6 +16,7 @@ interface DialogProps {
   closeOnDimmerClick?: boolean;
   onClose?: () => void;
   onExited?: () => void;
+  setDimClickHandler?: (handler: () => void) => void;
 }
 
 const DialogComponent = memo(({
@@ -26,15 +26,12 @@ const DialogComponent = memo(({
   closeOnDimmerClick = false,
   onClose,
   onExited,
+  setDimClickHandler,
   children,
 }: PropsWithChildren<DialogProps>) => {
   const {
     controls,
     wiggle,
-    overlayInitial,
-    overlayAnimate,
-    overlayExit,
-    overlayTransition,
     modalInitial,
     modalExit,
     modalTransition,
@@ -48,34 +45,25 @@ const DialogComponent = memo(({
     }
   }, [closeOnDimmerClick, onClose, wiggle]);
 
-  const handleModalClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-  }, []);
+  useEffect(() => {
+    setDimClickHandler?.(handleDimmerClick);
+  }, [setDimClickHandler, handleDimmerClick]);
 
   return (
     <AnimatePresence onExitComplete={onExited}>
       {open && (
-        <MotionOverlay
-          initial={overlayInitial}
-          animate={overlayAnimate}
-          exit={overlayExit}
-          transition={overlayTransition}
-          onClick={handleDimmerClick}
+        <MotionModal
+          initial={modalInitial}
+          animate={controls}
+          exit={modalExit}
+          transition={modalTransition}
         >
-          <MotionModal
-            initial={modalInitial}
-            animate={controls}
-            exit={modalExit}
-            transition={modalTransition}
-            onClick={handleModalClick}
-          >
-            <S.Content>
-              <S.Title>{title}</S.Title>
-              {description && <S.Description>{description}</S.Description>}
-            </S.Content>
-            <S.ButtonContainer>{children}</S.ButtonContainer>
-          </MotionModal>
-        </MotionOverlay>
+          <S.Content>
+            <S.Title>{title}</S.Title>
+            {description && <S.Description>{description}</S.Description>}
+          </S.Content>
+          <S.ButtonContainer>{children}</S.ButtonContainer>
+        </MotionModal>
       )}
     </AnimatePresence>
   );

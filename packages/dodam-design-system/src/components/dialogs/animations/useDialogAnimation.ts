@@ -8,10 +8,6 @@ export interface DialogAnimationConfig {
 export interface DialogAnimationResult {
   controls: AnimationControls;
   wiggle: () => void;
-  overlayInitial: { opacity: number };
-  overlayAnimate: { opacity: number };
-  overlayExit: { opacity: number };
-  overlayTransition: Transition;
   modalInitial: { opacity: number; scale: number; x: number };
   modalExit: { opacity: number; scale: number };
   modalTransition: Transition;
@@ -38,10 +34,6 @@ export function useDialogAnimation({
   return {
     controls,
     wiggle,
-    overlayInitial: { opacity: 0 },
-    overlayAnimate: { opacity: 1 },
-    overlayExit: { opacity: 0 },
-    overlayTransition: { duration: 0.2 },
     modalInitial: { opacity: 0, scale: 0.9, x: 0 },
     modalExit: { opacity: 0, scale: 0.9 },
     modalTransition: {

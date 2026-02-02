@@ -2,8 +2,12 @@
 
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { OverlayContext, type OverlayElement } from "./OverlayContext";
 import { OverlayController } from "./OverlayController";
+import * as S from "./style";
+
+const MotionDim = motion.create(S.Dim);
 
 interface OverlayItem {
   id: string;
@@ -17,7 +21,9 @@ interface OverlayProviderProps {
 export const OverlayProvider = ({ children }: OverlayProviderProps) => {
   const [overlays, setOverlays] = useState<OverlayItem[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [isDimVisible, setIsDimVisible] = useState(false);
   const prevOverlayCountRef = useRef(0);
+  const closeTopOverlayRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -29,6 +35,7 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
 
     if (currentCount > 0 && prevCount === 0) {
       document.body.style.overflow = "hidden";
+      setIsDimVisible(true);
     } else if (currentCount === 0 && prevCount > 0) {
       document.body.style.overflow = "";
     }
@@ -41,22 +48,30 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
   }, [overlays.length]);
 
   const mount = useCallback((id: string, element: OverlayElement) => {
-    setOverlays((prev) => {
-      const index = prev.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        const next = [...prev];
-        next[index] = { id, element };
-        return next;
-      }
-      return [...prev, { id, element }];
-    });
+    setIsDimVisible(true);
+    setOverlays([{ id, element }]);
   }, []);
 
   const unmount = useCallback((id: string) => {
     setOverlays((prev) => prev.filter((item) => item.id !== id));
   }, []);
 
-  const contextValue = useMemo(() => ({ mount, unmount }), [mount, unmount]);
+  const hideDim = useCallback(() => {
+    setIsDimVisible(false);
+  }, []);
+
+  const setDimClickHandler = useCallback((handler: () => void) => {
+    closeTopOverlayRef.current = handler;
+  }, []);
+
+  const handleDimClick = useCallback(() => {
+    closeTopOverlayRef.current?.();
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ mount, unmount, setDimClickHandler, hideDim }),
+    [mount, unmount, setDimClickHandler, hideDim]
+  );
 
   const overlayElements = useMemo(
     () =>
@@ -66,10 +81,29 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
     [overlays]
   );
 
+  const hasOverlays = overlays.length > 0;
+
   return (
     <OverlayContext.Provider value={contextValue}>
       {children}
-      {mounted && overlays.length > 0 && createPortal(overlayElements, document.body)}
+      {mounted &&
+        createPortal(
+          <>
+            <AnimatePresence>
+              {isDimVisible && (
+                <MotionDim
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  onClick={handleDimClick}
+                />
+              )}
+            </AnimatePresence>
+            {hasOverlays && <S.Container>{overlayElements}</S.Container>}
+          </>,
+          document.body
+        )}
     </OverlayContext.Provider>
   );
 };

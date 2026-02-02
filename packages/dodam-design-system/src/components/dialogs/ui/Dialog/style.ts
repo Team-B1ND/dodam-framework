@@ -3,17 +3,6 @@ import { shapes } from "../../../../shapes";
 import { typoCss } from "../../../../typography";
 import styled from "@emotion/styled";
 
-export const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  background-color: ${colors.overlay.dim};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  padding: 24px;
-`;
-
 export const Modal = styled.div`
   width: 320px;
   background: ${colors.background.surface};
