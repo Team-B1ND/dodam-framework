@@ -10,12 +10,7 @@
   },
   "dependencies": {
     "@cher1shrxd/loading": "^1.0.3",
-    "@dds-web/colors": "workspace:*",
-    "@dds-web/components": "workspace:*",
-    "@dds-web/iconography": "workspace:*",
-    "@dds-web/shapes": "workspace:*",
-    "@dds-web/typography": "workspace:*",
-    "@dds-web/themes": "workspace:*",
+    "dodam-design-system": "workspace:*",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.1",

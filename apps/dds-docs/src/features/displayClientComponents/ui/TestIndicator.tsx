@@ -1,6 +1,6 @@
 "use client";
 
-import { Indicator, IndicatorProps } from "@dds-web/components";
+import { Indicator, IndicatorProps } from "dodam-design-system/components";
 import { useState } from "react";
 
 const TestIndicator = (props: IndicatorProps) => {

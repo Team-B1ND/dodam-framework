@@ -1,4 +1,4 @@
-import { TextButton, TextButtonProps } from '@dds-web/components'
+import { TextButton, TextButtonProps } from 'dodam-design-system/components'
 
 const TestTextButton = (props: TextButtonProps) => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { toggleTheme, useTheme } from "@dds-web/themes";
+import { toggleTheme, useTheme } from "dodam-design-system/themes";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "@cher1shrxd/loading";
 

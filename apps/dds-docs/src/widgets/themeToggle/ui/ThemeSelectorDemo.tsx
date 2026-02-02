@@ -1,6 +1,6 @@
 "use client";
 
-import { applyTheme } from "@dds-web/themes";
+import { applyTheme } from "dodam-design-system/themes";
 import { Sun, Moon } from "lucide-react";
 
 const ThemeSelectorDemo = () => {

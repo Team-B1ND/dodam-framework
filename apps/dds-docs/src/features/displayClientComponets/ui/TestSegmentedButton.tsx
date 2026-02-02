@@ -1,6 +1,6 @@
 "use client"
 
-import { SegmentedButton, SegmentedButtonData } from "@dds-web/components"
+import { SegmentedButton, SegmentedButtonData } from "dodam-design-system/components"
 import { useState } from "react"
 
 const TestSegmentedButton = () => {

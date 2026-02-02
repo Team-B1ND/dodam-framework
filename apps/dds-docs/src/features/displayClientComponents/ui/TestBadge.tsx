@@ -1,4 +1,4 @@
-import { Badge, BadgeProps } from '@dds-web/components'
+import { Badge, BadgeProps } from 'dodam-design-system/components'
 
 const TestBadge = (props: BadgeProps) => {
   return (

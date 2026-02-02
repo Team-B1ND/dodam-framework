@@ -1,6 +1,6 @@
 "use client";
 
-import { dialog } from "@dds-web/components";
+import { dialog } from "dodam-design-system/components";
 
 const TestDialog = () => {
   const openDialog = () => {

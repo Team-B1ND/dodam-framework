@@ -1,4 +1,4 @@
-import { Dot, DotProps } from '@dds-web/components'
+import { Dot, DotProps } from 'dodam-design-system/components'
 
 const TestDot = (props: DotProps) => {
   return (

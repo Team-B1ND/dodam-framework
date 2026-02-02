@@ -1,6 +1,6 @@
 "use client";
 
-import { DatePicker, DatePickerProps } from "@dds-web/components";
+import { DatePicker, DatePickerProps } from "dodam-design-system/components";
 import { useState } from "react";
 
 const TestDatePicker = (props: DatePickerProps) => {

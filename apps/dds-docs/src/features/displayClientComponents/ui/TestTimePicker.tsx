@@ -5,7 +5,7 @@ import {
   TimePicker,
   TimePickerProps,
   type Time,
-} from "@dds-web/components";
+} from "dodam-design-system/components";
 import { useState } from "react";
 
 const TestTimePicker = (props: TimePickerProps) => {

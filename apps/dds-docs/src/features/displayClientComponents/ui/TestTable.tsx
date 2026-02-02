@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Table } from "@dds-web/components";
+import { Table } from "dodam-design-system/components";
 
 const TestTable = () => {
   const keys = [

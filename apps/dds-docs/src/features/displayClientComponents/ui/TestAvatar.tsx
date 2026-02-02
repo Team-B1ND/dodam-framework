@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from "@dds-web/components"
+import { Avatar, AvatarProps } from "dodam-design-system/components"
 
 const TestAvatar = (props: AvatarProps) => {
   return (

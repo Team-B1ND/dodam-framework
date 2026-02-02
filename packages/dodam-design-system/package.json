@@ -1,0 +1,87 @@
+{
+  "name": "dodam-design-system",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./colors": {
+      "types": "./dist/colors/index.d.ts",
+      "import": "./dist/colors/index.js"
+    },
+    "./colors/colors.css": "./dist/colors/colors.css",
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js"
+    },
+    "./icons/illustration": {
+      "types": "./dist/icons/illustration/index.d.ts",
+      "import": "./dist/icons/illustration/index.js"
+    },
+    "./icons/mono": {
+      "types": "./dist/icons/mono/index.d.ts",
+      "import": "./dist/icons/mono/index.js"
+    },
+    "./shapes": {
+      "types": "./dist/shapes/index.d.ts",
+      "import": "./dist/shapes/index.js"
+    },
+    "./shapes/tokens.tailwind.css": "./dist/shapes/tokens.tailwind.css",
+    "./themes": {
+      "types": "./dist/themes/index.d.ts",
+      "import": "./dist/themes/index.js"
+    },
+    "./themes/init": {
+      "types": "./dist/themes/init-theme.iife.d.ts",
+      "import": "./dist/themes/init-theme.iife.js"
+    },
+    "./themes/theme.tailwind.css": "./dist/themes/theme.tailwind.css",
+    "./typography": {
+      "types": "./dist/typography/index.d.ts",
+      "import": "./dist/typography/index.js"
+    },
+    "./typography/tokens.tailwind.css": "./dist/typography/tokens.tailwind.css",
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node ./scripts/copy-assets.mjs",
+    "prepack": "pnpm run build",
+    "typecheck": "tsc -b"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@emotion/cache": "^11.14.0",
+    "zustand": "^5.0.10"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "next": "^15.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@emotion/cache": "^11.14.0",
+    "zustand": "^5.0.10"
+  }
+}

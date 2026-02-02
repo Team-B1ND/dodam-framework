@@ -20,15 +20,15 @@ import TestTag from "@/features/displayClientComponents/ui/TestTag";
 ### 설치
 
 ```bash
-pnpm add @dds-web/components
+pnpm add dodam-design-system/components
 ```
 
-> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 ### 기본 사용법
 
 ```tsx
-import { Tag } from "@dds-web/components";
+import { Tag } from "dodam-design-system/components";
 
 const Example = () => {
   return <Tag text="Label" />;
@@ -42,7 +42,7 @@ export default Example;
 `color` prop을 사용하여 태그의 색상을 지정할 수 있습니다.
 
 ```tsx
-import { Tag } from "@dds-web/components";
+import { Tag } from "dodam-design-system/components";
 
 const Example = () => {
   return (
@@ -64,7 +64,7 @@ export default Example;
 ```tsx
 "use client";
 
-import { Tag } from "@dds-web/components";
+import { Tag } from "dodam-design-system/components";
 
 const Example = () => {
   const handleClick = () => {

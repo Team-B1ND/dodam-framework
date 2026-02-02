@@ -20,9 +20,9 @@ import TestDialog from "@/features/displayClientComponents/ui/TestDialog";
 ### 설치
 
 ```bash
-pnpm add @dds-web/components
+pnpm add dodam-design-system/components
 ```
-> `@dds-web/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 ### 기본 사용법
 
@@ -30,7 +30,7 @@ pnpm add @dds-web/components
 
 ```tsx
 // app/layout.tsx
-import { DialogProvider } from "@dds-web/components";
+import { DialogProvider } from "dodam-design-system/components";
 import { PropsWithChildren } from "react";
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```tsx
 "use client";
 
-import { dialog } from "@dds-web/components";
+import { dialog } from "dodam-design-system/components";
 
 const Example = () => {
   const openDialog = () => {
