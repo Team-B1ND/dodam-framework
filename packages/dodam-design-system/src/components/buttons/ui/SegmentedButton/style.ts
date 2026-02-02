@@ -14,8 +14,19 @@ export const Container = styled.div<{
   padding: 4px;
   border-radius: ${shapes.medium};
   background-color: ${colors.fill.secondary};
+  position: relative;
+  overflow: hidden;
   ${({ $containerCustomStyle }) => $containerCustomStyle};
-`
+`;
+
+export const Indicator = styled.div`
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  background-color: ${colors.fill.primary};
+  border-radius: ${shapes.small};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
 
 export const Item = styled.button<{
   $isActive: string;
@@ -23,20 +34,15 @@ export const Item = styled.button<{
 }>`
   all: unset;
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   justify-content: center;
   align-items: center;
   border-radius: ${shapes.small};
-  color: ${({ $isActive }) => 
-    $isActive === "true" ? colors.text.primary 
-    : $isActive === "false" ? colors.text.secondary
-    : ""};
-  background-color: ${({ $isActive }) =>
-    $isActive === "true" ? colors.fill.primary
-    : $isActive === "false" ? "transparent" 
-    : ""};
+  z-index: 1;
+  color: ${({ $isActive }) =>
+    $isActive === "true" ? colors.text.primary : colors.text.secondary};
   ${typoCss("Headline", "Medium")};
   cursor: pointer;
-  transition: all 0.1s linear;
-  ${({ $itemCustomStyle }) => $itemCustomStyle}
+  transition: color 0.2s ease;
+  ${({ $itemCustomStyle }) => $itemCustomStyle};
 `;

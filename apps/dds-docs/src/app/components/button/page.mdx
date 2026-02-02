@@ -84,6 +84,11 @@ role - negative
   </TestFilledButton>
 </ComponentBlock>
 
+display - fill
+<ComponentBlock>
+    <TestFilledButton size="large" display="fill">취소</TestFilledButton>
+</ComponentBlock>
+
 ---
 
 ### Usage
@@ -145,9 +150,15 @@ export default function Example() {
 				<td className="px-4 py-3 text-text-secondary">버튼 크기</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
+				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">display</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"inline" | "fill"</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"inline"</code></td>
+				<td className="px-4 py-3 text-text-secondary">버튼 너비 모드 (fill: flex 컨테이너에서 비율 분배)</td>
+			</tr>
+			<tr className="hover:bg-fill-primary transition-colors">
 				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
 				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
+				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
 				<td className="px-4 py-3 text-text-secondary">클릭 이벤트 콜백</td>
 			</tr>
 			<tr className="hover:bg-fill-primary transition-colors">
