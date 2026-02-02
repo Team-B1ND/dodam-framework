@@ -30,6 +30,7 @@ export const Container = styled.button<{
   ${({ $size }) => sizeStyles[$size].typo};
 
   background-color: ${({ $pressed }) => ($pressed ? colors.fill.primary : "transparent")};
+  color: ${colors.text.secondary};
   opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 1)};
 
   @media (hover: hover) {
