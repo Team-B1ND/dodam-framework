@@ -2,23 +2,46 @@
 
 import * as S from "./style"
 import { TextButtonProps } from "../../types/props"
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, useState, useCallback } from "react"
+import { motion } from "framer-motion";
+import { usePressAnimation } from "../../../../animations";
+
+const MotionContainer = motion.create(S.Container);
 
 export const TextButton = ({
   size = "mideum",
-  onClick = () => {},
+  onClick,
   buttonCustomStyle = {},
   disabled = false,
   children
 }: PropsWithChildren<Partial<TextButtonProps>>) => {
+  const [pressed, setPressed] = useState(false);
+  const { whileTap, transition } = usePressAnimation({ disabled });
+
+  const handlePressIn = useCallback(() => {
+    if (!disabled) setPressed(true);
+  }, [disabled]);
+
+  const handlePressOut = useCallback(() => {
+    setPressed(false);
+  }, []);
+
   return (
-    <S.Container
+    <MotionContainer
       $buttonCustomStyle={buttonCustomStyle}
       $disabled={disabled.toString()}
       $size={size}
+      $pressed={pressed}
       onClick={onClick}
+      onMouseDown={handlePressIn}
+      onMouseUp={handlePressOut}
+      onMouseLeave={handlePressOut}
+      onTouchStart={handlePressIn}
+      onTouchEnd={handlePressOut}
+      whileTap={whileTap}
+      transition={transition}
     >
       {children ?? "버튼"}
-    </S.Container>
+    </MotionContainer>
   );
 }

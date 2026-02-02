@@ -1,10 +1,11 @@
 import { CSSObject } from "@emotion/styled";
 import { ComponentProps, Dispatch, SetStateAction } from "react";
-import { ButtonSizes, FilledButtonRoles } from "../types/buttonSize";
+import { ButtonSizes, FilledButtonRoles, ButtonDisplay } from "../types/buttonSize";
 
 export interface FilledButtonProps extends ComponentProps<"button"> {
   role: FilledButtonRoles;
   size: ButtonSizes;
+  display: ButtonDisplay;
   onClick: () => void;
   buttonCustomStyle: CSSObject;
 }

@@ -1,49 +1,42 @@
+import { colors } from "../../../../colors";
 import { shapes } from "../../../../shapes";
 import { typoCss } from "../../../../typography";
 import styled, { CSSObject } from "@emotion/styled";
 import { ButtonSizes } from "../../types/buttonSize";
 
+const sizeStyles = {
+  large: { padding: "0 28px", height: "48px", radius: shapes.medium, typo: typoCss("Body1", "Medium") },
+  mideum: { padding: "0 20px", height: "40px", radius: shapes.small, typo: typoCss("Body2", "Medium") },
+  small: { padding: "0 12px", height: "32px", radius: shapes.extraSmall, typo: typoCss("Caption2", "Bold") },
+};
+
 export const Container = styled.button<{
   $size: ButtonSizes;
   $disabled: string;
+  $pressed: boolean;
   $buttonCustomStyle: CSSObject;
 }>`
   all: unset;
-  ${({ $buttonCustomStyle }) => $buttonCustomStyle};
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ $size }) =>
-    $size === "large" ? "0 28px" 
-    : $size === "mideum" ? "0 20px" 
-    : $size === "small" ? "0 12px"
-    : ""};
-  border-radius: ${({ $size }) =>
-    $size === "large" ? shapes.medium
-    : $size === "mideum" ? shapes.small
-    : $size === "small" ? shapes.extraSmall 
-    : ""};
-  opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 1)};
-  min-height: ${({ $size }) => 
-    $size === "large" ? "48px" 
-    : $size === "mideum" ? "40px" 
-    : $size === "small" ? "32px" 
-    : ""};
-  height: ${({ $size }) => 
-    $size === "large" ? "48px" 
-    : $size === "mideum" ? "40px" 
-    : $size === "small" ? "32px" 
-    : ""};
   cursor: pointer;
-  
-  transition: all 0.1s linear;
-  &:hover{
-    opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 0.7)};
+  transition: background-color 0.1s linear;
+
+  padding: ${({ $size }) => sizeStyles[$size].padding};
+  height: ${({ $size }) => sizeStyles[$size].height};
+  min-height: ${({ $size }) => sizeStyles[$size].height};
+  border-radius: ${({ $size }) => sizeStyles[$size].radius};
+  ${({ $size }) => sizeStyles[$size].typo};
+
+  background-color: ${({ $pressed }) => ($pressed ? colors.fill.primary : "transparent")};
+  opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 1)};
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${colors.fill.primary};
+    }
   }
 
-  ${({ $size }) => 
-      $size === "large" ? typoCss("Body1", "Medium") 
-    : $size === "mideum" ? typoCss("Body2", "Medium") 
-    : $size === "small" ? typoCss("Caption2", "Bold") 
-    : ""};
+  ${({ $buttonCustomStyle }) => $buttonCustomStyle};
 `;
