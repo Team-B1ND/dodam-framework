@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext, useCallback } from "react";
+import { useState, useContext, useCallback, memo } from "react";
 import { OverlayContext, type OverlayElement } from "./OverlayContext";
 
 interface OverlayControllerProps {
@@ -8,7 +8,7 @@ interface OverlayControllerProps {
   element: OverlayElement;
 }
 
-export const OverlayController = ({ id, element }: OverlayControllerProps) => {
+export const OverlayController = memo(({ id, element }: OverlayControllerProps) => {
   const context = useContext(OverlayContext);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -21,4 +21,6 @@ export const OverlayController = ({ id, element }: OverlayControllerProps) => {
   }, [context, id]);
 
   return <>{element({ isOpen, close, exit })}</>;
-};
+});
+
+OverlayController.displayName = "OverlayController";

@@ -1,10 +1,11 @@
 "use client";
 
-import { PropsWithChildren, ComponentProps, useCallback, useEffect } from "react";
-import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
+import { PropsWithChildren, ComponentProps, useCallback, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import * as S from "./style";
-import { FilledButton } from "../../../buttons/ui/FilledButton";
-import { TextButton } from "../../../buttons/ui/TextButton";
+import { FilledButton } from "../../../buttons";
+import { TextButton } from "../../../buttons";
+import {useDialogAnimation} from "../../animations/useDialogAnimation";
 
 const MotionOverlay = motion.create(S.Overlay);
 const MotionModal = motion.create(S.Modal);
@@ -18,7 +19,7 @@ interface DialogProps {
   onExited?: () => void;
 }
 
-const DialogComponent = ({
+const DialogComponent = memo(({
   open,
   title,
   description,
@@ -27,49 +28,46 @@ const DialogComponent = ({
   onExited,
   children,
 }: PropsWithChildren<DialogProps>) => {
-  const controls = useAnimationControls();
+  const {
+    controls,
+    wiggle,
+    overlayInitial,
+    overlayAnimate,
+    overlayExit,
+    overlayTransition,
+    modalInitial,
+    modalExit,
+    modalTransition,
+  } = useDialogAnimation({ open });
 
-  useEffect(() => {
-    if (open) {
-      controls.start({ opacity: 1, scale: 1, x: 0 });
-    }
-  }, [open, controls]);
-
-  const wiggle = useCallback(async () => {
-    await controls.start({
-      x: [0, 4, -4, 3, -3, 0],
-      transition: { duration: 0.25, ease: "easeInOut" },
-    });
-  }, [controls]);
-
-  const handleDimmerClick = () => {
+  const handleDimmerClick = useCallback(() => {
     if (closeOnDimmerClick) {
       onClose?.();
     } else {
       wiggle();
     }
-  };
+  }, [closeOnDimmerClick, onClose, wiggle]);
+
+  const handleModalClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <AnimatePresence onExitComplete={onExited}>
       {open && (
         <MotionOverlay
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={overlayInitial}
+          animate={overlayAnimate}
+          exit={overlayExit}
+          transition={overlayTransition}
           onClick={handleDimmerClick}
         >
           <MotionModal
-            initial={{ opacity: 0, scale: 0.9, x: 0 }}
+            initial={modalInitial}
             animate={controls}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{
-              type: "spring",
-              stiffness: 300,
-              damping: 25,
-            }}
-            onClick={(e) => e.stopPropagation()}
+            exit={modalExit}
+            transition={modalTransition}
+            onClick={handleModalClick}
           >
             <S.Content>
               <S.Title>{title}</S.Title>
@@ -81,15 +79,21 @@ const DialogComponent = ({
       )}
     </AnimatePresence>
   );
-};
+});
 
-const DialogFilledButton = (props: ComponentProps<typeof FilledButton>) => (
+DialogComponent.displayName = "Dialog";
+
+const DialogFilledButton = memo((props: ComponentProps<typeof FilledButton>) => (
   <FilledButton size="large" display="fill" {...props} />
-);
+));
 
-const DialogTextButton = (props: ComponentProps<typeof TextButton>) => (
+DialogFilledButton.displayName = "Dialog.FilledButton";
+
+const DialogTextButton = memo((props: ComponentProps<typeof TextButton>) => (
   <TextButton size="large" {...props} />
-);
+));
+
+DialogTextButton.displayName = "Dialog.TextButton";
 
 export const Dialog = Object.assign(DialogComponent, {
   FilledButton: DialogFilledButton,

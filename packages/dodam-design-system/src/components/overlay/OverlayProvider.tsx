@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { OverlayContext, type OverlayElement } from "./OverlayContext";
 import { OverlayController } from "./OverlayController";
@@ -17,17 +17,23 @@ interface OverlayProviderProps {
 export const OverlayProvider = ({ children }: OverlayProviderProps) => {
   const [overlays, setOverlays] = useState<OverlayItem[]>([]);
   const [mounted, setMounted] = useState(false);
+  const prevOverlayCountRef = useRef(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (overlays.length > 0) {
+    const currentCount = overlays.length;
+    const prevCount = prevOverlayCountRef.current;
+
+    if (currentCount > 0 && prevCount === 0) {
       document.body.style.overflow = "hidden";
-    } else {
+    } else if (currentCount === 0 && prevCount > 0) {
       document.body.style.overflow = "";
     }
+
+    prevOverlayCountRef.current = currentCount;
 
     return () => {
       document.body.style.overflow = "";
@@ -36,11 +42,11 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
 
   const mount = useCallback((id: string, element: OverlayElement) => {
     setOverlays((prev) => {
-      const exists = prev.find((item) => item.id === id);
-      if (exists) {
-        return prev.map((item) =>
-          item.id === id ? { ...item, element } : item
-        );
+      const index = prev.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        const next = [...prev];
+        next[index] = { id, element };
+        return next;
       }
       return [...prev, { id, element }];
     });
@@ -52,18 +58,18 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
 
   const contextValue = useMemo(() => ({ mount, unmount }), [mount, unmount]);
 
+  const overlayElements = useMemo(
+    () =>
+      overlays.map(({ id, element }) => (
+        <OverlayController key={id} id={id} element={element} />
+      )),
+    [overlays]
+  );
+
   return (
     <OverlayContext.Provider value={contextValue}>
       {children}
-      {mounted &&
-        createPortal(
-          <>
-            {overlays.map(({ id, element }) => (
-              <OverlayController key={id} id={id} element={element} />
-            ))}
-          </>,
-          document.body
-        )}
+      {mounted && overlays.length > 0 && createPortal(overlayElements, document.body)}
     </OverlayContext.Provider>
   );
 };
