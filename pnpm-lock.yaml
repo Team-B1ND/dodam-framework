@@ -68,6 +68,9 @@ importers:
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
+      zustand:
+        specifier: ^5.0.10
+        version: 5.0.10(@types/react@19.2.7)(react@19.2.3)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.18
