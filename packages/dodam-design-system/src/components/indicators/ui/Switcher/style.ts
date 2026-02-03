@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { FADE_IN_MS, FADE_OUT_MS } from "../../constants";
-import { Phase } from "../../types/phase";
+import { Phase } from "../../index";
 
 export const Container = styled.div<{ $phase: Phase }>`
   opacity: ${({ $phase }) => ($phase === "idle" ? 1 : 0)};

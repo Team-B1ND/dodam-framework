@@ -2,6 +2,7 @@ export * from "./pickers";
 export * from "./indicators";
 export * from "./buttons";
 export * from "./dialogs";
+export * from "./overlay";
 export * from "./badges";
 export * from "./tag";
 export * from "./avatar";

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { colors } from "../../../../colors";
-import { typoCss } from "../../../../typography";
+import { colors } from "@/colors";
+import { typoCss } from "@/typography";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -23,9 +23,12 @@ export const Tbody = styled.tbody``;
 export const Tr = styled.tr<{ $clickable?: boolean }>`
   vertical-align: middle;
   cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
-  &:hover {
-    background-color: ${({ $clickable }) =>
-      $clickable ? colors.fill.hover : "transparent"};
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ $clickable }) =>
+        $clickable ? colors.fill.hover : "transparent"};
+    }
   }
 `;
 

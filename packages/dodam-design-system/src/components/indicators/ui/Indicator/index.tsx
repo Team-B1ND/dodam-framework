@@ -1,7 +1,7 @@
 "use client";
 
-import { colors } from "../../../../colors";
-import { IndicatorProps } from "../../types/props";
+import { colors } from "@/colors";
+import { IndicatorProps } from "../../index";
 import * as S from "./style";
 
 export const Indicator = ({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "../../hooks/useTransition";
-import { SwitcherProps } from "../../types/props";
+import { SwitcherProps } from "../../index";
 import { Container } from "./style";
 
 export const Switcher = ({ pages = [], current = 0, animated = false }: SwitcherProps) => {

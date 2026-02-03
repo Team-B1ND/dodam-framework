@@ -1,9 +1,9 @@
 "use client"
 
-import { colors } from "../../../../colors"
+import { colors } from "@/colors"
 import styled, { CSSObject } from "@emotion/styled"
-import { BadgeProps } from "../../types/props"
-import { typoCss } from "../../../../typography"
+import { BadgeProps } from "../../index"
+import { typoCss } from "@/typography"
 
 export const Badge = ({
   backgroundColor = colors.status.error,

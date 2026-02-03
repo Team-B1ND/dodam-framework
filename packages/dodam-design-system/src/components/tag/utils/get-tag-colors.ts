@@ -1,4 +1,4 @@
-import { colors } from "../../../colors";
+import { colors } from "@/colors";
 import { TagColor } from "../types/props";
 
 export const getBackgroundColor = (color: TagColor) => {

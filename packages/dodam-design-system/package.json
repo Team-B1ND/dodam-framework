@@ -10,6 +10,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./animations": {
+      "types": "./dist/animations/index.d.ts",
+      "import": "./dist/animations/index.js"
+    },
     "./colors": {
       "types": "./dist/colors/index.d.ts",
       "import": "./dist/colors/index.js"
@@ -60,16 +64,17 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node ./scripts/copy-assets.mjs",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && node ./scripts/copy-assets.mjs",
     "prepack": "pnpm run build",
     "typecheck": "tsc -b"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19",
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@emotion/cache": "^11.14.0",
+    "framer-motion": "^11.0.0",
+    "react": ">=19",
+    "react-dom": ">=19",
     "zustand": "^5.0.10"
   },
   "peerDependenciesMeta": {
@@ -78,10 +83,12 @@
     }
   },
   "devDependencies": {
-    "next": "^15.0.0",
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@emotion/cache": "^11.14.0",
+    "framer-motion": "^11.0.0",
+    "next": "^15.0.0",
+    "tsc-alias": "^1.8.16",
     "zustand": "^5.0.10"
   }
 }

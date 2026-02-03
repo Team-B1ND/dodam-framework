@@ -1,8 +1,8 @@
 "use client"
 
-import { colors } from "../../../../colors"
+import { colors } from "@/colors"
 import styled, { CSSObject } from "@emotion/styled"
-import { DotProps } from "../../types/props"
+import { DotProps } from "../../index"
 
 export const Dot = ({
   size = 8,

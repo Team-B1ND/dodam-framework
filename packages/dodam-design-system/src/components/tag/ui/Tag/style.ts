@@ -1,7 +1,7 @@
-import { typoCss } from "../../../../typography";
+import { typoCss } from "@/typography";
 import styled from "@emotion/styled";
 import { CSSObject } from "@emotion/react";
-import { TagColor } from "../../types/props";
+import { TagColor } from "../../index";
 import { getBackgroundColor, getTextColor } from "../../utils/get-tag-colors";
 
 export const Container = styled.div<{
@@ -24,8 +24,10 @@ export const Container = styled.div<{
 
   transition: opacity 0.2s ease;
 
-  &:hover {
-    opacity: ${({ onClick }) => (onClick ? 0.8 : 1)};
+  @media (hover: hover) {
+    &:hover {
+      opacity: ${({ onClick }) => (onClick ? 0.8 : 1)};
+    }
   }
 
   ${({ $customStyle }) => $customStyle}

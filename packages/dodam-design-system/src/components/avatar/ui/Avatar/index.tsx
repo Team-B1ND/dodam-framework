@@ -1,8 +1,8 @@
 "use client"
 
-import { Person } from "../../../../icons/mono"
-import { colors } from "../../../../colors"
-import { AvatarProps } from "../../types/props"
+import { Person } from "@/icons/mono"
+import { colors } from "@/colors"
+import { AvatarProps } from "../../index"
 import * as S from "./style"
 
 export const Avatar = ({

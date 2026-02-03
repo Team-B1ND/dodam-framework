@@ -1,4 +1,4 @@
-import { colors } from "../../../../colors";
+import { colors } from "@/colors";
 import styled from "@emotion/styled";
 
 export const Container = styled.div<{ $gap: number }>`

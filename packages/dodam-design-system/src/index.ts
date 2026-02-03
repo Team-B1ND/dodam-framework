@@ -1,3 +1,6 @@
+// Animations
+export * from "./animations";
+
 // Colors
 export * from "./colors";
 

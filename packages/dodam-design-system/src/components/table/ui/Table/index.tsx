@@ -1,6 +1,6 @@
 "use client";
 
-import { TableProps } from "../../types/props";
+import { TableProps } from "../../index";
 import * as S from "./style"
 
 export const Table = ({ keys, data, onRowClick }: TableProps) => {

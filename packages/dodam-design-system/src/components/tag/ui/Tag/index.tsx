@@ -1,6 +1,6 @@
 "use client";
 
-import { TagProps } from "../../types/props";
+import { TagProps } from "../../index";
 import * as S from "./style";
 
 export const Tag = ({

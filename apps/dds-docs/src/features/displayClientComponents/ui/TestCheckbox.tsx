@@ -7,16 +7,18 @@ const TestCheckbox = ({
   disabled,
   type,
   size,
+  variant,
   checkboxCustomStyle
-}: CheckboxProps) => {
+}: Partial<CheckboxProps>) => {
   const [selected, setSelected] = useState(true);
   return (
-    <Checkbox 
-      selected={selected} 
-      onClick={() => setSelected(prev => !prev)} 
+    <Checkbox
+      selected={selected}
+      onClick={() => setSelected(prev => !prev)}
       disabled={disabled}
       type={type}
       size={size}
+      variant={variant}
       checkboxCustomStyle={checkboxCustomStyle}
     />
   )
