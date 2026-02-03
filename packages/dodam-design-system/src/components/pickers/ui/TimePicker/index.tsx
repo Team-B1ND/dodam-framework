@@ -12,6 +12,37 @@ import { FilledButton } from "../../../buttons";
 const MotionContainer = motion.create(S.Container);
 const MotionPopupContainer = motion.create(S.PopupContainer);
 
+const OVERLAY_ANIMATION = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.9 },
+  transition: { type: "spring", stiffness: 300, damping: 25 },
+} as const;
+
+const POPUP_ANIMATION = {
+  initial: { opacity: 0, y: -8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.15 },
+} as const;
+
+interface WheelItemsProps {
+  items: number[];
+  selectedValue: number;
+}
+
+const WheelItems = memo(({ items, selectedValue }: WheelItemsProps) => (
+  <>
+    {items.map((value, i) => (
+      <S.Item key={i} active={value === selectedValue}>
+        {pad(value)}
+      </S.Item>
+    ))}
+  </>
+));
+
+WheelItems.displayName = "WheelItems";
+
 export interface TimePickerContentProps {
   title?: string;
   time: Time;
@@ -41,42 +72,24 @@ const TimePickerContent = memo(
     }, [onChangeTime, selected, onClose]);
 
     return (
-      <MotionPopupContainer
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.15 }}
-      >
+      <MotionPopupContainer {...POPUP_ANIMATION}>
         <S.Title>{title}</S.Title>
-
         <S.Picker>
           <S.Wheel
             ref={hourRef}
             onScroll={handleScroll(hourRef, HOURS, infiniteHours, "hour")}
           >
-            {infiniteHours.map((h, i) => (
-              <S.Item key={i} active={h === selected.hour}>
-                {pad(h)}
-              </S.Item>
-            ))}
+            <WheelItems items={infiniteHours} selectedValue={selected.hour} />
           </S.Wheel>
-
           <S.Colon>:</S.Colon>
-
           <S.Wheel
             ref={minuteRef}
             onScroll={handleScroll(minuteRef, MINUTES, infiniteMinutes, "minute")}
           >
-            {infiniteMinutes.map((m, i) => (
-              <S.Item key={i} active={m === selected.minute}>
-                {pad(m)}
-              </S.Item>
-            ))}
+            <WheelItems items={infiniteMinutes} selectedValue={selected.minute} />
           </S.Wheel>
-
           <S.Highlight />
         </S.Picker>
-
         <FilledButton size="large" display="fill" onClick={handleConfirm}>
           선택
         </FilledButton>
@@ -130,42 +143,24 @@ const TimePickerBase = memo(
     return (
       <AnimatePresence onExitComplete={onExited}>
         {open && (
-          <MotionContainer
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          >
+          <MotionContainer {...OVERLAY_ANIMATION}>
             <S.Title>{title}</S.Title>
-
             <S.Picker>
               <S.Wheel
                 ref={hourRef}
                 onScroll={handleScroll(hourRef, HOURS, infiniteHours, "hour")}
               >
-                {infiniteHours.map((h, i) => (
-                  <S.Item key={i} active={h === selected.hour}>
-                    {pad(h)}
-                  </S.Item>
-                ))}
+                <WheelItems items={infiniteHours} selectedValue={selected.hour} />
               </S.Wheel>
-
               <S.Colon>:</S.Colon>
-
               <S.Wheel
                 ref={minuteRef}
                 onScroll={handleScroll(minuteRef, MINUTES, infiniteMinutes, "minute")}
               >
-                {infiniteMinutes.map((m, i) => (
-                  <S.Item key={i} active={m === selected.minute}>
-                    {pad(m)}
-                  </S.Item>
-                ))}
+                <WheelItems items={infiniteMinutes} selectedValue={selected.minute} />
               </S.Wheel>
-
               <S.Highlight />
             </S.Picker>
-
             <FilledButton size="large" display="fill" onClick={handleConfirm}>
               선택
             </FilledButton>

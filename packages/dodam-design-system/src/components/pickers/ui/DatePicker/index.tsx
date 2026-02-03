@@ -1,17 +1,98 @@
 "use client";
 
-import { memo, useState, useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "../../../../icons";
 import * as S from "./style";
 import { colors } from "../../../../colors";
 import { DAYS } from "../../constants";
 import { getIsPast } from "../../utils/get-is-past";
-import { getMonthCalendar } from "../../utils/get-month-calendar";
+import { useDatePickerContent } from "../../hooks/useDatePickerContent";
 import { FilledButton } from "../../../buttons";
 
 const MotionContainer = motion.create(S.Container);
 const MotionPopupContainer = motion.create(S.PopupContainer);
+
+const OVERLAY_ANIMATION = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.9 },
+  transition: { type: "spring", stiffness: 300, damping: 25 },
+} as const;
+
+const POPUP_ANIMATION = {
+  initial: { opacity: 0, y: -8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.15 },
+} as const;
+
+interface CalendarGridProps {
+  calendar: ReturnType<typeof useDatePickerContent>["calendar"];
+  selected: Date;
+  disablePast: boolean;
+  onDayClick: (date: Date) => void;
+}
+
+const CalendarGrid = memo(
+  ({ calendar, selected, disablePast, onDayClick }: CalendarGridProps) => (
+    <S.Grid>
+      {calendar.map((cell, i) => {
+        if (!cell.day) return <div key={i} />;
+        const isPast = disablePast && getIsPast(cell.date);
+        return (
+          <S.Day
+            key={i}
+            $selected={selected?.toDateString() === cell.date?.toDateString()}
+            $isPast={isPast}
+            disabled={isPast}
+            onClick={isPast ? undefined : () => onDayClick(cell.date!)}
+          >
+            {cell.day}
+          </S.Day>
+        );
+      })}
+    </S.Grid>
+  )
+);
+
+CalendarGrid.displayName = "CalendarGrid";
+
+interface DatePickerHeaderProps {
+  current: Date;
+  onPrevMonth: () => void;
+  onNextMonth: () => void;
+}
+
+const DatePickerHeader = memo(
+  ({ current, onPrevMonth, onNextMonth }: DatePickerHeaderProps) => (
+    <S.Header>
+      <S.MonthText>
+        {current.getFullYear()}년 {current.getMonth() + 1}월
+      </S.MonthText>
+      <S.Arrows>
+        <S.Arrow onClick={onPrevMonth}>
+          <ChevronLeft color={colors.brand.primary} size={20} pointer />
+        </S.Arrow>
+        <S.Arrow onClick={onNextMonth}>
+          <ChevronRight color={colors.brand.primary} size={20} pointer />
+        </S.Arrow>
+      </S.Arrows>
+    </S.Header>
+  )
+);
+
+DatePickerHeader.displayName = "DatePickerHeader";
+
+const WeekRow = memo(() => (
+  <S.WeekRow>
+    {DAYS.map((day) => (
+      <S.Week key={day}>{day}</S.Week>
+    ))}
+  </S.WeekRow>
+));
+
+WeekRow.displayName = "WeekRow";
 
 export interface DatePickerContentProps {
   date?: Date;
@@ -29,28 +110,8 @@ const DatePickerContent = memo(
     title = "날짜 선택",
     onClose,
   }: DatePickerContentProps) => {
-    const [current, setCurrent] = useState(
-      () => new Date(date.getFullYear(), date.getMonth())
-    );
-    const [selected, setSelected] = useState<Date>(date);
-
-    const year = current.getFullYear();
-    const month = current.getMonth();
-    const calendar = getMonthCalendar(year, month);
-
-    const goPrevMonth = useCallback(
-      () => setCurrent(new Date(year, month - 1, 1)),
-      [year, month]
-    );
-
-    const goNextMonth = useCallback(
-      () => setCurrent(new Date(year, month + 1, 1)),
-      [year, month]
-    );
-
-    const handleDayClick = useCallback((cellDate: Date) => {
-      setSelected(cellDate);
-    }, []);
+    const { current, selected, calendar, goPrevMonth, goNextMonth, handleDayClick } =
+      useDatePickerContent(date);
 
     const handleConfirm = useCallback(() => {
       onChangeDate?.(selected);
@@ -58,57 +119,22 @@ const DatePickerContent = memo(
     }, [onChangeDate, selected, onClose]);
 
     return (
-      <MotionPopupContainer
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.15 }}
-      >
+      <MotionPopupContainer {...POPUP_ANIMATION}>
         <S.Title>{title}</S.Title>
-
-        <S.Header>
-          <S.MonthText>
-            {current.getFullYear()}년 {current.getMonth() + 1}월
-          </S.MonthText>
-          <S.Arrows>
-            <S.Arrow onClick={goPrevMonth}>
-              <ChevronLeft color={colors.brand.primary} size={20} pointer />
-            </S.Arrow>
-            <S.Arrow onClick={goNextMonth}>
-              <ChevronRight color={colors.brand.primary} size={20} pointer />
-            </S.Arrow>
-          </S.Arrows>
-        </S.Header>
-
+        <DatePickerHeader
+          current={current}
+          onPrevMonth={goPrevMonth}
+          onNextMonth={goNextMonth}
+        />
         <div>
-          <S.WeekRow>
-            {DAYS.map((day) => (
-              <S.Week key={day}>{day}</S.Week>
-            ))}
-          </S.WeekRow>
-
-          <S.Grid>
-            {calendar.map((cell, i) => {
-              const isPast = disablePast && getIsPast(cell.date);
-              return cell.day ? (
-                <S.Day
-                  key={i}
-                  $selected={
-                    selected?.toDateString() === cell.date?.toDateString()
-                  }
-                  $isPast={isPast}
-                  disabled={isPast}
-                  onClick={isPast ? undefined : () => handleDayClick(cell.date!)}
-                >
-                  {cell.day}
-                </S.Day>
-              ) : (
-                <div key={i} />
-              );
-            })}
-          </S.Grid>
+          <WeekRow />
+          <CalendarGrid
+            calendar={calendar}
+            selected={selected}
+            disablePast={disablePast}
+            onDayClick={handleDayClick}
+          />
         </div>
-
         <FilledButton size="large" display="fill" onClick={handleConfirm}>
           선택
         </FilledButton>
@@ -141,28 +167,8 @@ const DatePickerBase = memo(
     onExited,
     setDimClickHandler,
   }: DatePickerProps) => {
-    const [current, setCurrent] = useState(
-      () => new Date(date.getFullYear(), date.getMonth())
-    );
-    const [selected, setSelected] = useState<Date>(date);
-
-    const year = current.getFullYear();
-    const month = current.getMonth();
-    const calendar = getMonthCalendar(year, month);
-
-    const goPrevMonth = useCallback(
-      () => setCurrent(new Date(year, month - 1, 1)),
-      [year, month]
-    );
-
-    const goNextMonth = useCallback(
-      () => setCurrent(new Date(year, month + 1, 1)),
-      [year, month]
-    );
-
-    const handleDayClick = useCallback((cellDate: Date) => {
-      setSelected(cellDate);
-    }, []);
+    const { current, selected, calendar, goPrevMonth, goNextMonth, handleDayClick } =
+      useDatePickerContent(date);
 
     const handleConfirm = useCallback(() => {
       onChangeDate?.(selected);
@@ -178,57 +184,22 @@ const DatePickerBase = memo(
     return (
       <AnimatePresence onExitComplete={onExited}>
         {open && (
-          <MotionContainer
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          >
+          <MotionContainer {...OVERLAY_ANIMATION}>
             <S.Title>{title}</S.Title>
-
-            <S.Header>
-              <S.MonthText>
-                {current.getFullYear()}년 {current.getMonth() + 1}월
-              </S.MonthText>
-              <S.Arrows>
-                <S.Arrow onClick={goPrevMonth}>
-                  <ChevronLeft color={colors.brand.primary} size={20} pointer />
-                </S.Arrow>
-                <S.Arrow onClick={goNextMonth}>
-                  <ChevronRight color={colors.brand.primary} size={20} pointer />
-                </S.Arrow>
-              </S.Arrows>
-            </S.Header>
-
+            <DatePickerHeader
+              current={current}
+              onPrevMonth={goPrevMonth}
+              onNextMonth={goNextMonth}
+            />
             <div>
-              <S.WeekRow>
-                {DAYS.map((day) => (
-                  <S.Week key={day}>{day}</S.Week>
-                ))}
-              </S.WeekRow>
-
-              <S.Grid>
-                {calendar.map((cell, i) => {
-                  const isPast = disablePast && getIsPast(cell.date);
-                  return cell.day ? (
-                    <S.Day
-                      key={i}
-                      $selected={
-                        selected?.toDateString() === cell.date?.toDateString()
-                      }
-                      $isPast={isPast}
-                      disabled={isPast}
-                      onClick={isPast ? undefined : () => handleDayClick(cell.date!)}
-                    >
-                      {cell.day}
-                    </S.Day>
-                  ) : (
-                    <div key={i} />
-                  );
-                })}
-              </S.Grid>
+              <WeekRow />
+              <CalendarGrid
+                calendar={calendar}
+                selected={selected}
+                disablePast={disablePast}
+                onDayClick={handleDayClick}
+              />
             </div>
-
             <FilledButton size="large" display="fill" onClick={handleConfirm}>
               선택
             </FilledButton>
