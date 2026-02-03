@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext, useCallback, useEffect, memo } from "react";
+import { useState, useContext, useCallback, memo } from "react";
 import { OverlayContext, type OverlayElement } from "./OverlayContext";
 
 interface OverlayControllerProps {
@@ -27,11 +27,6 @@ export const OverlayController = memo(({ id, element }: OverlayControllerProps) 
     },
     [context]
   );
-
-  // 기본적으로 dim 클릭 시 close 호출
-  useEffect(() => {
-    context?.setDimClickHandler(close);
-  }, [context, close]);
 
   return <>{element({ isOpen, close, exit, setDimClickHandler })}</>;
 });

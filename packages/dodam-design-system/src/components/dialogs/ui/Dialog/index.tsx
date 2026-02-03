@@ -1,11 +1,12 @@
 "use client";
 
-import { PropsWithChildren, ComponentProps, useCallback, useEffect, memo } from "react";
+import { PropsWithChildren, ComponentProps, useCallback, useEffect, memo, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as S from "./style";
 import { FilledButton } from "../../../buttons";
 import { TextButton } from "../../../buttons";
 import { useDialogAnimation } from "../../animations/useDialogAnimation";
+import { OverlayContext } from "../../../overlay/OverlayContext";
 
 const MotionModal = motion.create(S.Modal);
 
@@ -16,7 +17,6 @@ interface DialogProps {
   closeOnDimmerClick?: boolean;
   onClose?: () => void;
   onExited?: () => void;
-  setDimClickHandler?: (handler: () => void) => void;
 }
 
 const DialogComponent = memo(({
@@ -26,9 +26,9 @@ const DialogComponent = memo(({
   closeOnDimmerClick = false,
   onClose,
   onExited,
-  setDimClickHandler,
   children,
 }: PropsWithChildren<DialogProps>) => {
+  const context = useContext(OverlayContext);
   const {
     controls,
     wiggle,
@@ -46,8 +46,10 @@ const DialogComponent = memo(({
   }, [closeOnDimmerClick, onClose, wiggle]);
 
   useEffect(() => {
-    setDimClickHandler?.(handleDimmerClick);
-  }, [setDimClickHandler, handleDimmerClick]);
+    if (open) {
+      context?.setDimClickHandler(handleDimmerClick);
+    }
+  }, [open, context, handleDimmerClick]);
 
   return (
     <AnimatePresence onExitComplete={onExited}>

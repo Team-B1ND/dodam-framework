@@ -9,6 +9,11 @@ import * as S from "./style";
 
 const MotionDim = motion.create(S.Dim);
 
+const DIM_INITIAL = { opacity: 0 } as const;
+const DIM_ANIMATE = { opacity: 1 } as const;
+const DIM_EXIT = { opacity: 0 } as const;
+const DIM_TRANSITION = { duration: 0.15 } as const;
+
 interface OverlayItem {
   id: string;
   element: OverlayElement;
@@ -92,10 +97,10 @@ export const OverlayProvider = ({ children }: OverlayProviderProps) => {
             <AnimatePresence>
               {isDimVisible && (
                 <MotionDim
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
+                  initial={DIM_INITIAL}
+                  animate={DIM_ANIMATE}
+                  exit={DIM_EXIT}
+                  transition={DIM_TRANSITION}
                   onClick={handleDimClick}
                 />
               )}
