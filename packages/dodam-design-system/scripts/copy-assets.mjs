@@ -14,6 +14,7 @@ const cssFiles = [
   { src: "shapes/tokens.tailwind.css", dest: "shapes/tokens.tailwind.css" },
   { src: "themes/theme.tailwind.css", dest: "themes/theme.tailwind.css" },
   { src: "typography/tokens.tailwind.css", dest: "typography/tokens.tailwind.css" },
+  { src: "breakpoints/tokens.tailwind.css", dest: "breakpoints/tokens.tailwind.css" },
 ];
 
 for (const file of cssFiles) {
