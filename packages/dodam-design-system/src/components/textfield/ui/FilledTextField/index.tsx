@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FilledTextFieldProps } from "../../types/filledtextfield-props";
+import { FilledTextFieldProps } from "../../index";
 import { usePasswordVisibility } from "../../hooks/usePasswordVisibility";
 import { renderTextFieldIcon } from "../../utils/render-text-field-icon";
 import * as S from "./style";

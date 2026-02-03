@@ -1,10 +1,10 @@
 "use client"
 
-import { SegmentedButtonProps } from "../../types/props"
+import { SegmentedButtonProps } from "../../index"
 import * as S from "./style"
 import { motion } from "framer-motion"
 import { useMemo } from "react"
-import { usePressAnimation } from "../../../../animations"
+import { usePressAnimation } from "@/animations"
 
 const MotionIndicator = motion.create(S.Indicator);
 const MotionItem = motion.create(S.Item);

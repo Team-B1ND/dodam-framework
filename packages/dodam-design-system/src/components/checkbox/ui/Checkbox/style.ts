@@ -1,8 +1,8 @@
-import { colors } from "../../../../colors";
-import { shapes } from "../../../../shapes";
+import { colors } from "@/colors";
+import { shapes } from "@/shapes";
 import styled, { CSSObject } from "@emotion/styled";
-import { CheckboxType } from "../../types/checkboxType";
-import { CheckboxVariant } from "../../types/props";
+import { CheckboxType } from "../../index";
+import { CheckboxVariant } from "../../index";
 
 export const Container = styled.button<{
   $size: "medium" | "small";

@@ -2,9 +2,9 @@
 
 import { useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { ChevronDown } from "../../../../icons/mono";
-import { colors } from "../../../../colors";
-import { DropdownProps } from "../../types/props";
+import { ChevronDown } from "@/icons/mono";
+import { colors } from "@/colors";
+import { DropdownProps } from "../../index";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useDropdownPosition } from "../../hooks/useDropdownPosition";
 import * as S from "./style";

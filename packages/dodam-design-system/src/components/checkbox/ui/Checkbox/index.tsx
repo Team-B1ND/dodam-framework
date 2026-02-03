@@ -1,10 +1,10 @@
 "use client";
 
-import { Checkmark } from "../../../../icons";
-import { CheckboxProps } from "../../types/props";
+import { Checkmark } from "@/icons";
+import { CheckboxProps } from "../../index";
 import * as S from "./style";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePressAnimation } from "../../../../animations";
+import { usePressAnimation } from "@/animations";
 import { getCheckmarkColor } from "../../utils";
 
 const MotionContainer = motion.create(S.Container);

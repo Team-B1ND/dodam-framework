@@ -2,9 +2,9 @@
 
 import { memo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "../../../../icons";
+import { ChevronLeft, ChevronRight } from "@/icons";
 import * as S from "./style";
-import { colors } from "../../../../colors";
+import { colors } from "@/colors";
 import { DAYS } from "../../constants";
 import { getIsPast } from "../../utils/get-is-past";
 import { useDatePickerContent } from "../../hooks/useDatePickerContent";

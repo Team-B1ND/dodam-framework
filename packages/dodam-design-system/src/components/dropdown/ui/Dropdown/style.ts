@@ -1,6 +1,6 @@
-import { colors } from "../../../../colors";
-import { shapes } from "../../../../shapes";
-import { typoCss } from "../../../../typography";
+import { colors } from "@/colors";
+import { shapes } from "@/shapes";
+import { typoCss } from "@/typography";
 import styled from "@emotion/styled";
 import { CSSObject } from "@emotion/react";
 

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { colors } from "../../../../colors";
-import { typoCss } from "../../../../typography";
+import { colors } from "@/colors";
+import { typoCss } from "@/typography";
 import { CSSObject } from "@emotion/react";
 import { hexToRgba } from "../../utils/hex-to-rgba";
 

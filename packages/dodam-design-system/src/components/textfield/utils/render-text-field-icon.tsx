@@ -4,8 +4,8 @@ import {
   Eye,
   EyeSlash,
   ExclamationmarkCircle,
-} from "../../../icons/mono";
-import { colors } from "../../../colors";
+} from "@/icons/mono";
+import { colors } from "@/colors";
 
 export interface RenderTextFieldIconParams {
   showIcon: boolean;

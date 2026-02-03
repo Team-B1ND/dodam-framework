@@ -1,6 +1,6 @@
 "use client";
 
-import { TextFieldProps } from "../../types/textfield-props";
+import { TextFieldProps } from "../../index";
 import { usePasswordVisibility } from "../../hooks/usePasswordVisibility";
 import { renderTextFieldIcon } from "../../utils/render-text-field-icon";
 import * as S from "./style";

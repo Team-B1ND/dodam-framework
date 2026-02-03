@@ -1,10 +1,10 @@
 "use client"
 
 import * as S from './style';
-import { FilledButtonProps } from "../../types/props";
+import { FilledButtonProps } from "../../index";
 import { PropsWithChildren } from "react";
 import { motion } from "framer-motion";
-import { usePressAnimation } from "../../../../animations";
+import { usePressAnimation } from "@/animations";
 
 const MotionContainer = motion.create(S.Container);
 

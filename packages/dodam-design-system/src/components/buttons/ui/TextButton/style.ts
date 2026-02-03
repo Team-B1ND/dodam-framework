@@ -1,8 +1,8 @@
-import { colors } from "../../../../colors";
-import { shapes } from "../../../../shapes";
-import { typoCss } from "../../../../typography";
+import { colors } from "@/colors";
+import { shapes } from "@/shapes";
+import { typoCss } from "@/typography";
 import styled, { CSSObject } from "@emotion/styled";
-import { ButtonSizes } from "../../types/buttonSize";
+import { ButtonSizes } from "../../index";
 
 const sizeStyles = {
   large: { padding: "0 28px", height: "48px", radius: shapes.medium, typo: typoCss("Body1", "Medium") },

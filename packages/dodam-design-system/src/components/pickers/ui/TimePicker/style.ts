@@ -2,9 +2,9 @@
 
 import styled from "@emotion/styled";
 import { ITEM_HEIGHT, VISIBLE_COUNT } from "../../constants";
-import { typoCss } from "../../../../typography";
-import { shapes } from "../../../../shapes";
-import { colors } from "../../../../colors";
+import { typoCss } from "@/typography";
+import { shapes } from "@/shapes";
+import { colors } from "@/colors";
 
 export const Container = styled.div`
   padding: 24px;

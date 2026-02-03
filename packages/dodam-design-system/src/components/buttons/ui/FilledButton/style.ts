@@ -1,10 +1,10 @@
 "use client";
 
-import { colors } from "../../../../colors";
-import { shapes } from "../../../../shapes";
+import { colors } from "@/colors";
+import { shapes } from "@/shapes";
 import styled, { CSSObject } from "@emotion/styled";
-import { ButtonSizes, FilledButtonRoles, ButtonDisplay } from "../../types/buttonSize";
-import { typoCss } from "../../../../typography";
+import { ButtonSizes, FilledButtonRoles, ButtonDisplay } from "../../index";
+import { typoCss } from "@/typography";
 
 const sizeStyles = {
   large: { padding: "0 28px", height: "48px", radius: shapes.medium, typo: typoCss("Body1", "Medium") },

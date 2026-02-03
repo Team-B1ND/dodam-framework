@@ -1,4 +1,4 @@
-import { colors } from "../../../colors";
+import { colors } from "@/colors";
 import { CheckboxType } from "../types/checkboxType";
 import { CheckboxVariant } from "../types/props";
 

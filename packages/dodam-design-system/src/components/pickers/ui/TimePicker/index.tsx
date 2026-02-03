@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Time } from "../../types/time";
+import { Time } from "../../index";
 import * as S from "./style";
 import { HOURS, MINUTES } from "../../constants";
 import { pad } from "../../utils/pad";
