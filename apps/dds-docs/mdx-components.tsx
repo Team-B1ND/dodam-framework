@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { Children, isValidElement, ReactNode } from "react";
+import CodeBlock from "@/shared/ui/CodeBlock";
 
 function omitRef<P extends { ref?: unknown }>(props: P): Omit<P, "ref"> {
   // MDX can provide legacy string refs; drop them to satisfy React/TS typings.
@@ -8,26 +9,16 @@ function omitRef<P extends { ref?: unknown }>(props: P): Omit<P, "ref"> {
   return rest;
 }
 
-const TERMINAL_LANGUAGES = ["bash", "shell", "terminal", "sh", "zsh"];
-
-function getLanguageFromChildren(children: ReactNode): string | null {
+function getCodeFromChildren(children: ReactNode): { code: string; language: string } | null {
   const child = Children.toArray(children)[0];
-  if (isValidElement<{ className?: string }>(child) && typeof child.props.className === "string") {
-    const match = child.props.className.match(/language-(\w+)/);
-    return match ? match[1] : null;
+  if (isValidElement<{ className?: string; children?: ReactNode }>(child)) {
+    const className = child.props.className ?? "";
+    const match = className.match(/language-(\w+)/);
+    const language = match ? match[1] : "plaintext";
+    const code = typeof child.props.children === "string" ? child.props.children : "";
+    return { code, language };
   }
   return null;
-}
-
-function getLanguageDisplayName(lang: string): string {
-  const displayNames: Record<string, string> = {
-    bash: "Terminal",
-    shell: "Terminal",
-    terminal: "Terminal",
-    sh: "Terminal",
-    zsh: "Terminal",
-  };
-  return displayNames[lang] || lang;
 }
 
 const components: MDXComponents = {
@@ -88,53 +79,24 @@ const components: MDXComponents = {
     />
   ),
   pre: (props) => {
-    const language = getLanguageFromChildren(props.children);
-    const isTerminal = language && TERMINAL_LANGUAGES.includes(language);
-
+    const codeData = getCodeFromChildren(props.children);
+    if (codeData) {
+      return <CodeBlock language={codeData.language}>{codeData.code}</CodeBlock>;
+    }
     return (
-      <div className="my-4 rounded-xl border border-border-subtle overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-3 bg-fill-primary border-b border-border-subtle">
-          {isTerminal ? (
-            <>
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-status-error opacity-80" />
-                <span className="w-3 h-3 rounded-full bg-status-warning opacity-80" />
-                <span className="w-3 h-3 rounded-full bg-status-success opacity-80" />
-              </div>
-              <span className="text-xs text-text-tertiary font-medium">Terminal</span>
-            </>
-          ) : (
-            <>
-              <span />
-              <span className="text-xs text-text-tertiary font-medium">
-                {language ? getLanguageDisplayName(language) : "Code"}
-              </span>
-            </>
-          )}
-        </div>
-        <div className="p-4 bg-background-surface">
-          <pre
-            {...omitRef(props)}
-            className={`overflow-x-auto ${props.className ?? ""}`}
-          />
-        </div>
-      </div>
+      <pre
+        {...omitRef(props)}
+        className={`bg-background-surface p-4 rounded-xl overflow-x-auto my-4 ${props.className ?? ""}`}
+      />
     );
   },
   code: (props) => {
     const className = props.className ?? "";
     const isBlockCode = className.includes("language-");
 
+    // Block code is handled by pre component with CodeBlock
     if (isBlockCode) {
-      const language = className.match(/language-(\w+)/)?.[1];
-      const isTerminal = language && TERMINAL_LANGUAGES.includes(language);
-
-      return (
-        <code {...omitRef(props)} className={`text-sm font-mono text-text-primary ${className}`}>
-          {isTerminal && <span className="text-text-tertiary select-none">$ </span>}
-          {props.children}
-        </code>
-      );
+      return <>{props.children}</>;
     }
 
     return (
