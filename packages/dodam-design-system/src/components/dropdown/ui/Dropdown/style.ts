@@ -26,37 +26,39 @@ export const Container = styled.div<{ $customStyle?: CSSObject }>`
   ${({ $customStyle }) => $customStyle}
 `;
 
-export const Icon = styled.div`
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${colors.text.primary};
-
-  > svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export const OptionWrap = styled.div`
+export const OptionWrap = styled.div<{ $dropUp?: boolean }>`
   width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
   gap: 4px;
 
   position: absolute;
-  top: calc(100% + 4px);
+  ${({ $dropUp }) =>
+    $dropUp ? "bottom: calc(100% + 4px);" : "top: calc(100% + 4px);"}
   left: 0px;
 
-  overflow: hidden;
   background-color: ${colors.fill.primary};
   border-radius: ${shapes.medium};
   box-sizing: border-box;
   padding: 4px;
   z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${colors.fill.secondary};
+    border-radius: 2px;
+  }
 `;
 
 export const Option = styled.div`
@@ -72,7 +74,9 @@ export const Option = styled.div`
   cursor: pointer;
   border-radius: ${shapes.small};
 
-  &:hover {
-    background-color: ${colors.fill.secondary};
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${colors.fill.secondary};
+    }
   }
 `;
