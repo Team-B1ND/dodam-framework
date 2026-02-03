@@ -1,0 +1,9 @@
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1440px;
+
+  --container-sm: 640px;
+  --container-md: 1024px;
+  --container-lg: 1440px;
+}

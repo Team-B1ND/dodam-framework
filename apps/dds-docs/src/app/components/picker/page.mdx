@@ -127,111 +127,27 @@ export default function Example() {
 
 ### DatePicker Props (Overlay 모드)
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">open</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-</td>
-				<td className="px-4 py-3 text-text-secondary">Picker 표시 여부</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">date</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Date</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">new Date()</code></td>
-				<td className="px-4 py-3 text-text-secondary">현재 선택된 날짜</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangeDate</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(date: Date) =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">날짜 선택 시 호출되는 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">disablePast</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">false</code></td>
-				<td className="px-4 py-3 text-text-secondary">과거 날짜 비활성화</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"날짜 선택"</code></td>
-				<td className="px-4 py-3 text-text-secondary">달력 상단 제목</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClose</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">닫기 애니메이션 시작 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onExited</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">닫기 애니메이션 완료 콜백</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `-` | Picker 표시 여부 |
+| `date` | `Date` | `new Date()` | 현재 선택된 날짜 |
+| `onChangeDate` | `(date: Date) => void` | `-` | 날짜 선택 시 호출되는 콜백 |
+| `disablePast` | `boolean` | `false` | 과거 날짜 비활성화 |
+| `title` | `string` | `"날짜 선택"` | 달력 상단 제목 |
+| `onClose` | `() => void` | `-` | 닫기 애니메이션 시작 콜백 |
+| `onExited` | `() => void` | `-` | 닫기 애니메이션 완료 콜백 |
 
 ---
 
 ### DatePicker.Content Props (Popup 모드)
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">date</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Date</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">new Date()</code></td>
-				<td className="px-4 py-3 text-text-secondary">현재 선택된 날짜</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangeDate</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(date: Date) =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">날짜 선택 시 호출되는 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">disablePast</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">false</code></td>
-				<td className="px-4 py-3 text-text-secondary">과거 날짜 비활성화</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"날짜 선택"</code></td>
-				<td className="px-4 py-3 text-text-secondary">달력 상단 제목</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClose</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">닫기 콜백</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `date` | `Date` | `new Date()` | 현재 선택된 날짜 |
+| `onChangeDate` | `(date: Date) => void` | `-` | 날짜 선택 시 호출되는 콜백 |
+| `disablePast` | `boolean` | `false` | 과거 날짜 비활성화 |
+| `title` | `string` | `"날짜 선택"` | 달력 상단 제목 |
+| `onClose` | `() => void` | `-` | 닫기 콜백 |
 
 ---
 
@@ -315,56 +231,14 @@ export default function Example() {
 
 ### TimePicker Props
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">open</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-</td>
-				<td className="px-4 py-3 text-text-secondary">Picker 표시 여부</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">time</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Time</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-</td>
-				<td className="px-4 py-3 text-text-secondary">현재 선택된 시간</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onChangeTime</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(time: Time) =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal">-</td>
-				<td className="px-4 py-3 text-text-secondary">시간 선택 시 호출되는 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">title</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"시간 선택"</code></td>
-				<td className="px-4 py-3 text-text-secondary">피커 상단 제목</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClose</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">닫기 애니메이션 시작 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onExited</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">닫기 애니메이션 완료 콜백</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `-` | Picker 표시 여부 |
+| `time` | `Time` | `-` | 현재 선택된 시간 |
+| `onChangeTime` | `(time: Time) => void` | `-` | 시간 선택 시 호출되는 콜백 |
+| `title` | `string` | `"시간 선택"` | 피커 상단 제목 |
+| `onClose` | `() => void` | `-` | 닫기 애니메이션 시작 콜백 |
+| `onExited` | `() => void` | `-` | 닫기 애니메이션 완료 콜백 |
 
 ---
 

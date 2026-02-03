@@ -69,78 +69,12 @@ export default Example;
 
 ## Props
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-  <table className="w-full text-sm border-collapse">
-    <thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-      <tr>
-        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
-          Prop
-        </th>
-        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
-          Type
-        </th>
-        <th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">
-          Default
-        </th>
-        <th className="px-4 py-3 text-left font-semibold">Description</th>
-      </tr>
-    </thead>
-    <tbody className="divide-y divide-border-normal">
-      <tr className="hover:bg-fill-primary transition-colors">
-        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
-          items
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          string[]
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          -
-        </td>
-        <td className="px-4 py-3 text-text-secondary">
-          드롭다운에 표시할 옵션 목록
-        </td>
-      </tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
-          value
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          string
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          -
-        </td>
-        <td className="px-4 py-3 text-text-secondary">현재 선택된 값</td>
-      </tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
-          onSelectedItemChange
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          (item: string) =&gt; void
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          -
-        </td>
-        <td className="px-4 py-3 text-text-secondary">
-          옵션 선택 시 실행될 콜백 함수
-        </td>
-      </tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-        <td className="px-4 py-3 text-text-secondary border-r border-border-normal">
-          customStyle
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          CSSObject
-        </td>
-        <td className="px-4 py-3 text-text-tertiary border-r border-border-normal">
-          -
-        </td>
-        <td className="px-4 py-3 text-text-secondary">추가 커스텀 스타일</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` | `string[]` | `-` | 드롭다운에 표시할 옵션 목록 |
+| `value` | `string` | `-` | 현재 선택된 값 |
+| `onSelectedItemChange` | `(item: string) => void` | `-` | 옵션 선택 시 실행될 콜백 함수 |
+| `customStyle` | `CSSObject` | `-` | 추가 커스텀 스타일 |
 
 ---
 

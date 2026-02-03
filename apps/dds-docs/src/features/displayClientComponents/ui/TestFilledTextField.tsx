@@ -101,7 +101,7 @@ export default function TestFilledTextField() {
           placeholder="비활성화된 필드"
           value={disabledValue}
           onChange={(e) => setDisabledValue(e.target.value)}
-          isDisabled
+          disabled
         />
       </div>
 
