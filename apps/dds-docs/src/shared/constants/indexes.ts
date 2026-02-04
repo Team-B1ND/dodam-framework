@@ -59,6 +59,11 @@ export const COMPONENTS = [
     href: "/components/checkbox",
   },
   {
+    name: "Switch",
+    description: "ON/OFF 상태를 토글하는 스위치 컴포넌트",
+    href: "/components/switch",
+  },
+  {
     name: "Dialog",
     description: "모달 다이얼로그 컴포넌트",
     href: "/components/dialog",
