@@ -10,4 +10,5 @@ export * from "./dropdown";
 export * from "./textfield";
 export * from "./checkbox";
 export * from "./switch";
+export * from "./tab";
 export * from "./table";
