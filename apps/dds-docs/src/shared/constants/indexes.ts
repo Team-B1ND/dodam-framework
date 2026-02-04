@@ -84,6 +84,11 @@ export const COMPONENTS = [
     href: "/components/picker",
   },
   {
+    name: "Tab",
+    description: "탭 네비게이션 컴포넌트",
+    href: "/components/tab",
+  },
+  {
     name: "Table",
     description: "데이터를 테이블 형태로 표시하는 컴포넌트",
     href: "/components/table",
