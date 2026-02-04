@@ -18,3 +18,6 @@ export * from "./themes";
 
 // Typography
 export * from "./typography";
+
+// Breakpoints
+export * from "./breakpoints";

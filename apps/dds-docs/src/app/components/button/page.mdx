@@ -110,10 +110,10 @@ import { FilledButton } from "dodam-design-system/components";
 
 export default function Example() {
   return (
-    <FilledButton 
-      role="assistive" 
-      size="large" 
-      onClick={() => {}} 
+    <FilledButton
+      role="assistive"
+      size="large"
+      onClick={() => {}}
       buttonCustomStyle={{
         zIndex: 1
       }}
@@ -124,52 +124,15 @@ export default function Example() {
 
 ---
 
-### Props 
+### Props
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">role</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary" | "assistive" | "negative"</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"primary"</code></td>
-				<td className="px-4 py-3 text-text-secondary">버튼 기본 색상 설정</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"large" | "mideum" | "small"</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum"</code></td>
-				<td className="px-4 py-3 text-text-secondary">버튼 크기</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">display</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"inline" | "fill"</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"inline"</code></td>
-				<td className="px-4 py-3 text-text-secondary">버튼 너비 모드 (fill: flex 컨테이너에서 비율 분배)</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">-</code></td>
-				<td className="px-4 py-3 text-text-secondary">클릭 이벤트 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">buttonCustomStyle</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
-				<td className="px-4 py-3 text-text-secondary">커스텀 CSS</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `role` | `"primary" \| "assistive" \| "negative"` | `"primary"` | 버튼 기본 색상 설정 |
+| `size` | `"large" \| "mideum" \| "small"` | `"mideum"` | 버튼 크기 |
+| `display` | `"inline" \| "fill"` | `"inline"` | 버튼 너비 모드 (fill: flex 컨테이너에서 비율 분배) |
+| `onClick` | `() => void` | `-` | 클릭 이벤트 콜백 |
+| `buttonCustomStyle` | `CSSObject` | `{}` | 커스텀 CSS |
 
 ---
 
@@ -224,9 +187,9 @@ import { TextButton } from "dodam-design-system/components";
 
 export default function Example() {
   return (
-    <TextButton 
-      size="large" 
-      onClick={() => {}} 
+    <TextButton
+      size="large"
+      onClick={() => {}}
       buttonCustomStyle={{
         zIndex: 1
       }}
@@ -239,40 +202,13 @@ export default function Example() {
 
 ---
 
-### Props 
+### Props
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Default</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">size</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"large" | "mideum" | "small"</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">"mideum"</code></td>
-				<td className="px-4 py-3 text-text-secondary">버튼 크기</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onClick</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">() =&gt; \{\}</code></td>
-				<td className="px-4 py-3 text-text-secondary">클릭 이벤트 콜백</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">buttonCustomStyle</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">\{\}</code></td>
-				<td className="px-4 py-3 text-text-secondary">커스텀 CSS</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"large" \| "mideum" \| "small"` | `"mideum"` | 버튼 크기 |
+| `onClick` | `() => void` | `() => {}` | 클릭 이벤트 콜백 |
+| `buttonCustomStyle` | `CSSObject` | `{}` | 커스텀 CSS |
 
 ---
 
@@ -315,8 +251,8 @@ export default function Example() {
     { text: "텍스트 3", isActive: false, value: "third" },
   ]);
   return (
-    <SegmentedButton 
-      data={data} 
+    <SegmentedButton
+      data={data}
       setData={setData}
       width="480px"
       onBlockClick={(value) => console.log(value)}
@@ -333,83 +269,25 @@ export default function Example() {
 
 ---
 
-### Props 
+### Props
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">data</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">SegmentedButtonData[]</code></td>
-				<td className="px-4 py-3 text-text-secondary">state 표시</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">setData</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">Dispatch\<SetStateAction\<SegmentedButtonData[]\>\></code></td>
-				<td className="px-4 py-3 text-text-secondary">setState 함수</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">onBlockClick</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">(value: string) =&gt; void</code></td>
-				<td className="px-4 py-3 text-text-secondary">내부 블록 클릭 시 이벤트 / value 전달</td>
-			</tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">width</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-secondary">컨테이너 크기 / 기본값 400px</td>
-			</tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">containerCustomStyle</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
-				<td className="px-4 py-3 text-text-secondary">컨테이너 커스텀 CSS</td>
-			</tr>
-      <tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">itemCustomStyle</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">CSSObject</code></td>
-				<td className="px-4 py-3 text-text-secondary">아이템 커스텀 CSS</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Description |
+| --- | --- | --- |
+| `data` | `SegmentedButtonData[]` | state 표시 |
+| `setData` | `Dispatch<SetStateAction<SegmentedButtonData[]>>` | setState 함수 |
+| `onBlockClick` | `(value: string) => void` | 내부 블록 클릭 시 이벤트 / value 전달 |
+| `width` | `string` | 컨테이너 크기 / 기본값 400px |
+| `containerCustomStyle` | `CSSObject` | 컨테이너 커스텀 CSS |
+| `itemCustomStyle` | `CSSObject` | 아이템 커스텀 CSS |
 
 ---
 
 ### Type
 
-interface - <code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">SegmentedButtonData[]</code>
+interface - `SegmentedButtonData[]`
 
-<div className="overflow-x-auto my-6 rounded-lg border border-border-normal">
-	<table className="w-full text-sm border-collapse">
-		<thead className="bg-fill-primary text-text-primary border-b border-border-normal">
-			<tr>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Prop</th>
-				<th className="px-4 py-3 text-left font-semibold border-r border-border-normal last:border-r-0">Type</th>
-				<th className="px-4 py-3 text-left font-semibold">Description</th>
-			</tr>
-		</thead>
-		<tbody className="divide-y divide-border-normal">
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">text</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-secondary">표시될 텍스트</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">isActive</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">boolean</code></td>
-				<td className="px-4 py-3 text-text-secondary">활성 여부</td>
-			</tr>
-			<tr className="hover:bg-fill-primary transition-colors">
-				<td className="px-4 py-3 text-text-secondary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">value</code></td>
-				<td className="px-4 py-3 text-text-tertiary border-r border-border-normal"><code className="text-sm bg-fill-secondary border border-border-subtle rounded px-1.5 py-0.5">string</code></td>
-				<td className="px-4 py-3 text-text-secondary">다양하게 활용 가능한 값</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+| Prop | Type | Description |
+| --- | --- | --- |
+| `text` | `string` | 표시될 텍스트 |
+| `isActive` | `boolean` | 활성 여부 |
+| `value` | `string` | 다양하게 활용 가능한 값 |

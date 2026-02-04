@@ -54,6 +54,11 @@
       "import": "./dist/typography/index.js"
     },
     "./typography/tokens.tailwind.css": "./dist/typography/tokens.tailwind.css",
+    "./breakpoints": {
+      "types": "./dist/breakpoints/index.d.ts",
+      "import": "./dist/breakpoints/index.js"
+    },
+    "./breakpoints/tokens.tailwind.css": "./dist/breakpoints/tokens.tailwind.css",
     "./next": {
       "types": "./dist/next/index.d.ts",
       "import": "./dist/next/index.js"

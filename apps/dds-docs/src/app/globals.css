@@ -3,6 +3,7 @@
 @import "dodam-design-system/colors/colors.css";
 @import "dodam-design-system/shapes/tokens.tailwind.css";
 @import "dodam-design-system/typography/tokens.tailwind.css";
+@import "dodam-design-system/breakpoints/tokens.tailwind.css";
 
 .min-h-body {
   min-height: calc(100vh - 320px);
