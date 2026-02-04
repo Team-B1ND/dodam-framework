@@ -42,14 +42,10 @@ export const Checkbox = ({
         <AnimatePresence>
           {selected && (
             <motion.div
-              initial={{ scale: 0.5 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.5 }}
-              transition={{
-                type: "spring",
-                stiffness: 500,
-                damping: 25,
-              }}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.15 }}
               style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}
             >
               <Checkmark size={iconSize} color={checkmarkColor} />
