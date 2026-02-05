@@ -104,6 +104,11 @@ export const COMPONENTS = [
     href: "/components/toast",
   },
   {
+    name: "TopNavBar",
+    description: "상단 네비게이션 바 컴포넌트",
+    href: "/components/topnavbar",
+  },
+  {
     name: "Tag",
     description: "카테고리나 키워드를 표시하는 태그 컴포넌트",
     href: "/components/tag",
