@@ -1,0 +1,5 @@
+export const HIDE_SCROLLBAR = `
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+`;

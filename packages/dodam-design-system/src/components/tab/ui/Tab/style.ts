@@ -1,12 +1,7 @@
 import { colors } from "@/colors";
 import { typoCss } from "@/typography";
+import { HIDE_SCROLLBAR } from "@/styles";
 import styled, { CSSObject } from "@emotion/styled";
-
-const HIDE_SCROLLBAR = `
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar { display: none; }
-`;
 
 export const Container = styled.div<{
   $fluid: boolean;
