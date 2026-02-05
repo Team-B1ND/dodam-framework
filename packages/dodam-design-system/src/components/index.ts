@@ -11,4 +11,5 @@ export * from "./textfield";
 export * from "./checkbox";
 export * from "./switch";
 export * from "./tab";
+export * from "./progress";
 export * from "./table";
