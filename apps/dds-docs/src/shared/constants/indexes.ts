@@ -99,6 +99,11 @@ export const COMPONENTS = [
     href: "/components/table",
   },
   {
+    name: "Toast",
+    description: "사용자에게 짧은 메시지를 표시하는 토스트 컴포넌트",
+    href: "/components/toast",
+  },
+  {
     name: "Tag",
     description: "카테고리나 키워드를 표시하는 태그 컴포넌트",
     href: "/components/tag",
