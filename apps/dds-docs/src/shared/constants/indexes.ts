@@ -59,6 +59,11 @@ export const COMPONENTS = [
     href: "/components/checkbox",
   },
   {
+    name: "Switch",
+    description: "ON/OFF 상태를 토글하는 스위치 컴포넌트",
+    href: "/components/switch",
+  },
+  {
     name: "Dialog",
     description: "모달 다이얼로그 컴포넌트",
     href: "/components/dialog",
@@ -79,9 +84,29 @@ export const COMPONENTS = [
     href: "/components/picker",
   },
   {
+    name: "Progress",
+    description: "진행 상태를 표시하는 프로그레스 컴포넌트",
+    href: "/components/progress",
+  },
+  {
+    name: "Tab",
+    description: "탭 네비게이션 컴포넌트",
+    href: "/components/tab",
+  },
+  {
     name: "Table",
     description: "데이터를 테이블 형태로 표시하는 컴포넌트",
     href: "/components/table",
+  },
+  {
+    name: "Toast",
+    description: "사용자에게 짧은 메시지를 표시하는 토스트 컴포넌트",
+    href: "/components/toast",
+  },
+  {
+    name: "TopNavBar",
+    description: "상단 네비게이션 바 컴포넌트",
+    href: "/components/topnavbar",
   },
   {
     name: "Tag",

@@ -1,6 +1,7 @@
 import ComponentBlock from "@/shared/ui/ComponentBlock";
 import TestFilledButton from "@/features/displayClientComponets/ui/TestFilledButton";
 import TestTextButton from "@/features/displayClientComponets/ui/TestTextButton";
+import TestIconButton from "@/features/displayClientComponents/ui/TestIconButton";
 import TestSegmentedButton from "@/features/displayClientComponets/ui/TestSegmentedButton";
 
 # Buttons
@@ -209,6 +210,59 @@ export default function Example() {
 | `size` | `"large" \| "mideum" \| "small"` | `"mideum"` | 버튼 크기 |
 | `onClick` | `() => void` | `() => {}` | 클릭 이벤트 콜백 |
 | `buttonCustomStyle` | `CSSObject` | `{}` | 커스텀 CSS |
+
+---
+
+## IconButton
+
+아이콘만 표시되는 정사각형 버튼입니다.
+
+---
+
+### Preview
+
+<ComponentBlock>
+  <TestIconButton size={48} />
+  <TestIconButton size={48} disabled />
+  <TestIconButton size={40} />
+  <TestIconButton size={40} disabled />
+  <TestIconButton size={32} />
+  <TestIconButton size={32} disabled />
+</ComponentBlock>
+
+---
+
+### Usage
+
+```tsx
+"use client";
+
+import { IconButton } from "dodam-design-system/components";
+import { Heart } from "lucide-react";
+
+export default function Example() {
+  return (
+    <IconButton
+      icon={<Heart />}
+      size={40}
+      onClick={() => {}}
+    />
+  )
+}
+```
+
+---
+
+### Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` | `ReactNode` | - | 표시할 아이콘 컴포넌트 |
+| `size` | `number` | `40` | 버튼 크기 (px) |
+| `iconSize` | `number` | `size * 0.5` | 아이콘 크기 (px) |
+| `onClick` | `() => void` | - | 클릭 이벤트 콜백 |
+| `disabled` | `boolean` | `false` | 비활성화 여부 |
+| `customStyle` | `CSSObject` | `{}` | 커스텀 CSS |
 
 ---
 
