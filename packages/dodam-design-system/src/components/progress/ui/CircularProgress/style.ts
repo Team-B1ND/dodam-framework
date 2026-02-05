@@ -2,9 +2,7 @@ import { colors } from "@/colors";
 import styled, { CSSObject } from "@emotion/styled";
 
 export const Wrapper = styled.div<{ $customStyle: CSSObject }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-flex;
   ${({ $customStyle }) => $customStyle};
 `;
 
