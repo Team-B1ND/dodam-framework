@@ -12,4 +12,5 @@ export * from "./checkbox";
 export * from "./switch";
 export * from "./tab";
 export * from "./progress";
+export * from "./toast";
 export * from "./table";
