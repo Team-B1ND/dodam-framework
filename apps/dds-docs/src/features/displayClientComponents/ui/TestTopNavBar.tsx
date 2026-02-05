@@ -10,7 +10,7 @@ export const TestTopNavBarBasic = () => (
 );
 
 export const TestTopNavBarWithBackButton = () => (
-  <TopNavBar left={<TopNavBar.BackButton onClick={() => alert("뒤로가기")} />}>
+  <TopNavBar left={<TopNavBar.BackButton />}>
     <TopNavBar.Title hasBackButton>설정</TopNavBar.Title>
   </TopNavBar>
 );
@@ -23,11 +23,11 @@ export const TestTopNavBarWithLogo = () => (
 
 export const TestTopNavBarWithActions = () => (
   <TopNavBar
-    left={<TopNavBar.BackButton onClick={() => alert("뒤로가기")} />}
+    left={<TopNavBar.BackButton />}
     right={
       <>
-        <TopNavBar.IconButton icon={<Bell size={24} />} onClick={() => alert("알림")} />
-        <TopNavBar.IconButton icon={<Gear size={24} />} onClick={() => alert("설정")} />
+        <TopNavBar.IconButton icon={<Bell />} />
+        <TopNavBar.IconButton icon={<Gear />} />
       </>
     }>
     <TopNavBar.Title hasBackButton>프로필</TopNavBar.Title>
