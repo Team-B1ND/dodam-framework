@@ -84,6 +84,11 @@ export const COMPONENTS = [
     href: "/components/picker",
   },
   {
+    name: "Progress",
+    description: "진행 상태를 표시하는 프로그레스 컴포넌트",
+    href: "/components/progress",
+  },
+  {
     name: "Tab",
     description: "탭 네비게이션 컴포넌트",
     href: "/components/tab",
