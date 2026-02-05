@@ -1,13 +1,13 @@
 import { colors } from "@/colors";
 import styled from "@emotion/styled";
 
-export const Background = styled.div`
+export const Background = styled.div<{ $pressed: boolean }>`
   position: absolute;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   background-color: ${colors.fill.primary};
-  opacity: 0;
+  opacity: ${({ $pressed }) => ($pressed ? 1 : 0)};
   transition: opacity 0.15s;
 `;
 
@@ -28,9 +28,4 @@ export const Container = styled.button`
   height: 40px;
   margin-left: -8px;
   cursor: pointer;
-
-  &:hover > div:first-of-type,
-  &:active > div:first-of-type {
-    opacity: 1;
-  }
 `;
