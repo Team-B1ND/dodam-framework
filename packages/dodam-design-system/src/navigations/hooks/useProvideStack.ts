@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { NavigationProps, RouteConfig } from "../core/types";
+import { NavigationProps } from "../core/types";
 import { Navigation } from "../core/Navigation";
 import { stackFromPath } from "../utils/stack-from-path";
 import { pathFromStack } from "../utils/path-from-stack";
@@ -7,8 +7,8 @@ import { matchRoute } from "../utils/match-route";
 import { sortRoutesByPriority } from "../utils/sort-routes-by-priority";
 
 export const useProvideStack = (children: ReactNode) => {
-  const routes = useMemo<RouteConfig[]>(() => {
-    const result: RouteConfig[] = [];
+  const routes = useMemo<NavigationProps[]>(() => {
+    const result: NavigationProps[] = [];
 
     const walk = (nodes: ReactNode) => {
       if (!nodes) return;
@@ -24,7 +24,7 @@ export const useProvideStack = (children: ReactNode) => {
         nodes.type === Navigation
       ) {
         const props = nodes.props as NavigationProps;
-        result.push({ path: props.path, element: props.element });
+        result.push(props);
       }
     };
 
@@ -66,15 +66,14 @@ export const useProvideStack = (children: ReactNode) => {
     throw new Error(`No route matched: ${currentPath}`);
   }
 
+
   const ctxValue = useMemo(
     () => ({
       path: currentPath,
 
       push(path: string) {
-        setStack((prev) => {
-          history.pushState(null, "", path);
-          return stackFromPath(path, routes);
-        });
+        history.pushState(null, "", path);
+        window.dispatchEvent(new PopStateEvent("popstate"));
       },
 
       back() {
