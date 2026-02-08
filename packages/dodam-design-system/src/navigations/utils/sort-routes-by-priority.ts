@@ -1,6 +1,6 @@
+import { NavigationProps } from "../core/types";
 import { scoreRoute } from "./route-score";
-import { RouteConfig } from "../core/types";
 
-export const sortRoutesByPriority = (routes: RouteConfig[]): RouteConfig[] => {
-  return [...routes].sort((a, b) => scoreRoute(b.path) - scoreRoute(a.path));
+export const sortRoutesByPriority = (routes: NavigationProps[]) => {
+  return [...routes].sort((a, b) => scoreRoute(b.path) - scoreRoute(a.path)) as NavigationProps[];
 };

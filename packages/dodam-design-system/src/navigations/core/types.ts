@@ -8,12 +8,15 @@ export interface StackProviderProps {
   };
 }
 
-export interface RouteConfig {
-  path: string;
-  element: ReactElement;
-}
-
 export interface NavigationProps {
   path: string;
   element: ReactElement;
+  canGoBack?: boolean;
+  header: ReactNode;
+}
+
+export interface StackState {
+  stack: NavigationProps[];
+  push: (stack: NavigationProps) => void;
+  pop: () => void;
 }
