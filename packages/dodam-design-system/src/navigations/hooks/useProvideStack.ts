@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import { NavigationProps } from "../core/types";
 import { Navigation } from "../core/Navigation";
 import { pathFromStack } from "../utils/path-from-stack";
@@ -34,13 +34,39 @@ export const useProvideStack = (children: ReactNode) => {
     return result;
   }, [children]);
 
-  const rootRoute = routes.find(r => r.path === "/");
+  const rootRoute = routes.find((r) => r.path === "/");
   if (!rootRoute) {
     throw new Error("Root route '/' is required for stack view.");
   }
 
+  const initialPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
 
-  const [stack, setStack] = useState<string[]>(["/"]);
+  const [stack, setStack] = useState<string[]>(() => {
+    if (initialPath === "/") {
+      return ["/"];
+    }
+
+    const matchedRoute = routes.find((r) => matchRoute(r.path, initialPath));
+
+    if (matchedRoute && matchedRoute.path !== "/") {
+      return ["/", initialPath];
+    }
+
+    return ["/"];
+  });
+
+  useEffect(() => {
+    if (!initialPath || initialPath === "/" || stackStore.stack.length > 0) {
+      return;
+    }
+
+    const matchedRoute = routes.find((r) => matchRoute(r.path, initialPath));
+
+    if (matchedRoute && matchedRoute.path !== "/") {
+      stackStore.push(matchedRoute);
+    }
+  }, []);
 
   const currentPath = pathFromStack(stack);
 
@@ -60,18 +86,17 @@ export const useProvideStack = (children: ReactNode) => {
     throw new Error(`No route matched: ${currentPath}`);
   }
 
-
   const ctxValue = useMemo(
     () => ({
       path: currentPath,
 
       push(path: string) {
-        const targetRoute = routes.find(r => matchRoute(r.path, path));
+        const targetRoute = routes.find((r) => matchRoute(r.path, path));
         if (!targetRoute) return;
         if (path !== "/") {
           stackStore.push(targetRoute);
         }
-        setStack(prev => [...prev, path]);
+        setStack((prev) => [...prev, path]);
       },
     }),
     [currentPath, routes, stackStore.stack],
@@ -80,7 +105,7 @@ export const useProvideStack = (children: ReactNode) => {
   const pop = () => {
     if (stackStore.stack.length > 0) {
       stackStore.pop();
-      setStack(prev => prev.length > 1 ? prev.slice(0, -1) : prev);
+      setStack((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev));
     }
   };
 
