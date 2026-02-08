@@ -1,12 +1,14 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { NavigationProps } from "../core/types";
 import { Navigation } from "../core/Navigation";
-import { stackFromPath } from "../utils/stack-from-path";
 import { pathFromStack } from "../utils/path-from-stack";
 import { matchRoute } from "../utils/match-route";
 import { sortRoutesByPriority } from "../utils/sort-routes-by-priority";
+import { useStackStore } from "../stores/stack";
 
 export const useProvideStack = (children: ReactNode) => {
+  const stackStore = useStackStore();
+
   const routes = useMemo<NavigationProps[]>(() => {
     const result: NavigationProps[] = [];
 
@@ -32,21 +34,13 @@ export const useProvideStack = (children: ReactNode) => {
     return result;
   }, [children]);
 
-  const getInitialPath = () =>
-    typeof window !== "undefined" ? window.location.pathname : "/";
+  const rootRoute = routes.find(r => r.path === "/");
+  if (!rootRoute) {
+    throw new Error("Root route '/' is required for stack view.");
+  }
 
-  const [stack, setStack] = useState<string[]>(() =>
-    stackFromPath(getInitialPath(), routes),
-  );
 
-  useEffect(() => {
-    const onPopState = () => {
-      setStack(stackFromPath(getInitialPath(), routes));
-    };
-
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, [routes]);
+  const [stack, setStack] = useState<string[]>(["/"]);
 
   const currentPath = pathFromStack(stack);
 
@@ -72,20 +66,29 @@ export const useProvideStack = (children: ReactNode) => {
       path: currentPath,
 
       push(path: string) {
-        history.pushState(null, "", path);
-        window.dispatchEvent(new PopStateEvent("popstate"));
-      },
-
-      back() {
-        history.back();
+        const targetRoute = routes.find(r => matchRoute(r.path, path));
+        if (!targetRoute) return;
+        if (path !== "/") {
+          stackStore.push(targetRoute);
+        }
+        setStack(prev => [...prev, path]);
       },
     }),
-    [currentPath, routes],
+    [currentPath, routes, stackStore.stack],
   );
+
+  const pop = () => {
+    if (stackStore.stack.length > 0) {
+      stackStore.pop();
+      setStack(prev => prev.length > 1 ? prev.slice(0, -1) : prev);
+    }
+  };
 
   return {
     ctxValue,
-    element: match.route.element,
+    element: rootRoute.element,
     params: match.params,
+    stack: stackStore.stack,
+    pop,
   };
 };
