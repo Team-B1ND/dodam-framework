@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StackContext } from "./stack-context";
+import { StackContext } from "../core/stack-context";
 
 export const useStack = () => {
   const ctx = useContext(StackContext);

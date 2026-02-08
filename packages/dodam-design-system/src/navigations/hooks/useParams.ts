@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ParamsContext } from "./params-context";
+import { ParamsContext } from "../core/params-context";
 
 export const useParams = () => {
   return useContext(ParamsContext);
