@@ -1,10 +1,10 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { NavigationProps, RouteConfig } from "./types";
-import { Navigation } from "./Navigation";
-import { stackFromPath } from "./stack-from-path";
-import { pathFromStack } from "./path-from-stack";
-import { matchRoute } from "./match-route";
-import { sortRoutesByPriority } from "./sort-routes-by-priority";
+import { NavigationProps, RouteConfig } from "../core/types";
+import { Navigation } from "../core/Navigation";
+import { stackFromPath } from "../utils/stack-from-path";
+import { pathFromStack } from "../utils/path-from-stack";
+import { matchRoute } from "../utils/match-route";
+import { sortRoutesByPriority } from "../utils/sort-routes-by-priority";
 
 export const useProvideStack = (children: ReactNode) => {
   const routes = useMemo<RouteConfig[]>(() => {

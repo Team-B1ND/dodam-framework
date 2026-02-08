@@ -3,7 +3,7 @@
 import { ParamsContext } from "./params-context";
 import { StackContext } from "./stack-context";
 import { StackProviderProps } from "./types";
-import { useProvideStack } from "./useProvideStack";
+import { useProvideStack } from "../hooks/useProvideStack";
 
 export function StackProvider({ children, safeArea }: StackProviderProps) {
   const { ctxValue, element, params } = useProvideStack(children);
