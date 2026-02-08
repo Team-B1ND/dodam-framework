@@ -12,7 +12,7 @@ export interface NavigationProps {
   path: string;
   element: ReactElement;
   canGoBack?: boolean;
-  header: ReactNode;
+  header?: ReactNode;
 }
 
 export interface StackState {
