@@ -1,2 +1,2 @@
-// bridge-kit entry point
-export {};
+export * from "./core";
+export * from "./client";

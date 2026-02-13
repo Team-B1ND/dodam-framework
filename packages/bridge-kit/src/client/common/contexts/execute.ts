@@ -1,7 +1,7 @@
 import { RequestType } from "../../../shared/types/enums/request-type";
 import { Request } from "../../../shared/builder/request";
 import { PendingRequest } from "../../../shared/types/pending-request";
-import { Error } from "../../../shared/types/enums/error";
+import { Error as BridgeError } from "../../../shared/types/enums/error";
 import { BridgeResponse } from "src/shared/types/dto/bridge-response";
 
 export const execute = <TResponse = unknown>(
@@ -17,14 +17,14 @@ export const execute = <TResponse = unknown>(
     const request = Request(action, payload, timeout);
 
     if (!bridge) {
-      reject(new Error("Webview Client is not found"));
+      reject("NOT_SUPPORTED" as BridgeError);
       return;
     }
 
     const timeoutId = setTimeout(() => {
       const pending = queue[request.id];
       if (pending) {
-        pending.reject(new Error("TIMEOUT" as Error));
+        pending.reject("TIMEOUT" as BridgeError);
         removeFromQueue(request.id);
       }
     }, timeout);
