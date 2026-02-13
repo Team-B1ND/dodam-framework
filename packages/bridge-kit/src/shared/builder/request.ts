@@ -1,4 +1,4 @@
-import { BaseRequest } from "../types/dto/base-reqeust";
+import { BridgeRequest } from "../types/dto/bridge-reqeust";
 import { RequestType } from "../types/enums/request-type";
 
 export const Request = <T>(
@@ -12,5 +12,5 @@ export const Request = <T>(
     timeout,
     type: action,
     payload,
-  } as BaseRequest<T>;
+  } as BridgeRequest<T>;
 };

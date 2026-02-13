@@ -1,10 +1,11 @@
+import { BridgeResponse } from "src/shared/types/dto/bridge-response";
 import { RequestType } from "../../../shared/types/enums/request-type";
 
 export interface BridgeContextType {
   bridge?: Window["ReactNativeWebView"];
-  execute: <TPayload, TResponse = unknown>(
+  execute: <TResponse = unknown>(
     action: RequestType,
-    payload: TPayload,
+    payload: unknown,
     timeout?: number,
-  ) => Promise<TResponse>;
+  ) => Promise<BridgeResponse<TResponse>>;
 }

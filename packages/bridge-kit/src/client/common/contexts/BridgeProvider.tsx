@@ -3,15 +3,15 @@
 import {
   PropsWithChildren,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
-  useEffect,
 } from "react";
+import { RequestType } from "../../../shared/types/enums/request-type";
+import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
+import { PendingRequest } from "../../../shared/types/pending-request";
 import { BridgeContext } from "./bridge-context";
 import { execute } from "./execute";
-import { RequestType } from "../../../shared/types/enums/request-type";
-import { PendingRequest } from "../../../shared/types/pending-request";
-import { BaseResponse } from "src/shared/types/dto/base-response";
 
 export const BridgeProvider = ({ children }: PropsWithChildren) => {
   const queueRef = useRef<Record<string, PendingRequest>>({});
@@ -31,7 +31,7 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       try {
-        const response = JSON.parse(event.data) as BaseResponse<unknown>;
+        const response = JSON.parse(event.data) as BridgeResponse<unknown>;
         const { id, success, error } = response;
 
         const pending = queueRef.current[id];
@@ -66,12 +66,12 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
   }, [removeFromQueue]);
 
   const executeWithQueue = useCallback(
-    <TPayload, TResponse = unknown>(
+    function <TResponse = unknown>(
       action: RequestType,
-      payload: TPayload,
+      payload: unknown,
       timeout?: number,
-    ): Promise<TResponse> => {
-      return execute<TPayload, TResponse>(
+    ): Promise<BridgeResponse<TResponse>> {
+      return execute(
         window.ReactNativeWebView,
         queueRef.current,
         addToQueue,
