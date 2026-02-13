@@ -1,4 +1,4 @@
-import { BaseResponse } from "../types/dto/base-response";
+import { BridgeResponse } from "../types/dto/bridge-response";
 import { Error } from "../types/enums/error";
 
 export const Response = <T>(
@@ -13,5 +13,5 @@ export const Response = <T>(
     success,
     data,
     error,
-  } as BaseResponse<T>;
+  } as BridgeResponse<T>;
 };

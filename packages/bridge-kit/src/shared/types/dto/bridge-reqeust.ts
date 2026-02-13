@@ -1,6 +1,6 @@
 import { RequestType } from "../enums/request-type";
 
-export interface BaseRequest<T> {
+export interface BridgeRequest<T> {
   id: string;
   type: RequestType;
   timestamp: number;

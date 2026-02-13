@@ -2,16 +2,17 @@ import { RequestType } from "../../../shared/types/enums/request-type";
 import { Request } from "../../../shared/builder/request";
 import { PendingRequest } from "../../../shared/types/pending-request";
 import { Error } from "../../../shared/types/enums/error";
+import { BridgeResponse } from "src/shared/types/dto/bridge-response";
 
-export const execute = <TPayload, TResponse = unknown>(
+export const execute = <TResponse = unknown>(
   bridge: Window["ReactNativeWebView"],
   queue: Record<string, PendingRequest>,
   addToQueue: (id: string, pending: PendingRequest) => void,
   removeFromQueue: (id: string) => void,
   action: RequestType,
-  payload: TPayload,
+  payload: unknown,
   timeout = 5000,
-): Promise<TResponse> => {
+): Promise<BridgeResponse<TResponse>> => {
   return new Promise((resolve, reject) => {
     const request = Request(action, payload, timeout);
 
@@ -28,12 +29,12 @@ export const execute = <TPayload, TResponse = unknown>(
       }
     }, timeout);
 
-    const pendingRequest: PendingRequest<TPayload> = {
+    const pendingRequest = {
       request,
-      resolve: resolve as (value: unknown) => void,
+      resolve: resolve as (value: BridgeResponse<TResponse>) => void,
       reject,
       timeoutId,
-    };
+    } as PendingRequest;
 
     addToQueue(request.id, pendingRequest);
 
