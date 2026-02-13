@@ -48,8 +48,7 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
         if (success) {
           pending.resolve(response);
         } else {
-          const errorText = error ? `: ${error}` : "";
-          pending.reject(new Error(errorText));
+          pending.reject(error || "NOT_SUPPORTED");
         }
 
         removeFromQueue(id);
