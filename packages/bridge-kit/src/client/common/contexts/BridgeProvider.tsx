@@ -12,6 +12,7 @@ import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
 import { PendingRequest } from "../../../shared/types/pending-request";
 import { BridgeContext } from "./bridge-context";
 import { execute } from "./execute";
+import { parseBridgeResponse } from "src/shared/utils/parse-bridge-response";
 
 export const BridgeProvider = ({ children }: PropsWithChildren) => {
   const queueRef = useRef<Record<string, PendingRequest>>({});
@@ -31,7 +32,8 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       try {
-        const response = JSON.parse(event.data) as BridgeResponse<unknown>;
+        const parsed = JSON.parse(event.data);
+        const response = parseBridgeResponse(parsed);
         const { id, success, error } = response;
 
         const pending = queueRef.current[id];

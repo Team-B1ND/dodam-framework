@@ -30,6 +30,7 @@
   },
   "peerDependencies": {
     "react": ">=19",
-    "react-dom": ">=19"
+    "react-dom": ">=19",
+    "zod": "^4.3.6"
   }
 }
