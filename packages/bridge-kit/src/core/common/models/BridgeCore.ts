@@ -1,6 +1,7 @@
 import { RequestType } from "../../../shared/types/enums/request-type";
 import { BridgeRequest } from "../../../shared/types/dto/bridge-reqeust";
 import { Response } from "../../../shared/builder/response";
+import { parseBridgeRequest } from "../../../shared/utils/parse-bridge-request";
 import { Handler } from "../types/handler";
 import { BridgeHandlerMap } from "../types/bridge-handler-map";
 import { WebViewBridge } from "../types/webview-bridge";
@@ -24,7 +25,8 @@ class BridgeCore {
   async handleMessage(raw: string, webview?: WebViewBridge) {
     let request: BridgeRequest<unknown>;
     try {
-      request = JSON.parse(raw) as BridgeRequest<unknown>;
+      const parsed = JSON.parse(raw);
+      request = parseBridgeRequest(parsed);
     } catch (err) {
       return;
     }
