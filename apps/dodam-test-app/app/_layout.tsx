@@ -1,10 +1,11 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { BridgeUiProvider } from "bridge-kit";
+import { BridgeUiProvider } from "bridge-kit/core";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -34,8 +35,10 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const { top } = useSafeAreaInsets();
+
   return (
-    <BridgeUiProvider>
+    <BridgeUiProvider top={top}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>

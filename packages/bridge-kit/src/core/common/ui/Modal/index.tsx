@@ -1,60 +1,72 @@
-import { PropsWithChildren, useEffect, useRef } from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Animated, Dimensions } from "react-native";
+import { PropsWithChildren, useEffect } from "react";
+import { Dimensions } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import * as S from "./style";
+import { scheduleOnRN } from "react-native-worklets";
 
 interface Props extends PropsWithChildren {
   isVisible: boolean;
   onAfterClose: () => void;
+  top: number;
 }
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const Modal = ({ children, isVisible, onAfterClose }: Props) => {
-  const { top } = useSafeAreaInsets();
-  const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
-  const opacity = useRef(new Animated.Value(0)).current;
+const Modal = ({ children, isVisible, onAfterClose, top }: Props) => {
+  const translateY = useSharedValue(SCREEN_HEIGHT);
+  const opacity = useSharedValue(0);
 
   useEffect(() => {
     if (isVisible) {
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.spring(translateY, {
-          toValue: 0,
-          useNativeDriver: true,
-          bounciness: 0,
-        }),
-      ]).start();
-    } else {
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateY, {
-          toValue: SCREEN_HEIGHT,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        onAfterClose();
+      opacity.value = withTiming(1, { duration: 320 });
+      translateY.value = withSpring(0, {
+        stiffness: 220,
+        mass: 0.9,
+        overshootClamping: false,
       });
+    } else {
+      opacity.value = withTiming(0, { duration: 180 });
+      translateY.value = withTiming(
+        SCREEN_HEIGHT,
+        { duration: 180 },
+        (finished) => {
+          if (finished) scheduleOnRN(onAfterClose);
+        },
+      );
     }
   }, [isVisible]);
 
+  const backdropStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+  }));
+
+  const sheetStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
+
   return (
     <S.Modal $top={top} pointerEvents={isVisible ? "auto" : "none"}>
-      <S.Backdrop style={{ opacity }} />
-      <S.ModalContent style={{ transform: [{ translateY }] }}>
-        {children}
-      </S.ModalContent>
+      <Animated.View style={[{ ...absoluteFill }, backdropStyle]}>
+        <S.Backdrop />
+      </Animated.View>
+      <Animated.View style={[{ width: "100%", flex: 1 }, sheetStyle]}>
+        <S.ModalContent>{children}</S.ModalContent>
+      </Animated.View>
     </S.Modal>
   );
+};
+
+const absoluteFill = {
+  position: "absolute" as const,
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
 };
 
 export default Modal;

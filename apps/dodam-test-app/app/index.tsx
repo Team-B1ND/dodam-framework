@@ -1,7 +1,7 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
-import { useBridge } from "bridge-kit";
 import { useRef } from "react";
+import { useBridge } from "bridge-kit/core";
 
 const App = () => {
   const { top, bottom } = useSafeAreaInsets();

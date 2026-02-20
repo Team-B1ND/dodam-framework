@@ -4,7 +4,11 @@ import { BridgeUi } from "../types/bridge-ui";
 import { BridgeUiSet } from "../models/BridgeUiSet";
 import Modal from "../ui/Modal";
 
-export const BridgeUiProvider = ({ children }: PropsWithChildren) => {
+interface Props extends PropsWithChildren {
+  top: number;
+}
+
+export const BridgeUiProvider = ({ children, top }: Props) => {
   const [ui, setUi] = useState<BridgeUi>("NONE");
   const [isActive, setIsActive] = useState(false);
 
@@ -30,7 +34,12 @@ export const BridgeUiProvider = ({ children }: PropsWithChildren) => {
     <BridgeUiContext.Provider value={{ ui, open, close }}>
       {children}
       {isActive && (
-        <Modal isVisible={ui !== "NONE"} onAfterClose={handleAfterClose}>
+        <Modal
+          isVisible={ui !== "NONE"}
+          onAfterClose={handleAfterClose}
+          top={top}
+          key={ui !== "NONE" ? ui : "closed"}
+        >
           {BridgeUiSet[ui]}
         </Modal>
       )}
