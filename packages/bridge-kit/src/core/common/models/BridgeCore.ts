@@ -42,10 +42,13 @@ class BridgeCore {
     try {
       const result = await executeHandler(
         Promise.resolve(handler(request.payload)),
-        request.timeout ?? 5000,
+        request.timeout,
       );
 
-      const response = Response(request.id, true, result);
+      const response = result
+        ? Response(request.id, true, result)
+        : Response(request.id, false, undefined, "CANCELLED");
+
       if (webview) webview.postMessage(JSON.stringify(response));
       return response;
     } catch (err) {
