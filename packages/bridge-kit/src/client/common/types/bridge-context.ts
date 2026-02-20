@@ -1,4 +1,4 @@
-import { BridgeResponse } from "src/shared/types/dto/bridge-response";
+import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
 import { RequestType } from "../../../shared/types/enums/request-type";
 
 export interface BridgeContext {

@@ -1,4 +1,4 @@
-import { scanQRCode } from "src/core/features/qr/scan-qr-code";
+import { scanQRCode } from "../../features/qr/scan-qr-code";
 import { createBridgeCore } from "../models/BridgeCore";
 
 export const useBridge = () => {
