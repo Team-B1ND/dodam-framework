@@ -11,7 +11,7 @@ export const execute = <TResponse = unknown>(
   removeFromQueue: (id: string) => void,
   action: RequestType,
   payload: unknown,
-  timeout = 5000,
+  timeout?: number,
 ): Promise<BridgeResponse<TResponse>> => {
   return new Promise((resolve, reject) => {
     const request = Request(action, payload, timeout);
@@ -21,19 +21,10 @@ export const execute = <TResponse = unknown>(
       return;
     }
 
-    const timeoutId = setTimeout(() => {
-      const pending = queue[request.id];
-      if (pending) {
-        pending.reject("TIMEOUT" as BridgeError);
-        removeFromQueue(request.id);
-      }
-    }, timeout);
-
     const pendingRequest = {
       request,
       resolve: resolve as (value: BridgeResponse<TResponse>) => void,
       reject,
-      timeoutId,
     } as PendingRequest;
 
     addToQueue(request.id, pendingRequest);

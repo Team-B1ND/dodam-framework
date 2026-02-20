@@ -5,7 +5,7 @@ export const BridgeRequestSchema = z.object({
   id: z.string(),
   type: z.enum(RequestTypes as unknown as [string, ...string[]]),
   timestamp: z.number(),
-  timeout: z.number(),
+  timeout: z.optional(z.number()),
   payload: z.unknown(),
 });
 
