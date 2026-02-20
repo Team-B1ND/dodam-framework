@@ -12,7 +12,7 @@ import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
 import { PendingRequest } from "../../../shared/types/pending-request";
 import { BridgeContext } from "./bridge-context";
 import { execute } from "./execute";
-import { parseBridgeResponse } from "src/shared/utils/parse-bridge-response";
+import { parseBridgeResponse } from "../../../shared/utils/parse-bridge-response";
 
 export const BridgeProvider = ({ children }: PropsWithChildren) => {
   const queueRef = useRef<Record<string, PendingRequest>>({});

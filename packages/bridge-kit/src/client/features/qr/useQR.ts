@@ -1,4 +1,4 @@
-import { useBridge } from "src/client/common/hooks/useBridge";
+import { useBridge } from "../../common/hooks/useBridge";
 
 export const useQR = () => {
   const execute = useBridge();
