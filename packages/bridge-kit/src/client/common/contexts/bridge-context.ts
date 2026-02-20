@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { BridgeContextType } from "../types/bridge-context";
+import type { BridgeContext as ContextType } from "../types/bridge-context";
 
-export const BridgeContext = createContext<BridgeContextType>({
+export const BridgeContext = createContext<ContextType>({
   bridge: undefined,
   execute: async () => {
     throw new Error("Bridge not initialized");
