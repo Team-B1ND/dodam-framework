@@ -1,11 +1,16 @@
-import { Text } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { WebView } from "react-native-webview"
 
 const App = () => {
+  const { top, bottom } = useSafeAreaInsets();
+  const webUrl = "https://03e8-121-177-220-80.ngrok-free.app"
+  const uri = `${webUrl}?top=${top}&bottom=${bottom}`
+
   return (
-    <SafeAreaView>
-      <Text>Hello, Dodam Framework!</Text>
-    </SafeAreaView>
+    <WebView
+      source={{ uri }}
+      scrollEnabled={false}
+    />
   )
 }
 
