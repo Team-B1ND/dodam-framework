@@ -242,6 +242,9 @@ importers:
       react-native:
         specifier: '>=0.75.0'
         version: 0.84.0(@babel/core@7.29.0)(@types/react@19.2.7)(react@19.2.3)
+      react-native-safe-area-context:
+        specifier: ~5.6.2
+        version: 5.6.2(react-native@0.84.0(@babel/core@7.29.0)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)
       styled-components:
         specifier: '>=6'
         version: 6.3.11(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -11599,6 +11602,11 @@ snapshots:
     dependencies:
       react: 19.1.0
       react-native: 0.81.5(@babel/core@7.29.0)(@types/react@19.1.17)(react@19.1.0)
+
+  react-native-safe-area-context@5.6.2(react-native@0.84.0(@babel/core@7.29.0)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-native: 0.84.0(@babel/core@7.29.0)(@types/react@19.2.7)(react@19.2.3)
 
   react-native-screens@4.16.0(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0):
     dependencies:
