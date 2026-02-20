@@ -4,7 +4,9 @@ const App = () => {
   const bottom = `${searchParams.get("bottom") || 0}px`;
 
   return (
-    <div style={{ paddingTop: top, paddingBottom: bottom }}>App</div>
+    <div style={{ paddingTop: top, paddingBottom: bottom }}>
+      <button></button>
+    </div>
   )
 }
 
