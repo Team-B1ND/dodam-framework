@@ -4,7 +4,7 @@ import { RequestType } from "../types/enums/request-type";
 export const Request = <T>(
   action: RequestType,
   payload: T,
-  timeout: number,
+  timeout?: number,
 ) => {
   return {
     id: crypto.randomUUID(),

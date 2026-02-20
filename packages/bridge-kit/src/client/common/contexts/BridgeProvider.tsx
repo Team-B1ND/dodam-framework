@@ -34,7 +34,7 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
       try {
         const parsed = JSON.parse(event.data);
         const response = parseBridgeResponse(parsed);
-        const { id, success, error } = response;
+        const { id } = response;
 
         const pending = queueRef.current[id];
 
@@ -47,11 +47,7 @@ export const BridgeProvider = ({ children }: PropsWithChildren) => {
           clearTimeout(pending.timeoutId);
         }
 
-        if (success) {
-          pending.resolve(response);
-        } else {
-          pending.reject(error || "NOT_SUPPORTED");
-        }
+        pending.resolve(response);
 
         removeFromQueue(id);
       } catch (err) {

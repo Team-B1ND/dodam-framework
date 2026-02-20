@@ -1,16 +1,20 @@
 export const executeHandler = async <TResponse>(
   handlerPromise: Promise<TResponse>,
-  timeout: number,
+  timeout?: number,
 ): Promise<TResponse> => {
   return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => reject("TIMEOUT"), timeout);
+    let timer: any;
+    if (timeout) {
+      timer = setTimeout(() => reject("TIMEOUT"), timeout);
+    }
+    
     handlerPromise
       .then((res) => {
-        clearTimeout(timer);
+        if (timer) clearTimeout(timer);
         resolve(res);
       })
       .catch((err) => {
-        clearTimeout(timer);
+        if (timer) clearTimeout(timer);
         reject(err);
       });
   });

@@ -9,4 +9,8 @@ export const BridgeUiContext = createContext<ContextType>({
   close: () => {
     throw new Error("Bridge UI context not initialized");
   },
+  result: null,
+  setResult: () => {
+    throw new Error("Bridge UI context not initialized");
+  },
 });
