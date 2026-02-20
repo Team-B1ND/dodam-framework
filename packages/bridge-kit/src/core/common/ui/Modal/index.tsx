@@ -13,11 +13,12 @@ interface Props extends PropsWithChildren {
   isVisible: boolean;
   onAfterClose: () => void;
   top: number;
+  bottom: number;
 }
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const Modal = ({ children, isVisible, onAfterClose, top }: Props) => {
+const Modal = ({ children, isVisible, onAfterClose, top, bottom }: Props) => {
   const translateY = useSharedValue(SCREEN_HEIGHT);
   const opacity = useSharedValue(0);
 
@@ -55,7 +56,7 @@ const Modal = ({ children, isVisible, onAfterClose, top }: Props) => {
         <S.Backdrop />
       </Animated.View>
       <Animated.View style={[{ width: "100%", flex: 1 }, sheetStyle]}>
-        <S.ModalContent>{children}</S.ModalContent>
+        <S.ModalContent $bottom={bottom}>{children}</S.ModalContent>
       </Animated.View>
     </S.Modal>
   );

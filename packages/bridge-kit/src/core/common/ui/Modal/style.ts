@@ -21,11 +21,12 @@ export const Backdrop = styled(View)`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled(View)`
+export const ModalContent = styled(View)<{$bottom: number }>`
   width: 100%;
   height: 100%;
   background-color: #ffffff;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   overflow: hidden;
+  padding-bottom: ${({ $bottom }) => $bottom}px;
 `;

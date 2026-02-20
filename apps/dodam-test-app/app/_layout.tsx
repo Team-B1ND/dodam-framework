@@ -35,10 +35,10 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
-    <BridgeUiProvider top={top}>
+    <BridgeUiProvider top={top} bottom={bottom}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
