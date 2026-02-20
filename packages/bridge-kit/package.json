@@ -6,10 +6,6 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
     "./client": {
       "types": "./dist/client/index.d.ts",
       "import": "./dist/client/index.js"
@@ -29,12 +25,14 @@
     "typecheck": "tsc -b"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19",
+    "react": "*",
+    "react-dom": "*",
     "react-native": ">=0.75.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.2",
     "styled-components": ">=6",
     "zod": "^4.3.6",
-    "react-native-safe-area-context": "~5.6.2"
+    "react-native-worklets": "0.5.1"
   },
   "peerDependenciesMeta": {
     "react-dom": {
@@ -43,10 +41,5 @@
     "react-native": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-native": "^0.73.0",
-    "@types/styled-components-react-native": "^5.2.5"
   }
 }

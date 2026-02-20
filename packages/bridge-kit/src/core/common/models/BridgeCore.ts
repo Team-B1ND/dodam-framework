@@ -11,18 +11,18 @@ import { errorMapper } from "../utils/error-mapper";
 class BridgeCore {
   private handlers: BridgeHandlerMap = new Map();
 
-  register<TPayload = unknown, TResponse = unknown>(
+  register = <TPayload = unknown, TResponse = unknown>(
     type: RequestType,
     handler: Handler<TPayload, TResponse>,
-  ) {
+  ) => {
     this.handlers.set(type, handler as Handler);
-  }
+  };
 
-  unregister(type: RequestType) {
+  unregister = (type: RequestType) => {
     this.handlers.delete(type);
-  }
+  };
 
-  async handleMessage(raw: string, webview?: WebViewBridge) {
+  handleMessage = async (raw: string, webview?: WebViewBridge) => {
     let request: BridgeRequest<unknown>;
     try {
       const parsed = JSON.parse(raw);
@@ -54,7 +54,7 @@ class BridgeCore {
       if (webview) webview.postMessage(JSON.stringify(response));
       return response;
     }
-  }
+  };
 }
 
 export const createBridgeCore = () => new BridgeCore();
