@@ -2,7 +2,7 @@ import { RequestType } from "../../../shared/types/enums/request-type";
 import { Request } from "../../../shared/builder/request";
 import { PendingRequest } from "../../../shared/types/pending-request";
 import { Error as BridgeError } from "../../../shared/types/enums/error";
-import { BridgeResponse } from "src/shared/types/dto/bridge-response";
+import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
 
 export const execute = <TResponse = unknown>(
   bridge: Window["ReactNativeWebView"],
