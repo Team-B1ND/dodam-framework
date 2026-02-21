@@ -14,8 +14,8 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
   const [ui, setUi] = useState<BridgeUi>("NONE");
   const [lastUi, setLastUi] = useState<BridgeUi>("NONE");
   const [isActive, setIsActive] = useState(false);
-  const [result, setResultState] = useState<object | null>(null);
-  const resolveRef = useRef<((value: object | null) => void) | null>(null);
+  const [result, setResultState] = useState<object | string | null>(null);
+  const resolveRef = useRef<((value: object | string | null) => void) | null>(null);
 
   useEffect(() => {
     if (ui !== "NONE") {
@@ -26,7 +26,7 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
 
   const open = (
     bridgeUi: Exclude<BridgeUi, "NONE">,
-  ): Promise<object | null> => {
+  ): Promise<object | string | null> => {
     setUi(bridgeUi);
     return new Promise((resolve) => {
       resolveRef.current = resolve;
@@ -41,7 +41,7 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
     setUi("NONE");
   };
 
-  const setResult = (res: object | null) => {
+  const setResult = (res: object | string | null) => {
     if (resolveRef.current) {
       resolveRef.current(res);
       resolveRef.current = null;
