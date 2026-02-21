@@ -5,7 +5,7 @@ import { useBridge } from "bridge-kit/core";
 
 const App = () => {
   const { top, bottom } = useSafeAreaInsets();
-  const webUrl = "https://db50-121-177-220-80.ngrok-free.app";
+  const webUrl = "https://2b3a-121-177-220-80.ngrok-free.app";
   const uri = `${webUrl}?top=${top}&bottom=${bottom}`;
   const handleMessage = useBridge();
   const ref = useRef<WebView>(null);

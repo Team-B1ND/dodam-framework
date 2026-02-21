@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import styled from "styled-components/native";
 import { Camera } from "react-native-vision-camera";
 import { SCAN_SIZE } from "../../constants/scan-size";
@@ -36,4 +36,15 @@ export const ExitButton = styled(TouchableOpacity)`
   left: 20px;
   padding: 10px;
   z-index: 10;
+`;
+
+export const ErrorContainer = styled(View)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ErrorText = styled(Text)`
+  color: white;
+  font-size: 18px;
 `;

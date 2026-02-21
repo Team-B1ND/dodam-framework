@@ -6,7 +6,8 @@ import { Handler } from "../types/handler";
 import { BridgeHandlerMap } from "../types/bridge-handler-map";
 import { WebViewBridge } from "../types/webview-bridge";
 import { executeHandler } from "../utils/execute-handler";
-import { errorMapper } from "../utils/error-mapper";
+import { Error, Errors } from "../../../shared/types/enums/error";
+import { BridgeResponse } from "../../../shared/types/dto/bridge-response";
 
 class BridgeCore {
   private handlers: BridgeHandlerMap = new Map();
@@ -34,29 +35,33 @@ class BridgeCore {
     const handler = this.handlers.get(request.type as RequestType);
 
     if (!handler) {
-      const response = Response(request.id, false, undefined, "NOT_SUPPORTED");
+      const response = Response(request.id, false, undefined, Errors.NOT_SUPPORTED);
       if (webview) webview.postMessage(JSON.stringify(response));
       return response;
     }
 
-    try {
-      const result = await executeHandler(
-        Promise.resolve(handler(request.payload)),
-        request.timeout,
-      );
+    const result = await executeHandler(
+      Promise.resolve(handler(request.payload)),
+      request.timeout,
+    );
 
-      const response = result
-        ? Response(request.id, true, result)
-        : Response(request.id, false, undefined, "CANCELLED");
+    let response: BridgeResponse<unknown>;
 
-      if (webview) webview.postMessage(JSON.stringify(response));
-      return response;
-    } catch (err) {
-      const bridgeErr = errorMapper(err);
-      const response = Response(request.id, false, undefined, bridgeErr as any);
-      if (webview) webview.postMessage(JSON.stringify(response));
-      return response;
+    if (
+      typeof result === "string" &&
+      Object.values(Errors).includes(result as Error)
+    ) {
+      response = Response(request.id, false, undefined, result as Error);
+    } else if (result) {
+      response = Response(request.id, true, result);
+    } else if (result === null) {
+      response = Response(request.id, false, undefined, Errors.CANCELLED);
+    } else {
+      response = Response(request.id, false, undefined, Errors.UNKNOWN);
     }
+
+    if (webview) webview.postMessage(JSON.stringify(response));
+    return response;
   };
 }
 

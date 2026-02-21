@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { useScanner } from "../../hooks/useScanner";
 import * as S from "./style";
 
@@ -15,7 +15,9 @@ const ScanQR = () => {
   if (!hasPermission) {
     return (
       <S.Container onLayout={handleLayout}>
-        <Text style={{ color: "white" }}>카메라 권한이 필요합니다.</Text>
+        <S.ErrorContainer>
+          <S.ErrorText>카메라 권한이 필요합니다.</S.ErrorText>
+        </S.ErrorContainer>
       </S.Container>
     );
   }
@@ -23,7 +25,9 @@ const ScanQR = () => {
   if (!device) {
     return (
       <S.Container onLayout={handleLayout}>
-        <Text style={{ color: "white" }}>카메라를 찾을 수 없습니다.</Text>
+        <S.ErrorContainer>
+          <S.ErrorText>카메라를 찾을 수 없습니다.</S.ErrorText>
+        </S.ErrorContainer>
       </S.Container>
     );
   }
