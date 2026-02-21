@@ -3,6 +3,7 @@ import { BridgeUiContext } from "./bridge-ui-context";
 import { BridgeUi } from "../types/bridge-ui";
 import { BridgeUiSet } from "../models/BridgeUiSet";
 import Modal from "../ui/Modal";
+import { SafeAreaContext } from "./safearea-context";
 
 interface Props extends PropsWithChildren {
   top: number;
@@ -23,7 +24,9 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
     }
   }, [ui]);
 
-  const open = (bridgeUi: Exclude<BridgeUi, "NONE">): Promise<object | null> => {
+  const open = (
+    bridgeUi: Exclude<BridgeUi, "NONE">,
+  ): Promise<object | null> => {
     setUi(bridgeUi);
     return new Promise((resolve) => {
       resolveRef.current = resolve;
@@ -53,19 +56,18 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
   };
 
   return (
-    <BridgeUiContext.Provider
-      value={{ ui, open, close, result, setResult }}>
-      {children}
-      {isActive && lastUi !== "NONE" && (
-        <Modal
-          isVisible={ui !== "NONE"}
-          onAfterClose={handleAfterClose}
-          top={top}
-          bottom={bottom}
-          key={lastUi}>
-          {BridgeUiSet[lastUi]}
-        </Modal>
-      )}
+    <BridgeUiContext.Provider value={{ ui, open, close, result, setResult }}>
+      <SafeAreaContext.Provider value={{ top, bottom }}>
+        {children}
+        {isActive && lastUi !== "NONE" && (
+          <Modal
+            isVisible={ui !== "NONE"}
+            onAfterClose={handleAfterClose}
+            key={lastUi}>
+            {BridgeUiSet[lastUi]}
+          </Modal>
+        )}
+      </SafeAreaContext.Provider>
     </BridgeUiContext.Provider>
   );
 };

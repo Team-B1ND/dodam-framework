@@ -8,17 +8,17 @@ import Animated, {
 } from "react-native-reanimated";
 import * as S from "./style";
 import { scheduleOnRN } from "react-native-worklets";
+import { useSafeArea } from "../../hooks/useSafeArea";
 
 interface Props extends PropsWithChildren {
   isVisible: boolean;
   onAfterClose: () => void;
-  top: number;
-  bottom: number;
 }
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const Modal = ({ children, isVisible, onAfterClose, top, bottom }: Props) => {
+const Modal = ({ children, isVisible, onAfterClose }: Props) => {
+  const { top } = useSafeArea();
   const translateY = useSharedValue(SCREEN_HEIGHT);
   const opacity = useSharedValue(0);
 
@@ -56,7 +56,7 @@ const Modal = ({ children, isVisible, onAfterClose, top, bottom }: Props) => {
         <S.Backdrop />
       </Animated.View>
       <Animated.View style={[{ width: "100%", flex: 1 }, sheetStyle]}>
-        <S.ModalContent $bottom={bottom}>{children}</S.ModalContent>
+        <S.ModalContent>{children}</S.ModalContent>
       </Animated.View>
     </S.Modal>
   );
