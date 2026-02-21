@@ -1,15 +1,49 @@
-import { Button, Text } from "react-native";
+import { Text } from "react-native";
+import { useScanner } from "../../hooks/useScanner";
 import * as S from "./style";
-import { useBridgeUi } from "../../../../common/hooks/useBridgeUi";
 
 const ScanQR = () => {
-  const { setResult } = useBridgeUi();
+  const {
+    hasPermission,
+    device,
+    scanned,
+    codeScanner,
+    handleLayout,
+    setResult,
+  } = useScanner();
+
+  if (!hasPermission) {
+    return (
+      <S.Container onLayout={handleLayout}>
+        <Text style={{ color: "white" }}>카메라 권한이 필요합니다.</Text>
+      </S.Container>
+    );
+  }
+
+  if (!device) {
+    return (
+      <S.Container onLayout={handleLayout}>
+        <Text style={{ color: "white" }}>카메라를 찾을 수 없습니다.</Text>
+      </S.Container>
+    );
+  }
 
   return (
-    <S.Container>
-      <Text>Scan QR Code</Text>
-      <Button title="Scan QR" onPress={() => setResult({ qrData: `sample-qr-data-${Date.now()}` })} />
-      <Button title="Cancel" onPress={() => setResult(null)} />
+    <S.Container onLayout={handleLayout}>
+      <S.FullCamera
+        device={device}
+        isActive={!scanned}
+        codeScanner={codeScanner}
+        enableZoomGesture
+      />
+
+      <S.ExitButton onPress={() => setResult(null)}>
+        <Text style={{ color: "white", fontSize: 24 }}>✕</Text>
+      </S.ExitButton>
+
+      <S.Overlay pointerEvents="none">
+        <S.ScanArea />
+      </S.Overlay>
     </S.Container>
   );
 };

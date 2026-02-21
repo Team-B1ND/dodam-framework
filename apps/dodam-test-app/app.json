@@ -14,7 +14,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "QR코드 스캔을 위해 카메라를 사용합니다."
+      },
+      "bundleIdentifier": "me.cher1shrxd.dodamtestapp",
+      "appleTeamId": "U4VGJDX962"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +27,11 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "me.cher1shrxd.dodamtestapp"
     },
     "web": {
       "bundler": "metro",
