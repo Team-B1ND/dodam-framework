@@ -23,6 +23,11 @@ bridge.register(RequestType.QR_SCAN, async (payload) => {
   return { qrData: "..." };
 });
 
+bridge.register(RequestType.CAMERA_CAPTURE, async () => {
+  // 네이티브 카메라 캡처 수행
+  return { url: "file://..." };
+});
+
 // React Native WebView 연동 예
 <WebView
   ref={webviewRef}

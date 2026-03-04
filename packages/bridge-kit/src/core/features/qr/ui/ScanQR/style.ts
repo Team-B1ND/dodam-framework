@@ -30,7 +30,7 @@ export const ScanArea = styled(View)`
   border-radius: 24px;
 `;
 
-export const ExitButton = styled(TouchableOpacity)`
+export const ExitButton: any = styled(TouchableOpacity)`
   position: absolute;
   top: 20px;
   left: 20px;
