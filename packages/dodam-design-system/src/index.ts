@@ -21,3 +21,6 @@ export * from "./typography";
 
 // Breakpoints
 export * from "./breakpoints";
+
+// Styles
+export * from "./styles";

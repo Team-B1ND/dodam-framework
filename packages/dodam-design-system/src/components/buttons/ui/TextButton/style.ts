@@ -29,13 +29,13 @@ export const Container = styled.button<{
   border-radius: ${({ $size }) => sizeStyles[$size].radius};
   ${({ $size }) => sizeStyles[$size].typo};
 
-  background-color: ${({ $pressed }) => ($pressed ? colors.fill.primary : "transparent")};
+  background-color: ${({ $pressed }) => ($pressed ? colors.fill.secondary : "transparent")};
   color: ${colors.text.secondary};
   opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 1)};
 
   @media (hover: hover) {
     &:hover {
-      background-color: ${colors.fill.primary};
+      background-color: ${colors.fill.secondary};
     }
   }
 

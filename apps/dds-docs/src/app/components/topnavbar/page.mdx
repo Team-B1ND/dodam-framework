@@ -1,0 +1,109 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import { TestTopNavBarBasic, TestTopNavBarWithBackButton, TestTopNavBarWithLogo, TestTopNavBarWithActions } from "@/features/displayClientComponents/ui/TestTopNavBar";
+
+# TopNavBar
+
+상단 네비게이션 바 컴포넌트입니다.
+
+---
+
+## Preview
+
+### 기본 사용
+
+<ComponentBlock>
+  <TestTopNavBarBasic />
+</ComponentBlock>
+
+### 뒤로가기 버튼
+
+<ComponentBlock>
+  <TestTopNavBarWithBackButton />
+</ComponentBlock>
+
+### 로고
+
+<ComponentBlock>
+  <TestTopNavBarWithLogo />
+</ComponentBlock>
+
+### 액션 버튼
+
+<ComponentBlock>
+  <TestTopNavBarWithActions />
+</ComponentBlock>
+
+---
+
+## Usage
+
+```tsx
+import { TopNavBar } from "dodam-design-system/components";
+import { Bell, Gear } from "dodam-design-system/icons/mono";
+
+// 기본 타이틀
+<TopNavBar>
+  <TopNavBar.Title>홈</TopNavBar.Title>
+</TopNavBar>
+
+// 뒤로가기 버튼
+<TopNavBar left={<TopNavBar.BackButton onClick={() => router.back()} />}>
+  <TopNavBar.Title hasBackButton>설정</TopNavBar.Title>
+</TopNavBar>
+
+// 로고
+<TopNavBar>
+  <TopNavBar.Logo />
+</TopNavBar>
+
+// 액션 버튼
+<TopNavBar
+  left={<TopNavBar.BackButton />}
+  right={
+    <>
+      <TopNavBar.IconButton icon={<Bell />} onClick={handleNotification} />
+      <TopNavBar.IconButton icon={<Gear />} onClick={handleSettings} />
+    </>
+  }>
+  <TopNavBar.Title hasBackButton>프로필</TopNavBar.Title>
+</TopNavBar>
+```
+
+---
+
+## Props
+
+### TopNavBar
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `left` | `ReactNode` | - | 왼쪽 영역 (BackButton 등) |
+| `right` | `ReactNode` | - | 오른쪽 영역 (IconButton 등) |
+| `children` | `ReactNode` | - | 중앙 영역 (Title, Logo 등) |
+| `customStyle` | `CSSObject` | `{}` | 커스텀 CSS |
+
+### TopNavBar.BackButton
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `onClick` | `() => void` | - | 클릭 핸들러 |
+
+### TopNavBar.Title
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `string` | - | 타이틀 텍스트 |
+| `hasBackButton` | `boolean` | `false` | 뒤로가기 버튼 유무에 따른 스타일 |
+
+### TopNavBar.Logo
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | - | 커스텀 로고 (기본: School 아이콘) |
+
+### TopNavBar.IconButton
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` | `ReactNode` | - | 아이콘 |
+| `onClick` | `() => void` | - | 클릭 핸들러 |

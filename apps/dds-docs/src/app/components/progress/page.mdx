@@ -1,0 +1,62 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import { TestProgress, TestCircularProgress, TestProgressDisabled, TestCircularProgressDisabled } from "@/features/displayClientComponents/ui/TestProgress";
+
+# Progress
+
+진행 상태를 표시하는 컴포넌트입니다.
+
+---
+
+## Preview
+
+### Linear Progress
+
+<ComponentBlock>
+  <TestProgress />
+</ComponentBlock>
+
+### Circular Progress
+
+<ComponentBlock>
+  <TestCircularProgress />
+</ComponentBlock>
+
+### Disabled
+
+<ComponentBlock>
+  <TestProgressDisabled />
+</ComponentBlock>
+
+<ComponentBlock>
+  <TestCircularProgressDisabled />
+</ComponentBlock>
+
+---
+
+## Usage
+
+```tsx
+import { Progress, CircularProgress } from "dodam-design-system/components";
+
+// Linear Progress
+<Progress progress={50} />
+
+// Circular Progress
+<CircularProgress progress={75} />
+
+// Disabled
+<Progress progress={50} disabled />
+<CircularProgress progress={75} disabled />
+```
+
+---
+
+## Props
+
+### Progress / CircularProgress
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `progress` | `number` | - | 진행률 (0-100) |
+| `disabled` | `boolean` | `false` | 비활성화 상태 |
+| `customStyle` | `CSSObject` | `{}` | 커스텀 CSS |
