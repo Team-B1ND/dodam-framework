@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bridge-kit": "workspace:*",
+    "dodam-design-system": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "dodam-design-system": "workspace:*",
-    "bridge-kit": "workspace:*"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

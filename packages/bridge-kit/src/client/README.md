@@ -34,6 +34,22 @@ function ScannerButton() {
 }
 ```
 
+카메라 캡처 예시 (url만 반환)
+```tsx
+import { useCamera } from "bridge-kit/client";
+
+function CameraButton() {
+  const { capture } = useCamera();
+
+  const onClick = async () => {
+    const url = await capture();
+    console.log(url); // file://...
+  };
+
+  return <button onClick={onClick}>Capture</button>;
+}
+```
+
 에러 규약
 - core → client 응답의 `error` 필드는 `undefined`(성공) 또는 shared `Error` enum 값(실패)입니다.
 - client 내부의 타임아웃/브리지 미존재 등의 경우도 enum 값으로 reject 됩니다 (`TIMEOUT`, `NOT_SUPPORTED` 등).
