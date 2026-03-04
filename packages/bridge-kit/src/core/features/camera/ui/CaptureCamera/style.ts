@@ -16,7 +16,7 @@ export const FullCamera = styled(Camera)`
 
 export const ExitButton: any = styled(TouchableOpacity)<{ $top: number }>`
   position: absolute;
-  top: ${({ $top }) => $top + 16}px;
+  top: ${({ $top }) => $top + 4}px;
   left: 20px;
   padding: 10px;
   z-index: 10;

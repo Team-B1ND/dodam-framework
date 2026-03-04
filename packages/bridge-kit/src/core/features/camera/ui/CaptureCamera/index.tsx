@@ -11,7 +11,7 @@ const CaptureCamera = () => {
   if (!hasPermission) {
     return (
       <S.Container>
-        <Text style={{ color: "white" }}>카메라 권한이 필요합니다.</Text>
+        <Text style={{ color: "white" }}>카메라 권한이 필요해요</Text>
         <S.ExitButton $top={top} onPress={() => setResult(null)}>
           <Text style={{ color: "white", fontSize: 24 }}>✕</Text>
         </S.ExitButton>
@@ -22,7 +22,7 @@ const CaptureCamera = () => {
   if (!device) {
     return (
       <S.Container>
-        <Text style={{ color: "white" }}>카메라를 찾을 수 없습니다.</Text>
+        <Text style={{ color: "white" }}>카메라를 찾을 수 없어요</Text>
         <S.ExitButton $top={top} onPress={() => setResult(null)}>
           <Text style={{ color: "white", fontSize: 24 }}>✕</Text>
         </S.ExitButton>
