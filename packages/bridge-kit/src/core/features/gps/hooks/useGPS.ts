@@ -1,14 +1,12 @@
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
+import { Alert, Linking } from "react-native";
 import * as Location from "expo-location";
 import {
   GPSGetRequest,
   GPSGetResponse,
-  GPSSubscribeRequest,
-  GPSSubscribeResponse,
-  GPSUnsubscribeRequest,
-  GPSUnsubscribeResponse,
   GPSCoordinates,
 } from "../../../../shared/types/dto/gps";
+import { Error } from "../../../../shared/types/enums/error";
 
 const mapAccuracy = (accuracy?: "low" | "balanced" | "high"): Location.Accuracy => {
   switch (accuracy) {
@@ -34,90 +32,72 @@ const mapCoordinates = (location: Location.LocationObject): GPSCoordinates => ({
 });
 
 export const useGPS = () => {
-  const subscriptionsRef = useRef<Map<string, Location.LocationSubscription>>(new Map());
+  const showPermissionAlert = () => {
+    Alert.alert(
+      "위치 정보 접근 거부",
+      "위치 권한이 필요합니다.",
+      [
+        { text: "취소", style: "cancel" },
+        {
+          text: "설정으로 이동",
+          onPress: () => {
+            Linking.openURL("app-settings:");
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
   const requestPermission = async (): Promise<boolean> => {
-    const { status: foregroundStatus } = await Location.requestForegroundPermissionsAsync();
-    if (foregroundStatus !== "granted") {
+    try {
+      const { status: currentStatus } = await Location.getForegroundPermissionsAsync();
+
+      if (currentStatus === "granted") {
+        return true;
+      }
+
+      if (currentStatus === "denied") {
+        showPermissionAlert();
+        return false;
+      }
+
+      const { status: newStatus } = await Location.requestForegroundPermissionsAsync();
+      if (newStatus !== "granted") {
+        showPermissionAlert();
+        return false;
+      }
+      return true;
+    } catch (error) {
+      showPermissionAlert();
       return false;
     }
-    return true;
   };
 
   const getCurrentLocation = useCallback(
-    async (payload: GPSGetRequest): Promise<GPSGetResponse | null> => {
+    async (payload: GPSGetRequest): Promise<GPSGetResponse | Error> => {
       const hasPermission = await requestPermission();
       if (!hasPermission) {
-        return null;
+        return "PERMISSION_DENIED";
       }
 
-      const location = await Location.getCurrentPositionAsync({
-        accuracy: mapAccuracy(payload.accuracy),
-      });
-
-      return {
-        coords: mapCoordinates(location),
-        timestamp: location.timestamp,
-      };
-    },
-    [],
-  );
-
-  const subscribe = useCallback(
-    async (
-      payload: GPSSubscribeRequest,
-      onUpdate: (data: GPSGetResponse) => void,
-    ): Promise<GPSSubscribeResponse | null> => {
-      const hasPermission = await requestPermission();
-      if (!hasPermission) {
-        return null;
-      }
-
-      const subscriptionId = `gps_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-
-      const subscription = await Location.watchPositionAsync(
-        {
+      try {
+        const location = await Location.getCurrentPositionAsync({
           accuracy: mapAccuracy(payload.accuracy),
-          distanceInterval: payload.distanceInterval,
-          timeInterval: payload.timeInterval,
-        },
-        (location: Location.LocationObject) => {
-          onUpdate({
-            coords: mapCoordinates(location),
-            timestamp: location.timestamp,
-          });
-        },
-      );
+        });
 
-      subscriptionsRef.current.set(subscriptionId, subscription);
-
-      return {
-        subscriptionId,
-        status: "SUBSCRIBED",
-      };
-    },
-    [],
-  );
-
-  const unsubscribe = useCallback(
-    async (payload: GPSUnsubscribeRequest): Promise<GPSUnsubscribeResponse | null> => {
-      const subscription = subscriptionsRef.current.get(payload.subscriptionId);
-      
-      if (subscription) {
-        subscription.remove();
-        subscriptionsRef.current.delete(payload.subscriptionId);
+        return {
+          coords: mapCoordinates(location),
+          timestamp: location.timestamp,
+        };
+      } catch (error) {
+        return "UNKNOWN";
       }
-
-      return {
-        status: "UNSUBSCRIBED",
-      };
     },
     [],
   );
 
   return {
     getCurrentLocation,
-    subscribe,
-    unsubscribe,
   };
 };

@@ -18,7 +18,7 @@ const App = () => {
   const handleGetLocation = async () => {
     setLocation("위치 가져오는 중...");
     const res = await getCurrentLocation({ accuracy: "high" });
-    if (res) {
+    if (res && typeof res === "object" && "coords" in res) {
       setLocation(
         `위도: ${res.coords.latitude}, 경도: ${res.coords.longitude}`,
       );

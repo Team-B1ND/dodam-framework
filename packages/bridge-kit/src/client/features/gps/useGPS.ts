@@ -1,12 +1,6 @@
 import { useBridge } from "../../common/hooks/useBridge";
-import {
-  GPSGetRequest,
-  GPSGetResponse,
-  GPSSubscribeRequest,
-  GPSSubscribeResponse,
-  GPSUnsubscribeRequest,
-  GPSUnsubscribeResponse,
-} from "../../../shared/types/dto/gps";
+import { GPSGetRequest, GPSGetResponse } from "../../../shared/types/dto/gps";
+import { Error as BridgeError } from "../../../shared/types/enums/error";
 
 export const useGPS = () => {
   const execute = useBridge();
@@ -14,7 +8,7 @@ export const useGPS = () => {
   const getCurrentLocation = async (
     options?: GPSGetRequest,
     timeout: number = 10000,
-  ): Promise<GPSGetResponse | null> => {
+  ): Promise<GPSGetResponse | BridgeError> => {
     const response = await execute<GPSGetResponse>(
       "GPS_GET",
       options ?? {},
@@ -23,52 +17,13 @@ export const useGPS = () => {
 
     if (!response.success) {
       console.error("[GPS] getCurrentLocation failed:", response.error);
-      return null;
+      return response.error ?? "UNKNOWN";
     }
 
-    return response.data ?? null;
-  };
-
-  const subscribeLocation = async (
-    options?: GPSSubscribeRequest,
-    timeout: number = 10000,
-  ): Promise<GPSSubscribeResponse | null> => {
-    const response = await execute<GPSSubscribeResponse>(
-      "GPS_SUBSCRIBE",
-      options ?? {},
-      timeout,
-    );
-
-    if (!response.success) {
-      console.error("[GPS] subscribeLocation failed:", response.error);
-      return null;
-    }
-
-    return response.data ?? null;
-  };
-
-  const unsubscribeLocation = async (
-    subscriptionId: string,
-    timeout: number = 5000,
-  ): Promise<GPSUnsubscribeResponse | null> => {
-    const payload: GPSUnsubscribeRequest = { subscriptionId };
-    const response = await execute<GPSUnsubscribeResponse>(
-      "GPS_UNSUBSCRIBE",
-      payload,
-      timeout,
-    );
-
-    if (!response.success) {
-      console.error("[GPS] unsubscribeLocation failed:", response.error);
-      return null;
-    }
-
-    return response.data ?? null;
+    return response.data!;
   };
 
   return {
     getCurrentLocation,
-    subscribeLocation,
-    unsubscribeLocation,
   };
 };
