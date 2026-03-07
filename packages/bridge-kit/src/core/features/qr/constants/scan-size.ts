@@ -1,0 +1,1 @@
+export const SCAN_SIZE = 250;

@@ -1,6 +1,6 @@
 {
   "name": "dodam-design-system",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -62,6 +62,14 @@
     "./next": {
       "types": "./dist/next/index.d.ts",
       "import": "./dist/next/index.js"
+    },
+    "./styles": {
+      "types": "./dist/styles/index.d.ts",
+      "import": "./dist/styles/index.js"
+    },
+    "./navigations": {
+      "types": "./dist/navigations/index.d.ts",
+      "import": "./dist/navigations/index.js"
     }
   },
   "files": [
@@ -80,7 +88,8 @@
     "framer-motion": "^11.0.0",
     "react": ">=19",
     "react-dom": ">=19",
-    "zustand": "^5.0.10"
+    "zustand": "^5.0.10",
+    "next": ">=16"
   },
   "peerDependenciesMeta": {
     "next": {

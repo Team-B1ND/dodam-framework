@@ -15,6 +15,7 @@ export const FilledTextField = ({
   customStyle,
   onRemoveClick,
   type,
+  required,
   ...props
 }: FilledTextFieldProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -28,18 +29,20 @@ export const FilledTextField = ({
   return (
     <div style={{ position: "relative" }}>
       <S.Container $width={width} $customStyle={customStyle}>
-        <S.Label
-          $isFocused={isFocused}
-          $isDisabled={isDisabled}
-          $isError={isError}
-        >
-          {label}
-        </S.Label>
+        <S.LabelWrapper>
+          <S.Label
+            $isFocused={isFocused}
+            $isDisabled={isDisabled}
+            $isError={isError}>
+            {label}
+          </S.Label>
+          {required && <S.RequiredDot />}
+        </S.LabelWrapper>
+
         <S.InputWrapper
           $isFocused={isFocused}
           $isDisabled={isDisabled}
-          $isError={isError}
-        >
+          $isError={isError}>
           <input
             {...props}
             type={inputType}

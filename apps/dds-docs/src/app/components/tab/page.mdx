@@ -1,0 +1,69 @@
+import ComponentBlock from "@/shared/ui/ComponentBlock";
+import TestTab from "@/features/displayClientComponents/ui/TestTab";
+
+# Tab
+
+탭 네비게이션 컴포넌트입니다.
+
+---
+
+## Preview
+
+기본 (부모 너비에 맞춰 균등 배치)
+<ComponentBlock>
+  <TestTab />
+</ComponentBlock>
+
+itemGap 지정 (간격 고정)
+<ComponentBlock>
+  <TestTab itemGap={48} />
+</ComponentBlock>
+
+fluid (스크롤 가능)
+<ComponentBlock>
+  <TestTab fluid itemGap={24} itemCount={10} />
+</ComponentBlock>
+
+---
+
+## Usage
+
+```tsx
+"use client";
+
+import { Tab } from "dodam-design-system/components";
+import { useState } from "react";
+
+export default function Example() {
+  const [selected, setSelected] = useState(0);
+
+  return (
+    <Tab onChange={setSelected}>
+      <Tab.Item selected={selected === 0}>탭 1</Tab.Item>
+      <Tab.Item selected={selected === 1}>탭 2</Tab.Item>
+      <Tab.Item selected={selected === 2}>탭 3</Tab.Item>
+    </Tab>
+  );
+}
+```
+
+---
+
+## Props
+
+### Tab
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | - | Tab.Item 컴포넌트들 |
+| `itemGap` | `number` | - | 탭 아이템 간격 (미지정시 균등 배치) |
+| `fluid` | `boolean` | `false` | 가로 스크롤 활성화 |
+| `onChange` | `(index: number) => void` | - | 탭 변경 콜백 |
+| `customStyle` | `CSSObject` | `{}` | 커스텀 CSS |
+
+### Tab.Item
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | - | 탭 라벨 |
+| `selected` | `boolean` | `false` | 선택 상태 |

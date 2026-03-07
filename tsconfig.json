@@ -1,11 +1,6 @@
 {
   "files": [],
   "references": [
-    { "path": "./packages/components" },
-    { "path": "./packages/colors" },
-    { "path": "./packages/iconography" },
-    { "path": "./packages/typography" },
-    { "path": "./packages/shapes" },
-    { "path": "./packages/themes" }
+    { "path": "./packages/dodam-design-system" }
   ]
 }

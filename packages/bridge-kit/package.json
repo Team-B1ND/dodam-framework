@@ -6,9 +6,13 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "import": "./dist/client/index.js"
+    },
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
     }
   },
   "files": [
@@ -21,7 +25,26 @@
     "typecheck": "tsc -b"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19"
+    "react": "*",
+    "react-dom": "*",
+    "react-native": ">=0.75.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "styled-components": ">=6",
+    "zod": "^4.3.6",
+    "react-native-worklets": "0.5.1",
+    "react-native-vision-camera": "^4.7.3",
+    "expo-location": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "expo-location": {
+      "optional": true
+    }
   }
 }
