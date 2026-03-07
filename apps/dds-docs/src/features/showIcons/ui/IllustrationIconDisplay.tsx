@@ -5,7 +5,7 @@ import {
   CreditCard, Dgit, FullMoonFace, Globe, Handshake,
   LoudSpeaker, MusicalNote, Schedule, School, SchoolBus,
   Smile, Tent, Trophy
-} from "dodam-design-system/icons/illustration";
+} from "@b1nd/dodam-design-system/icons/illustration";
 
 const IllustrationIconDisplay = () => {
   return (

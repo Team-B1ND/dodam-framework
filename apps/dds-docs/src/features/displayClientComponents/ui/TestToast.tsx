@@ -1,7 +1,7 @@
 "use client";
 
-import { FilledButton, useToast, ToastProvider } from "dodam-design-system/components";
-import { LoudSpeaker } from "dodam-design-system/icons/illustration";
+import { FilledButton, useToast, ToastProvider } from "@b1nd/dodam-design-system/components";
+import { LoudSpeaker } from "@b1nd/dodam-design-system/icons/illustration";
 
 export const TestToastBasic = () => {
   const toast = useToast();

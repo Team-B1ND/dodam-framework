@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TextField } from "dodam-design-system/components";
+import { TextField } from "@b1nd/dodam-design-system/components";
 
 export default function TestTextField() {
   const [text, setText] = useState("");

@@ -20,10 +20,10 @@ import TestDropdown from "@/features/displayClientComponents/ui/TestDropdown";
 ### 설치
 
 ```bash
-pnpm add dodam-design-system/components
+pnpm add @b1nd/dodam-design-system/components
 ```
 
-> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `@b1nd/dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 ### 기본 사용법
 
@@ -31,7 +31,7 @@ pnpm add dodam-design-system/components
 "use client";
 
 import { useState } from "react";
-import { Dropdown } from "dodam-design-system/components";
+import { Dropdown } from "@b1nd/dodam-design-system/components";
 
 const Example = () => {
   const [selected, setSelected] = useState<string>("Option 1");

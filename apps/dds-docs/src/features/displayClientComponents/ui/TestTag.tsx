@@ -1,6 +1,6 @@
 "use client";
 
-import { Tag } from "dodam-design-system/components";
+import { Tag } from "@b1nd/dodam-design-system/components";
 
 const TestTag = () => {
   const handleClick = () => {

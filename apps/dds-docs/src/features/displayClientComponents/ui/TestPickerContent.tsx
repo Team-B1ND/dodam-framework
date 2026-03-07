@@ -8,7 +8,7 @@ import {
   FilledButton,
   getCurrentTime,
   type Time,
-} from "dodam-design-system/components";
+} from "@b1nd/dodam-design-system/components";
 import { useState } from "react";
 
 const pad = (n: number) => String(n).padStart(2, "0");
