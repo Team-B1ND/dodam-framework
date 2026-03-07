@@ -1,6 +1,6 @@
 "use client";
 
-import { Switch, SwitchProps } from "dodam-design-system/components";
+import { Switch, SwitchProps } from "@b1nd/dodam-design-system/components";
 import { useState } from "react";
 
 const TestSwitch = ({

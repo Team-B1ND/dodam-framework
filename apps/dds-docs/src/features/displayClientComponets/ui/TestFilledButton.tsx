@@ -1,6 +1,6 @@
 "use client"
 
-import { FilledButton, FilledButtonProps } from "dodam-design-system/components"
+import { FilledButton, FilledButtonProps } from "@b1nd/dodam-design-system/components"
 
 const TestFilledButton = (props: FilledButtonProps) => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FilledTextField } from "dodam-design-system/components";
+import { FilledTextField } from "@b1nd/dodam-design-system/components";
 
 export default function TestFilledTextField() {
   const [text, setText] = useState("");

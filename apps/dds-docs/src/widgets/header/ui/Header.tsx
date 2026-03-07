@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { toggleTheme, useTheme } from "dodam-design-system/themes";
+import { toggleTheme, useTheme } from "@b1nd/dodam-design-system/themes";
 import { Menu, Moon, Sun } from "lucide-react";
 import { Link } from "@cher1shrxd/loading";
 import { useSidebarStore } from "@/shared/stores/useSidebarStore";

@@ -1,7 +1,7 @@
 import ComponentBlock from "@/shared/ui/ComponentBlock";
-import { colors } from "dodam-design-system/colors";
-import { ArrowRight, Bell } from "dodam-design-system/icons/mono";
-import { Smile } from "dodam-design-system/icons/illustration";
+import { colors } from "@b1nd/dodam-design-system/colors";
+import { ArrowRight, Bell } from "@b1nd/dodam-design-system/icons/mono";
+import { Smile } from "@b1nd/dodam-design-system/icons/illustration";
 import MonoIconDisplay from "@/features/showIcons/ui/MonoIconDisplay";
 import IllustrationIconDisplay from "@/features/showIcons/ui/IllustrationIconDisplay";
 
@@ -12,17 +12,17 @@ DDS 아이콘 시스템은 **Mono**와 **Illustration** 두 가지 카테고리�
 ## Installation
 
 ```bash
-pnpm add dodam-design-system/icons
+pnpm add @b1nd/dodam-design-system/icons
 ```
 
 ## Usage
 
 ```tsx
 // Mono 아이콘 (단색, 색상 커스터마이징 가능)
-import { ArrowRight, Bell, Home } from "dodam-design-system/icons/mono";
+import { ArrowRight, Bell, Home } from "@b1nd/dodam-design-system/icons/mono";
 
 // Illustration 아이콘 (컬러 일러스트)
-import { Smile, Trophy, Globe } from "dodam-design-system/icons/illustration";
+import { Smile, Trophy, Globe } from "@b1nd/dodam-design-system/icons/illustration";
 ```
 
 ---
@@ -112,8 +112,8 @@ import { Smile, Trophy, Globe } from "dodam-design-system/icons/illustration";
 ### 기본 사용
 
 ```tsx
-import { ArrowRight } from "dodam-design-system/icons/mono";
-import { Smile } from "dodam-design-system/icons/illustration";
+import { ArrowRight } from "@b1nd/dodam-design-system/icons/mono";
+import { Smile } from "@b1nd/dodam-design-system/icons/illustration";
 
 function App() {
   return (
@@ -133,8 +133,8 @@ function App() {
 ### 색상 커스터마이징 (Mono)
 
 ```tsx
-import { Bell } from "dodam-design-system/icons/mono";
-import { colors } from "dodam-design-system/colors";
+import { Bell } from "@b1nd/dodam-design-system/icons/mono";
+import { colors } from "@b1nd/dodam-design-system/colors";
 
 function Notification() {
   return (
@@ -157,7 +157,7 @@ function Notification() {
 ### 버튼과 함께 사용
 
 ```tsx
-import { ArrowRight } from "dodam-design-system/icons/mono";
+import { ArrowRight } from "@b1nd/dodam-design-system/icons/mono";
 
 function Button({ children }) {
   return (
