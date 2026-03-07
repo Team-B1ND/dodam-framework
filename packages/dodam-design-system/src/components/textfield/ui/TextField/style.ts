@@ -4,6 +4,26 @@ import { typoCss } from "@/typography";
 import { CSSObject } from "@emotion/react";
 import { hexToRgba } from "../../utils/hex-to-rgba";
 
+export const LabelWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: absolute;
+  left: 0;
+  top: 80%;
+  transform: translateY(-90%);
+  transition: all 0.2s ease;
+  pointer-events: none;
+`;
+
+export const RequiredDot = styled.div`
+  width: 4px;
+  height: 4px;
+  background-color: ${colors.status.error};
+  border-radius: 16px;
+  flex-shrink: 0;
+`;
+
 export const Container = styled.div<{
   $isError: boolean;
   $customStyle?: CSSObject;
@@ -20,33 +40,29 @@ export const Container = styled.div<{
   ${({ $customStyle }) => $customStyle};
 
   label {
-    position: absolute;
-    left: 0;
-    top: 80%;
-
     ${typoCss("Headline", "Medium")}
     color: ${colors.text.tertiary};
-
-    transform: translateY(-90%);
     transition: all 0.2s ease;
-    pointer-events: none;
   }
 
-  input:focus ~ label {
+  input:focus ~ .textfield-label-wrapper label {
     color: ${colors.brand.primary};
   }
 
-  input:valid ~ label {
+  input:valid ~ .textfield-label-wrapper label {
     color: ${({ $isError }) => $isError && colors.status.error};
   }
 
-  input:disabled ~ label {
+  input:disabled ~ .textfield-label-wrapper label {
     color: ${hexToRgba(colors.text.tertiary, 0.65)};
   }
 
-  input:is(:focus, :valid) ~ label {
-    ${typoCss("Label", "Medium")}
+  input:is(:focus, :valid) ~ .textfield-label-wrapper {
     transform: translateY(-250%);
+  }
+
+  input:is(:focus, :valid) ~ .textfield-label-wrapper label {
+    ${typoCss("Label", "Medium")}
   }
 `;
 
