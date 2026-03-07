@@ -14,7 +14,7 @@ import { Time } from "../types/time";
 export const useTimePickerContent = (time: Time, isOpen: boolean = true) => {
   const hourRef = useRef<HTMLDivElement>(null);
   const minuteRef = useRef<HTMLDivElement>(null);
-  const snapTimer = useRef<number>();
+  const snapTimer = useRef<number>(0);
   const isAdjusting = useRef(false);
 
   const [selected, setSelected] = useState<Time>(time);

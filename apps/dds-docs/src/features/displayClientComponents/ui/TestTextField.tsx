@@ -181,6 +181,27 @@ export default function TestTextField() {
           labelStyle={{ color: "red" }}
         />
       </div>
+
+      <div>
+        <h3
+          style={{ marginBottom: "10px", fontSize: "18px", fontWeight: "600" }}
+        >
+          9. Required 필드
+        </h3>
+        <TextField
+          id="required-1"
+          name="required"
+          type="text"
+          value={noIconValue}
+          onChange={(e) => setNoIconValue(e.target.value)}
+          onRemoveClick={() => setNoIconValue("")}
+          label="필수 입력"
+          required
+        />
+        <p style={{ marginTop: "8px", fontSize: "14px", color: "#666" }}>
+          라벨 옆 빨간 점으로 필수 항목 여부를 표시합니다.
+        </p>
+      </div>
     </div>
   );
 }

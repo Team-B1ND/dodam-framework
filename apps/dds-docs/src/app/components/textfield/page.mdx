@@ -109,6 +109,19 @@ export default Example;
 />
 ```
 
+#### Required 필드
+
+```tsx
+<FilledTextField
+  type="text"
+  label="필수 입력"
+  placeholder="필수 항목입니다"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  required
+/>
+```
+
 ---
 
 ### Props
@@ -129,6 +142,7 @@ export default Example;
 | `customStyle` | `CSSObject` | `-` | 커스텀 스타일 객체 |
 | `onKeyDown` | `KeyboardEventHandler` | `-` | 키보드 이벤트 핸들러 |
 | `onRemoveClick` | `() => void` | `-` | 클리어 아이콘 클릭 핸들러 |
+| `required` | `boolean` | `false` | 필수 입력 여부. `true`일 때 라벨 옆에 빨간 점이 표시됩니다. |
 
 ---
 
@@ -233,6 +247,20 @@ export default Example;
 />
 ```
 
+#### Required 필드
+
+```tsx
+<TextField
+  id="required-field-1"
+  name="required"
+  type="text"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  label="필수 입력"
+  required
+/>
+```
+
 ---
 
 ### Props
@@ -254,6 +282,7 @@ export default Example;
 | `supportingText` | `string` | `-` | 필드 하단에 표시되는 도움말 텍스트 |
 | `customStyle` | `CSSObject` | `-` | 커스텀 스타일 객체 |
 | `onRemoveClick` | `() => void` | `-` | 클리어 아이콘 클릭 핸들러 |
+| `required` | `boolean` | `false` | 필수 입력 여부. `true`일 때 라벨 옆에 빨간 점이 표시됩니다. |
 
 ---
 
