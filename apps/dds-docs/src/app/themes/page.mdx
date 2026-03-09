@@ -37,23 +37,33 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```
 
 ### Vite + React
-- `init-theme.iife.js` 스크립트를 HTML `<head>`에 추가하여 초기 테마를 설정합니다.
-```html
-//index.html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <script src="node_modules/dodam-design-system/themes/dist/init-theme.iife.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tem2</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+- `themeScript`를 vite.config.ts에 등록합니다.
+```ts
+import path from 'path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler']],
+      },
+    }),
+    {
+      name: 'inject-theme-script',
+      transformIndexHtml(html) {
+        return html.replace('<head>', `<head>${themeScript}`)
+      }
+    }
+  ],
+})
 ```
 
 ---
