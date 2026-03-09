@@ -10,7 +10,7 @@ const MotionContainer = motion.create(S.Container);
 
 export const FilledButton = ({
   role = "primary",
-  size = "mideum",
+  size = "medium",
   display = "inline",
   disabled = false,
   onClick,

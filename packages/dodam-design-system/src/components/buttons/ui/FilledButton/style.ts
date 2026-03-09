@@ -8,7 +8,7 @@ import { typoCss } from "@/typography";
 
 const sizeStyles = {
   large: { padding: "0 28px", height: "48px", radius: shapes.medium, typo: typoCss("Body1", "Medium") },
-  mideum: { padding: "0 20px", height: "40px", radius: shapes.small, typo: typoCss("Body2", "Medium") },
+  medium: { padding: "0 20px", height: "40px", radius: shapes.small, typo: typoCss("Body2", "Medium") },
   small: { padding: "0 12px", height: "32px", radius: shapes.extraSmall, typo: typoCss("Caption2", "Bold") },
 };
 
