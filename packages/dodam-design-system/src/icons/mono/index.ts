@@ -10,7 +10,7 @@ export * from "./Chat";
 export * from "./Checkmark";
 export * from "./CheckmarkCircleFill";
 export * from "./CheckmarkCircleLine";
-export * from "./ChevronDown"
+export * from "./ChevronDown";
 export * from "./ChevronLeft";
 export * from "./ChevronRight";
 export * from "./ChevronUp";
@@ -38,3 +38,5 @@ export * from "./Photo";
 export * from "./Plus";
 export * from "./Trash";
 export * from "./XmarkCircle";
+export * from "./Moon";
+export * from "./Sun";
