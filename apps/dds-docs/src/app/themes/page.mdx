@@ -37,23 +37,37 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```
 
 ### Vite + React
-- `init-theme.iife.js` 스크립트를 HTML `<head>`에 추가하여 초기 테마를 설정합니다.
+- 아래를 index.html의 head태그 내부 가장 위에 복사/붙혀넣기 해주세요.
 ```html
-//index.html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <script src="node_modules/dodam-design-system/themes/dist/init-theme.iife.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tem2</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("dds-theme");
+        const system = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        const theme =
+          stored === "dark" || stored === "light" ? stored : system;
+        document.documentElement.dataset.theme = theme;
+
+        const style = document.createElement("style");
+        style.textContent =
+          "*, *::before, *::after { transition: none !important; }";
+        document.head.appendChild(style);
+
+        window.addEventListener("DOMContentLoaded", () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              style.remove();
+            });
+          });
+        });
+      } catch {}
+    })();
+  </script>
+</head>
 ```
 
 ---
