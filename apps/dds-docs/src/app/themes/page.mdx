@@ -37,33 +37,37 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```
 
 ### Vite + React
-- `themeScript`를 vite.config.ts에 등록합니다.
-```ts
-import path from 'path'
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+- 아래를 index.html의 head태그 내부 가장 위에 복사/붙혀넣기 해주세요.
+```html
+<head>
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("dds-theme");
+        const system = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        const theme =
+          stored === "dark" || stored === "light" ? stored : system;
+        document.documentElement.dataset.theme = theme;
 
-// https://vite.dev/config/
-export default defineConfig({
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  plugins: [
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler']],
-      },
-    }),
-    {
-      name: 'inject-theme-script',
-      transformIndexHtml(html) {
-        return html.replace('<head>', `<head>${themeScript}`)
-      }
-    }
-  ],
-})
+        const style = document.createElement("style");
+        style.textContent =
+          "*, *::before, *::after { transition: none !important; }";
+        document.head.appendChild(style);
+
+        window.addEventListener("DOMContentLoaded", () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              style.remove();
+            });
+          });
+        });
+      } catch {}
+    })();
+  </script>
+</head>
 ```
 
 ---
