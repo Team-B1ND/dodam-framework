@@ -41,8 +41,8 @@ import {
   Plus,
   Trash,
   XmarkCircle,
-} from "dodam-design-system/icons/mono";
-import { colors } from "dodam-design-system/colors";
+} from "@b1nd/dodam-design-system/icons/mono";
+import { colors } from "@b1nd/dodam-design-system/colors";
 
 const MonoIconDisplay = () => {
   return (

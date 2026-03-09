@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab } from "dodam-design-system/components";
+import { Tab } from "@b1nd/dodam-design-system/components";
 import { useState } from "react";
 
 interface TestTabProps {

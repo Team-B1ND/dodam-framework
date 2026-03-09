@@ -1,4 +1,4 @@
-import { Dot, DotProps } from 'dodam-design-system/components'
+import { Dot, DotProps } from '@b1nd/dodam-design-system/components'
 
 const TestDot = (props: DotProps) => {
   return (

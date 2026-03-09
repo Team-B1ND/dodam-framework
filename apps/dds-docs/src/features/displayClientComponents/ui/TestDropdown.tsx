@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Dropdown } from "dodam-design-system/components";
+import { Dropdown } from "@b1nd/dodam-design-system/components";
 
 const TestDropdown = () => {
   const [selected, setSelected] = useState<string>("Option 1");

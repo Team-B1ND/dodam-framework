@@ -1,6 +1,6 @@
 "use client";
 
-import { useOverlay, Dialog } from "dodam-design-system/components";
+import { useOverlay, Dialog } from "@b1nd/dodam-design-system/components";
 
 export const TestDialogBasic = () => {
   const overlay = useOverlay();

@@ -1,6 +1,6 @@
 "use client"
 
-import { Checkbox, CheckboxProps } from 'dodam-design-system/components'
+import { Checkbox, CheckboxProps } from '@b1nd/dodam-design-system/components'
 import { useState } from 'react'
 
 const TestCheckbox = ({
