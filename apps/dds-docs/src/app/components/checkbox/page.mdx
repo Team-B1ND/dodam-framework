@@ -10,6 +10,7 @@ import TestCheckbox from "@/features/displayClientComponents/ui/TestCheckbox";
 ## Preview
 
 variant - filled (default)
+
 <ComponentBlock>
   <TestCheckbox />
   <TestCheckbox size="small" />
@@ -20,6 +21,7 @@ variant - filled (default)
 </ComponentBlock>
 
 variant - outlined
+
 <ComponentBlock>
   <TestCheckbox variant="outlined" />
   <TestCheckbox variant="outlined" size="small" />
@@ -29,28 +31,44 @@ variant - outlined
   <TestCheckbox variant="outlined" size="small" disabled />
 </ComponentBlock>
 
+display - inline (default)
+
+<ComponentBlock>
+  <TestCheckbox display="inline" />
+  <TestCheckbox display="inline" size="small" />
+  <TestCheckbox display="inline" variant="outlined" />
+</ComponentBlock>
+
+display - full
+
+<ComponentBlock>
+  <TestCheckbox display="full" />
+  <TestCheckbox display="full" size="small" />
+  <TestCheckbox display="full" variant="outlined" />
+</ComponentBlock>
+
 ---
 
 ## Usage
 
 ```tsx
-import { Checkbox, CheckboxProps } from '@b1nd/dodam-design-system/components'
-import { useState } from "react"
+import { Checkbox, CheckboxProps } from "@b1nd/dodam-design-system/components";
+import { useState } from "react";
 
 export default function Example() {
   const [selected, setSelected] = useState(false);
   return (
     <Checkbox
       selected={selected}
-      onClick={() => setSelected(prev => !prev)}
+      onClick={() => setSelected((prev) => !prev)}
       disabled={false}
       type="primay"
       size="medium"
       checkboxCustomStyle={{
-        zIndex: 1
+        zIndex: 1,
       }}
     />
-  )
+  );
 }
 ```
 
@@ -58,12 +76,13 @@ export default function Example() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"medium" \| "small"` | `"medium"` | 체크박스의 크기 |
-| `selected` | `boolean` | `-` | 체크박스 선택 여부 |
-| `onClick` | `() => void` | `-` | 체크박스 클릭 이벤트 |
-| `disabled` | `boolean` | `false` | 체크박스 비활성 여부 |
-| `type` | `"primary" \| "error"` | `"primary"` | 체크박스 배경 색상 |
-| `variant` | `"outlined" \| "filled"` | `"filled"` | 체크박스 스타일 (outlined: 보더 없이 체크마크만) |
-| `checkboxCustomStyle` | `CSSObject` | `{}` | 체크박스 커스텀 CSS |
+| Prop                  | Type                     | Default     | Description                                                       |
+| --------------------- | ------------------------ | ----------- | ----------------------------------------------------------------- |
+| `size`                | `"medium" \| "small"`    | `"medium"`  | 체크박스의 크기                                                   |
+| `selected`            | `boolean`                | `-`         | 체크박스 선택 여부                                                |
+| `onClick`             | `() => void`             | `-`         | 체크박스 클릭 이벤트                                              |
+| `disabled`            | `boolean`                | `false`     | 체크박스 비활성 여부                                              |
+| `type`                | `"primary" \| "error"`   | `"primary"` | 체크박스 배경 색상                                                |
+| `variant`             | `"outlined" \| "filled"` | `"filled"`  | 체크박스 스타일 (outlined: 보더 없이 체크마크만)                  |
+| `display`             | `"inline" \| "full"`     | `"inline"`  | 체크박스 너비 모드 (inline: 고정 크기, full: 부모 너비에 꽉 채움) |
+| `checkboxCustomStyle` | `CSSObject`              | `{}`        | 체크박스 커스텀 CSS                                               |
