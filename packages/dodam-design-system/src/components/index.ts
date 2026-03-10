@@ -15,3 +15,4 @@ export * from "./progress";
 export * from "./toast";
 export * from "./topNavBar";
 export * from "./table";
+export * from "./fileinput";

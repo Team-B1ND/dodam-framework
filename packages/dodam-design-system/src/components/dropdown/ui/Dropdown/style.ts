@@ -10,6 +10,7 @@ export const Container = styled.div<{ $customStyle?: CSSObject }>`
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 8px 12px;
   position: relative;
   gap: 12px;
@@ -21,6 +22,7 @@ export const Container = styled.div<{ $customStyle?: CSSObject }>`
     ${typoCss("Headline", "Medium")};
     white-space: nowrap;
     color: ${colors.text.primary};
+    flex: 1;
   }
 
   ${({ $customStyle }) => $customStyle}

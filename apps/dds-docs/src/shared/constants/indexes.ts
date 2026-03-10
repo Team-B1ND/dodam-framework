@@ -118,4 +118,9 @@ export const COMPONENTS = [
     description: "텍스트 입력 필드 컴포넌트",
     href: "/components/textfield",
   },
+  {
+    name: "FileInput",
+    description: "파일을 선택할 수 있는 인풋 컴포넌트",
+    href: "/components/fileinput",
+  },
 ] as const;
