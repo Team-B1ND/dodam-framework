@@ -1,23 +1,18 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
-import { useRef } from "react";
-import { useBridge } from "bridge-kit/core";
+import { useBridgeCore } from "@b1nd/aid-kit/bridge-kit/app";
 
 const App = () => {
   const { top, bottom } = useSafeAreaInsets();
-  const webUrl = "https://db50-121-177-220-80.ngrok-free.app";
+  const { webViewProps } = useBridgeCore();
+  const webUrl = "https://cf80-2a09-bac6-d76d-155-00-22-d9.ngrok-free.app";
   const uri = `${webUrl}?top=${top}&bottom=${bottom}`;
-  const handleMessage = useBridge();
-  const ref = useRef<WebView>(null);
 
   return (
     <WebView
-      ref={ref}
+      {...webViewProps}
       source={{ uri }}
       scrollEnabled={false}
-      onMessage={(event) => {
-        handleMessage(event.nativeEvent.data, ref.current || undefined);
-      }}
     />
   );
 };

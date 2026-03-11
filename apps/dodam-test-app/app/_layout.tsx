@@ -1,5 +1,5 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { BridgeUiProvider } from "bridge-kit/core";
+import { BridgeUiProvider } from "@b1nd/aid-kit/bridge-kit/app";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
