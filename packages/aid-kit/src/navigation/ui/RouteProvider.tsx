@@ -1,7 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { RouteContext } from "../contexts/route-context";
 import { Routes, StackEntry, RouteState } from "../types";
 import { isValidPath } from "../utils/match-routes";
+import { useAppState } from "../../app-state/hooks/useAppState";
 
 interface Props {
   routes: Routes;
@@ -9,11 +10,17 @@ interface Props {
 }
 
 export const RouteProvider = ({ routes, children }: Props) => {
-  const [stack, setStack] = useState<StackEntry[]>([]);
+  const [stack, setStack] = useAppState<StackEntry[]>(
+    [],
+    "router-provider::stack",
+  );
 
-  const [tabEntry, setTabEntry] = useState<StackEntry>({
-    path: routes.tabs.find((t) => t.index)?.path ?? routes.tabs[0].path,
-  });
+  const [tabEntry, setTabEntry] = useAppState<StackEntry>(
+    {
+      path: routes.tabs.find((t) => t.index)?.path ?? routes.tabs[0].path,
+    },
+    "router-provider::tab-entry",
+  );
 
   const move = useCallback(
     (target: string, state?: RouteState) => {

@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App.tsx";
 import { BridgeProvider } from "@b1nd/aid-kit/bridge-kit/web";
 import { SafeAreaProvider } from "@b1nd/aid-kit/safe-area-provider";
+import { AppStateProvider } from "@b1nd/aid-kit/app-state";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <SafeAreaProvider>
-      <BridgeProvider>
-        <App />
-      </BridgeProvider>
-    </SafeAreaProvider>
+    <AppStateProvider>
+      <SafeAreaProvider>
+        <BridgeProvider>
+          <App />
+        </BridgeProvider>
+      </SafeAreaProvider>
+    </AppStateProvider>
   </StrictMode>,
 );

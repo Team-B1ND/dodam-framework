@@ -21,6 +21,10 @@
     "./safe-area-provider": {
       "types": "./dist/safe-area-provider/index.d.ts",
       "import": "./dist/safe-area-provider/index.js"
+    },
+    "./app-state": {
+      "types": "./dist/app-state/index.d.ts",
+      "import": "./dist/app-state/index.js"
     }
   },
   "files": [
