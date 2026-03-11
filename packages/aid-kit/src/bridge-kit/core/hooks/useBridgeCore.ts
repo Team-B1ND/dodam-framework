@@ -1,25 +1,29 @@
 import { useRef, useCallback, useEffect } from "react";
-import { WebView } from "react-native-webview";
+import { WebView, WebViewMessageEvent, WebViewProps } from "react-native-webview";
 import { BridgeCore } from "../models/BridgeCore";
 import { Response } from "../../shared/builder/response";
 
 const core = new BridgeCore();
 
 export const useBridgeCore = () => {
-  const webViewRef = useRef<WebView>(null);
+  const instanceRef = useRef<WebView<WebViewProps> | null>(null);
 
-  const onMessage = useCallback((event: any) => {
+  const webViewRef = useCallback((node: WebView<WebViewProps> | null) => {
+    instanceRef.current = node;
+  }, []);
+
+  const onMessage = useCallback((event: WebViewMessageEvent) => {
     const req = JSON.parse(event.nativeEvent.data);
-    if (webViewRef.current) {
-      core.receive(webViewRef.current, req);
+    if (instanceRef.current) {
+      core.receive(instanceRef.current, req);
     }
   }, []);
 
   useEffect(() => {
     const cleanups = core.startPush((action, data) => {
-      if (webViewRef.current) {
+      if (instanceRef.current) {
         const res = Response(action, action, true, data);
-        core.send(webViewRef.current, res);
+        core.send(instanceRef.current, res);
       }
     });
     return () => cleanups.forEach((c) => c());
