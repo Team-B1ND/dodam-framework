@@ -1,18 +1,22 @@
 {
-  "name": "aid-bridge-kit",
+  "name": "@b1nd/aid-kit",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "import": "./dist/client/index.js"
+    "./bridge-kit": {
+      "types": "./dist/bridge-kit/index.d.ts",
+      "import": "./dist/bridge-kit/index.js"
     },
-    "./core": {
-      "types": "./dist/core/index.d.ts",
-      "import": "./dist/core/index.js"
+    "./navigation": {
+      "types": "./dist/navigation/index.d.ts",
+      "import": "./dist/navigation/index.js"
+    },
+    "./safe-area-provider": {
+      "types": "./dist/safe-area-provider/index.d.ts",
+      "import": "./dist/safe-area-provider/index.js"
     }
   },
   "files": [
@@ -35,7 +39,10 @@
     "zod": "^4.3.6",
     "react-native-worklets": "0.5.1",
     "react-native-vision-camera": "^4.7.3",
-    "expo-location": ">=18.0.0"
+    "expo-location": ">=18.0.0",
+    "@emotion/styled": ">=11.14.1",
+    "@emotion/react": ">=11.14.0",
+    "framer-motion": ">=12.35.2"
   },
   "peerDependenciesMeta": {
     "react-dom": {

@@ -2,12 +2,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { BridgeProvider } from "bridge-kit/client";
+import { BridgeProvider } from "@b1nd/aid-kit/bridge-kit";
+import { SafeAreaProvider } from "@b1nd/aid-kit/safe-area-provider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BridgeProvider>
-      <App />
-    </BridgeProvider>
+    <SafeAreaProvider>
+      <BridgeProvider>
+        <App />
+      </BridgeProvider>
+    </SafeAreaProvider>
   </StrictMode>,
 );
