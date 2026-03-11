@@ -6,9 +6,13 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./bridge-kit": {
-      "types": "./dist/bridge-kit/index.d.ts",
-      "import": "./dist/bridge-kit/index.js"
+    "./bridge-kit/app": {
+      "types": "./dist/bridge-kit/app/index.d.ts",
+      "import": "./dist/bridge-kit/app/index.js"
+    },
+    "./bridge-kit/web": {
+      "types": "./dist/bridge-kit/web/index.d.ts",
+      "import": "./dist/bridge-kit/web/index.js"
     },
     "./navigation": {
       "types": "./dist/navigation/index.d.ts",

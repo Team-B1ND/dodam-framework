@@ -59,6 +59,11 @@ export class BridgeCore {
         res = Response(req.id, req.type, true, result);
       }
       return this.send(ref, res);
+    } else {
+      return this.send(
+        ref,
+        Response(req.id, req.type, false, undefined, "NOT_SUPPORT"),
+      );
     }
   }
 

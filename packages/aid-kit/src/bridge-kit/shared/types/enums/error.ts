@@ -4,6 +4,6 @@ export const Errors = {
   NOT_SUPPORT: "NOT_SUPPORTED",
   CANCELLED: "CANCELLED",
   UNKNOWN: "UNKNOWN",
-};
+} as const;
 
 export type Error = keyof typeof Errors;

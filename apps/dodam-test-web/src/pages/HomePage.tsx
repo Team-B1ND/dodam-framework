@@ -1,5 +1,5 @@
-import { useBridgeProvider, useBridgeResponse, Actions } from "@b1nd/aid-kit/bridge-kit";
-import type { BridgeResponse, GPSGetResponse } from "@b1nd/aid-kit/bridge-kit";
+import { useBridgeProvider, useBridgeResponse, Actions } from "@b1nd/aid-kit/bridge-kit/web";
+import type { BridgeResponse, GPSGetResponse } from "@b1nd/aid-kit/bridge-kit/web";
 import { useSafeArea } from "@b1nd/aid-kit/safe-area-provider";
 import { useRouter } from "@b1nd/aid-kit/navigation";
 import { useState } from "react";
@@ -15,6 +15,8 @@ export const HomePage = () => {
     const res = data as BridgeResponse;
     if (res.success && typeof res.data === "string") {
       setQrResult(res.data);
+    }else{
+      setQrResult(res.error as string);
     }
     return res;
   });
