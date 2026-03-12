@@ -11,7 +11,7 @@
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
     "@react-navigation/native": "^7.1.8",
-    "bridge-kit": "workspace:*",
+    "@b1nd/aid-kit": "workspace:*",
     "@b1nd/dodam-design-system": "workspace:*",
     "expo": "~54.0.33",
     "expo-constants": "~18.0.13",
