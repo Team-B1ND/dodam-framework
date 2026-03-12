@@ -1,7 +1,7 @@
 {
   "name": "@b1nd/aid-kit",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -46,16 +46,5 @@
     "zod": "^4.3.6",
     "react-native-worklets": "0.5.1",
     "framer-motion": ">=12.35.2"
-  },
-  "peerDependenciesMeta": {
-    "react-dom": {
-      "optional": true
-    },
-    "react-native": {
-      "optional": true
-    },
-    "expo-location": {
-      "optional": true
-    }
   }
 }
