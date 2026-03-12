@@ -17,7 +17,7 @@ interface Props extends PropsWithChildren {
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const Modal = ({ children, isVisible, onAfterClose }: Props) => {
+const Modal = ({ children, isVisible, onAfterClose, top }: Props) => {
   const translateY = useSharedValue(SCREEN_HEIGHT);
   const opacity = useSharedValue(0);
 
@@ -50,7 +50,7 @@ const Modal = ({ children, isVisible, onAfterClose }: Props) => {
   }));
 
   return (
-    <S.Modal $top={0} pointerEvents={isVisible ? "auto" : "none"}>
+    <S.Modal $top={top} pointerEvents={isVisible ? "auto" : "none"}>
       <Animated.View style={[{ ...absoluteFill }, backdropStyle]}>
         <S.Backdrop />
       </Animated.View>

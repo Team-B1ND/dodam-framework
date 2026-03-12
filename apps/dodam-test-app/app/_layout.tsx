@@ -6,6 +6,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Text } from "react-native";
+import QrScan from "@/components/QrScan";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -35,10 +37,10 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
-    <BridgeUiProvider top={top} bottom={bottom}>
+    <BridgeUiProvider top={top} screens={{ QR_SCAN: <QrScan /> }}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
