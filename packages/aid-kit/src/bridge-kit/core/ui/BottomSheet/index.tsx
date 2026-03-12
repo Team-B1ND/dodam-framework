@@ -6,7 +6,8 @@ import Animated, {
   useSharedValue,
   withSpring,
   withTiming,
-} from "react-native-reanimated";import * as S from "./style";
+} from "react-native-reanimated";
+import * as S from "./style";
 import { scheduleOnRN } from "react-native-worklets";
 
 interface Props extends PropsWithChildren {
@@ -21,7 +22,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SWIPE_CLOSE_THRESHOLD = SCREEN_HEIGHT * 0.25;
 const SWIPE_VELOCITY_THRESHOLD = 0.5;
 
-const Modal = ({
+const BottomSheet = ({
   children,
   isVisible,
   onAfterClose,
@@ -105,16 +106,16 @@ const Modal = ({
   }));
 
   return (
-    <S.Modal $top={top} pointerEvents={isVisible ? "auto" : "none"}>
+    <S.BottomSheet $top={top} pointerEvents={isVisible ? "auto" : "none"}>
       <Animated.View style={[{ ...absoluteFill }, backdropStyle]}>
         <S.Backdrop />
       </Animated.View>
       <Animated.View
         style={[{ width: "100%", flex: 1 }, sheetStyle]}
         {...panResponder.panHandlers}>
-        <S.ModalContent>{children}</S.ModalContent>
+        <S.BottomSheetContent>{children}</S.BottomSheetContent>
       </Animated.View>
-    </S.Modal>
+    </S.BottomSheet>
   );
 };
 
@@ -126,4 +127,4 @@ const absoluteFill = {
   bottom: 0,
 };
 
-export default Modal;
+export default BottomSheet;

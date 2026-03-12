@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import styled from "styled-components/native";
 
-export const Modal = styled(View)<{ $top: number }>`
+export const BottomSheet = styled(View)<{ $top: number }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@ export const Backdrop = styled(View)`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled(View)`
+export const BottomSheetContent = styled(View)`
   width: 100%;
   height: 100%;
   background-color: #ffffff;
