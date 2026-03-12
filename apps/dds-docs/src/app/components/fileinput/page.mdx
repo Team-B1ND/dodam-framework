@@ -30,6 +30,12 @@ import TestFileInput from "@/features/displayClientComponents/ui/TestFileInput";
   />
 </ComponentBlock>
 
+필수 입력
+
+<ComponentBlock>
+  <TestFileInput required />
+</ComponentBlock>
+
 ---
 
 ## Usage
@@ -65,6 +71,7 @@ export default function Example() {
 | `accept`         | `string`                       | `-`     | 허용할 파일 타입 (e.g. `"image/*"`) |
 | `isError`        | `boolean`                      | `false` | 에러 상태 여부                      |
 | `isDisabled`     | `boolean`                      | `false` | 비활성화 여부                       |
+| `required`       | `boolean`                      | `false` | 필수 입력 여부 (라벨 옆 빨간 점)    |
 | `supportingText` | `string`                       | `-`     | 인풋 하단 안내 텍스트               |
 | `width`          | `number`                       | `-`     | 컴포넌트 너비 (px)                  |
 | `customStyle`    | `CSSObject`                    | `-`     | 컨테이너 커스텀 CSS                 |

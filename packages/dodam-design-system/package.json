@@ -1,6 +1,6 @@
 {
   "name": "@b1nd/dodam-design-system",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",

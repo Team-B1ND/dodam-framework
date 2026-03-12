@@ -11,6 +11,7 @@ export const FileInput = ({
   supportingText,
   isError = false,
   isDisabled = false,
+  required = false,
   accept,
   value,
   onChange,
@@ -48,9 +49,12 @@ export const FileInput = ({
 
   return (
     <S.Container $width={width} $customStyle={customStyle}>
-      <S.Label $isError={isError} $isDisabled={isDisabled}>
-        {label}
-      </S.Label>
+      <S.LabelWrapper>
+        <S.Label $isError={isError} $isDisabled={isDisabled}>
+          {label}
+        </S.Label>
+        {required && <S.RequiredDot />}
+      </S.LabelWrapper>
       <S.InputWrapper
         $isError={isError}
         $isDisabled={isDisabled}
