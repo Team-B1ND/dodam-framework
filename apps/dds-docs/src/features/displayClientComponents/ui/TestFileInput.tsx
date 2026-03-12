@@ -11,6 +11,7 @@ const TestFileInput = ({
   supportingText,
   isError = false,
   isDisabled = false,
+  required = false,
   accept = "image/*",
   width,
 }: Partial<FileInputProps>) => {
@@ -22,6 +23,7 @@ const TestFileInput = ({
       supportingText={supportingText}
       isError={isError}
       isDisabled={isDisabled}
+      required={required}
       accept={accept}
       value={file}
       onChange={setFile}
