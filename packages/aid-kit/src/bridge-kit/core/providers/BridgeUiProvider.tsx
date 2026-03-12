@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { BridgeUiContext } from "../models/bridge-ui-context";
 import Modal from "../ui/Modal";
 import { BridgeUi, Screens } from "../types/app";
-import { Action, Error } from "../../../bridge-kit/shared";
+import { Action, Error, Errors } from "../../../bridge-kit/shared";
 
 interface Props extends PropsWithChildren {
   top: number;
@@ -63,6 +63,7 @@ export const BridgeUiProvider = ({ children, top, screens }: Props) => {
         <Modal
           isVisible={ui !== "NONE"}
           onAfterClose={handleAfterClose}
+          onSwipeClose={() => setResult(Errors.CANCELLED)}
           key={lastUi}
           top={top}>
           {screens[lastUi]}
