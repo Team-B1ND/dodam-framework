@@ -40,7 +40,7 @@ import { TestToastBasic, TestToastTypes, TestToastDuration, TestToastCustomIcon,
 ## Usage
 
 ```tsx
-import { useToast, ToastProvider } from "dodam-design-system/components";
+import { useToast, ToastProvider } from "@b1nd/dodam-design-system/components";
 
 // 앱 루트에 ToastProvider 추가
 function App() {
@@ -73,7 +73,7 @@ toast.warning("경고 메시지");
 toast("5초 후 사라져요", { duration: 5000 });
 
 // 커스텀 아이콘
-import { LoudSpeaker } from "dodam-design-system/icons/illustration";
+import { LoudSpeaker } from "@b1nd/dodam-design-system/icons/illustration";
 toast("커스텀 아이콘", { icon: <LoudSpeaker size={20} /> });
 
 // 수동으로 닫기

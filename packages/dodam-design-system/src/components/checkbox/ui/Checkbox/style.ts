@@ -2,7 +2,7 @@ import { colors } from "@/colors";
 import { shapes } from "@/shapes";
 import styled, { CSSObject } from "@emotion/styled";
 import { CheckboxType } from "../../index";
-import { CheckboxVariant } from "../../index";
+import { CheckboxVariant, CheckboxDisplay } from "../../index";
 
 export const Container = styled.button<{
   $size: "medium" | "small";
@@ -10,18 +10,24 @@ export const Container = styled.button<{
   $disabled: string;
   $type: CheckboxType;
   $variant: CheckboxVariant;
+  $display: CheckboxDisplay;
   $checkboxCustomStyle: CSSObject;
 }>`
   all: unset;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${({ $size }) => ($size === "medium" ? "32px" : "28px")};
-  min-width: ${({ $size }) => ($size === "medium" ? "32px" : "28px")};
-  aspect-ratio: 1 / 1;
+  width: ${({ $display, $size }) =>
+    $display === "full" ? "100%" : $size === "medium" ? "32px" : "28px"};
+  min-width: ${({ $display, $size }) =>
+    $display === "full" ? "unset" : $size === "medium" ? "32px" : "28px"};
+  aspect-ratio: ${({ $display }) => ($display === "full" ? "unset" : "1 / 1")};
+  height: ${({ $display, $size }) =>
+    $display === "full" ? ($size === "medium" ? "32px" : "28px") : "unset"};
   border-radius: ${shapes.extraSmall};
   opacity: ${({ $disabled }) => ($disabled === "true" ? 0.4 : 1)};
-  cursor: ${({ $disabled }) => ($disabled === "true" ? "not-allowed" : "pointer")};
+  cursor: ${({ $disabled }) =>
+    $disabled === "true" ? "not-allowed" : "pointer"};
   transition: all 0.1s linear;
 
   box-shadow: ${({ $selected, $variant }) => {

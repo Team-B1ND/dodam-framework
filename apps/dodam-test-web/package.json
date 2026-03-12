@@ -12,8 +12,9 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "dodam-design-system": "workspace:*",
-    "bridge-kit": "workspace:*"
+    "@b1nd/aid-kit": "workspace:*",
+    "@b1nd/dodam-design-system": "workspace:*",
+    "framer-motion": "*"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

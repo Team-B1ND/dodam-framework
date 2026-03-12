@@ -1,36 +1,36 @@
 export const INDEXES = [
   {
-    package: "dodam-design-system/components",
+    package: "@b1nd/dodam-design-system/components",
     title: "Components",
     description: "버튼, 인풋 등 UI 컴포넌트",
     href: "/components",
   },
   {
-    package: "dodam-design-system/typography",
+    package: "@b1nd/dodam-design-system/typography",
     title: "Typography",
     description: "텍스트 스타일 시스템",
     href: "/typography",
   },
   {
-    package: "dodam-design-system/icons",
+    package: "@b1nd/dodam-design-system/icons",
     title: "Iconography",
     description: "일러스트레이션, 모노 아이콘 팩",
     href: "/iconography",
   },
   {
-    package: "dodam-design-system/shapes",
+    package: "@b1nd/dodam-design-system/shapes",
     title: "Shapes",
     description: "도형 라운딩 가이드",
     href: "/shapes",
   },
   {
-    package: "dodam-design-system/colors",
+    package: "@b1nd/dodam-design-system/colors",
     title: "Colors",
     description: "컬러 팔레트 토큰",
     href: "/colors",
   },
   {
-    package: "dodam-design-system/themes",
+    package: "@b1nd/dodam-design-system/themes",
     title: "Themes",
     description: "테마 시스템",
     href: "/themes",
@@ -117,5 +117,10 @@ export const COMPONENTS = [
     name: "TextField",
     description: "텍스트 입력 필드 컴포넌트",
     href: "/components/textfield",
+  },
+  {
+    name: "FileInput",
+    description: "파일을 선택할 수 있는 인풋 컴포넌트",
+    href: "/components/fileinput",
   },
 ] as const;

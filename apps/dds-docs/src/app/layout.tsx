@@ -4,9 +4,9 @@ import Header from "@/widgets/header/ui/Header";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import Footer from "@/widgets/footer/ui/Footer";
 import { LoadingBar } from "@cher1shrxd/loading";
-import { ThemeSetter, DdsRegistry } from "dodam-design-system/next";
-import { OverlayProvider } from "dodam-design-system/components";
-import { colors } from "dodam-design-system/colors";
+import { ThemeSetter, DdsRegistry } from "@b1nd/dodam-design-system/next";
+import { OverlayProvider } from "@b1nd/dodam-design-system/components";
+import { colors } from "@b1nd/dodam-design-system/colors";
 
 export const metadata: Metadata = {
   title: "DDS docs",

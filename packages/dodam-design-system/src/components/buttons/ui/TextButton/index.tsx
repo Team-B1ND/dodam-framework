@@ -9,7 +9,7 @@ import { usePressAnimation } from "@/animations";
 const MotionContainer = motion.create(S.Container);
 
 export const TextButton = ({
-  size = "mideum",
+  size = "medium",
   onClick,
   buttonCustomStyle = {},
   disabled = false,

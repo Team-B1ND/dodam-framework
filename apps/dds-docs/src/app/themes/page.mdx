@@ -9,7 +9,7 @@ DDS 테마 시스템은 라이트/다크 모드를 손쉽게 관리합니다.
 ## Installation
 
 ```bash
-pnpm add dodam-design-system/themes
+pnpm add @b1nd/dodam-design-system/themes
 ```
 
 ## Setup
@@ -21,7 +21,7 @@ pnpm add dodam-design-system/themes
 
 ```tsx
 // app/layout.tsx
-import { ThemeSetter } from "dodam-design-system/next";
+import { ThemeSetter } from "@b1nd/dodam-design-system/next";
 import { PropsWithChildren } from "react";
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -37,23 +37,37 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```
 
 ### Vite + React
-- `init-theme.iife.js` 스크립트를 HTML `<head>`에 추가하여 초기 테마를 설정합니다.
+- 아래를 index.html의 head태그 내부 가장 위에 복사/붙혀넣기 해주세요.
 ```html
-//index.html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <script src="node_modules/dodam-design-system/themes/dist/init-theme.iife.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tem2</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("dds-theme");
+        const system = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        const theme =
+          stored === "dark" || stored === "light" ? stored : system;
+        document.documentElement.dataset.theme = theme;
+
+        const style = document.createElement("style");
+        style.textContent =
+          "*, *::before, *::after { transition: none !important; }";
+        document.head.appendChild(style);
+
+        window.addEventListener("DOMContentLoaded", () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              style.remove();
+            });
+          });
+        });
+      } catch {}
+    })();
+  </script>
+</head>
 ```
 
 ---
@@ -124,7 +138,7 @@ type Theme = "light" | "dark";
 현재 테마를 반환하는 React Hook입니다.
 
 ```tsx
-import { useTheme } from "dodam-design-system/themes";
+import { useTheme } from "@b1nd/dodam-design-system/themes";
 
 function Component() {
   const theme = useTheme(); // "light" | "dark"
@@ -142,7 +156,7 @@ function Component() {
 ```tsx
 "use client";
 
-import { useTheme, toggleTheme } from "dodam-design-system/themes";
+import { useTheme, toggleTheme } from "@b1nd/dodam-design-system/themes";
 import { Sun, Moon } from "lucide-react";
 
 function ThemeToggle() {
@@ -161,7 +175,7 @@ function ThemeToggle() {
 ### 테마별 스타일링
 
 ```tsx
-import { useTheme } from "dodam-design-system/themes";
+import { useTheme } from "@b1nd/dodam-design-system/themes";
 
 function ThemedCard() {
   const theme = useTheme();
@@ -188,7 +202,7 @@ function ThemedCard() {
 ### 특정 테마 적용
 
 ```tsx
-import { applyTheme } from "dodam-design-system/themes";
+import { applyTheme } from "@b1nd/dodam-design-system/themes";
 
 function ThemeSelector() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { IconButton, IconButtonProps } from "dodam-design-system/components";
+import { IconButton, IconButtonProps } from "@b1nd/dodam-design-system/components";
 import { Heart } from "lucide-react";
 
 const TestIconButton = ({ size, iconSize, disabled }: Partial<IconButtonProps>) => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FilledTextField } from "dodam-design-system/components";
+import { FilledTextField } from "@b1nd/dodam-design-system/components";
 
 export default function TestFilledTextField() {
   const [text, setText] = useState("");
@@ -136,6 +136,26 @@ export default function TestFilledTextField() {
           onRemoveClick={() => setCustomWidthValue("")}
           width={300}
         />
+      </div>
+
+      <div>
+        <h3
+          style={{ marginBottom: "10px", fontSize: "18px", fontWeight: "600" }}
+        >
+          7. Required 필드
+        </h3>
+        <FilledTextField
+          type="text"
+          label="필수 입력"
+          placeholder="필수 항목입니다"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onRemoveClick={() => setText("")}
+          required
+        />
+        <p style={{ marginTop: "8px", fontSize: "14px", color: "#666" }}>
+          라벨 옆 빨간 점으로 필수 항목 여부를 표시합니다.
+        </p>
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ description 없음
 ### 설치
 
 ```bash
-pnpm add dodam-design-system
+pnpm add @b1nd/dodam-design-system
 ```
 
 ### 기본 사용법
@@ -60,7 +60,7 @@ pnpm add dodam-design-system
 
 ```tsx
 // app/layout.tsx
-import { OverlayProvider } from "dodam-design-system/components";
+import { OverlayProvider } from "@b1nd/dodam-design-system/components";
 import { PropsWithChildren } from "react";
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 ```tsx
 "use client";
 
-import { useOverlay, Dialog } from "dodam-design-system/components";
+import { useOverlay, Dialog } from "@b1nd/dodam-design-system/components";
 
 const Example = () => {
   const overlay = useOverlay();

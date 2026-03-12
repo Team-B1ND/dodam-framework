@@ -1,7 +1,7 @@
 "use client";
 
-import { TopNavBar } from "dodam-design-system/components";
-import { Bell, Gear } from "dodam-design-system/icons/mono";
+import { TopNavBar } from "@b1nd/dodam-design-system/components";
+import { Bell, Gear } from "@b1nd/dodam-design-system/icons/mono";
 
 export const TestTopNavBarBasic = () => (
   <TopNavBar>

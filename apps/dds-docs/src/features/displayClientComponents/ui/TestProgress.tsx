@@ -1,6 +1,6 @@
 "use client";
 
-import { Progress, CircularProgress } from "dodam-design-system/components";
+import { Progress, CircularProgress } from "@b1nd/dodam-design-system/components";
 import { useState, useEffect } from "react";
 
 export const TestProgress = () => {

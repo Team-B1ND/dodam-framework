@@ -1,6 +1,6 @@
 {
   "name": "dodam-framework",
-  "private": false,
+  "private": true,
   "packageManager": "pnpm@9.15.3",
   "workspaces": [
     "apps/*",
@@ -11,9 +11,13 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.30.0",
     "@types/react": ">=19",
     "@types/react-dom": ">=19",
     "react": ">=19",

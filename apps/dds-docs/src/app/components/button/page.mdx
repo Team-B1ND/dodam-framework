@@ -27,11 +27,11 @@ role - primary ( default )
   <TestFilledButton size="large" disabled>
     large
   </TestFilledButton>
-  <TestFilledButton size="mideum">
-    mideum
+  <TestFilledButton size="medium">
+    medium
   </TestFilledButton>
-  <TestFilledButton size="mideum" disabled>
-    mideum
+  <TestFilledButton size="medium" disabled>
+    medium
   </TestFilledButton>
   <TestFilledButton size="small">
     small
@@ -49,11 +49,11 @@ role - assistive
   <TestFilledButton size="large" role="assistive" disabled>
     large
   </TestFilledButton>
-  <TestFilledButton size="mideum" role="assistive">
-    mideum
+  <TestFilledButton size="medium" role="assistive">
+    medium
   </TestFilledButton>
-  <TestFilledButton size="mideum" role="assistive" disabled>
-    mideum
+  <TestFilledButton size="medium" role="assistive" disabled>
+    medium
   </TestFilledButton>
   <TestFilledButton size="small" role="assistive">
     small
@@ -71,11 +71,11 @@ role - negative
   <TestFilledButton size="large" role="negative" disabled>
     large
   </TestFilledButton>
-  <TestFilledButton size="mideum" role="negative">
-    mideum
+  <TestFilledButton size="medium" role="negative">
+    medium
   </TestFilledButton>
-  <TestFilledButton size="mideum" role="negative" disabled>
-    mideum
+  <TestFilledButton size="medium" role="negative" disabled>
+    medium
   </TestFilledButton>
   <TestFilledButton size="small" role="negative">
     small
@@ -97,17 +97,17 @@ display - fill
 #### 설치
 
 ```bash
-pnpm add dodam-design-system/components
+pnpm add @b1nd/dodam-design-system/components
 ```
 
-> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `@b1nd/dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 #### 기본 사용법
 
 ```tsx
 "use client";
 
-import { FilledButton } from "dodam-design-system/components";
+import { FilledButton } from "@b1nd/dodam-design-system/components";
 
 export default function Example() {
   return (
@@ -130,7 +130,7 @@ export default function Example() {
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `role` | `"primary" \| "assistive" \| "negative"` | `"primary"` | 버튼 기본 색상 설정 |
-| `size` | `"large" \| "mideum" \| "small"` | `"mideum"` | 버튼 크기 |
+| `size` | `"large" \| "medium" \| "small"` | `"medium"` | 버튼 크기 |
 | `display` | `"inline" \| "fill"` | `"inline"` | 버튼 너비 모드 (fill: flex 컨테이너에서 비율 분배) |
 | `onClick` | `() => void` | `-` | 클릭 이벤트 콜백 |
 | `buttonCustomStyle` | `CSSObject` | `{}` | 커스텀 CSS |
@@ -153,11 +153,11 @@ export default function Example() {
   <TestTextButton size="large" disabled>
     large
   </TestTextButton>
-  <TestTextButton size="mideum">
-    mideum
+  <TestTextButton size="medium">
+    medium
   </TestTextButton>
-  <TestTextButton size="mideum" disabled>
-    mideum
+  <TestTextButton size="medium" disabled>
+    medium
   </TestTextButton>
   <TestTextButton size="small">
     small
@@ -174,17 +174,17 @@ export default function Example() {
 #### 설치
 
 ```bash
-pnpm add dodam-design-system/components
+pnpm add @b1nd/dodam-design-system/components
 ```
 
-> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `@b1nd/dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 #### 기본 사용법
 
 ```tsx
 "use client";
 
-import { TextButton } from "dodam-design-system/components";
+import { TextButton } from "@b1nd/dodam-design-system/components";
 
 export default function Example() {
   return (
@@ -207,7 +207,7 @@ export default function Example() {
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `size` | `"large" \| "mideum" \| "small"` | `"mideum"` | 버튼 크기 |
+| `size` | `"large" \| "medium" \| "small"` | `"medium"` | 버튼 크기 |
 | `onClick` | `() => void` | `() => {}` | 클릭 이벤트 콜백 |
 | `buttonCustomStyle` | `CSSObject` | `{}` | 커스텀 CSS |
 
@@ -237,7 +237,7 @@ export default function Example() {
 ```tsx
 "use client";
 
-import { IconButton } from "dodam-design-system/components";
+import { IconButton } from "@b1nd/dodam-design-system/components";
 import { Heart } from "lucide-react";
 
 export default function Example() {
@@ -285,17 +285,17 @@ export default function Example() {
 #### 설치
 
 ```bash
-pnpm add dodam-design-system/components
+pnpm add @b1nd/dodam-design-system/components
 ```
 
-> `dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
+> `@b1nd/dodam-design-system/components` 패키지는 `@dds-web`의 `iconography`, `typography`, `colors`, `shapes`, `themes` 패키지에 의존합니다. 프로젝트에 해당 패키지들이 설치되어 있지 않다면, 함께 설치해주세요.
 
 #### 기본 사용법
 
 ```tsx
 "use client";
 
-import { SegmentedButton, SegmentedButtonData } from "dodam-design-system/components"
+import { SegmentedButton, SegmentedButtonData } from "@b1nd/dodam-design-system/components"
 import { useState } from "react"
 
 export default function Example() {

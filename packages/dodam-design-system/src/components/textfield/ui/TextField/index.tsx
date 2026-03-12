@@ -15,6 +15,7 @@ export const TextField = ({
   onRemoveClick,
   type,
   width,
+  required,
   ...props
 }: TextFieldProps) => {
   const { isShowValue, toggleVisibility } = usePasswordVisibility();
@@ -37,7 +38,10 @@ export const TextField = ({
             }
           }}
         />
-        <label style={labelStyle}>{label}</label>
+        <S.LabelWrapper className="textfield-label-wrapper">
+          <label style={labelStyle}>{label}</label>
+          {required && <S.RequiredDot />}
+        </S.LabelWrapper>
         {renderTextFieldIcon({
           showIcon,
           value: props.value,

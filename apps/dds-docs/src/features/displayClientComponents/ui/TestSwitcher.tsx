@@ -1,6 +1,6 @@
 "use client";
 
-import { Indicator, Switcher, SwitcherProps } from "dodam-design-system/components";
+import { Indicator, Switcher, SwitcherProps } from "@b1nd/dodam-design-system/components";
 import { useState } from "react";
 
 const TestSwitcher = (props: SwitcherProps) => {

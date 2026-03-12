@@ -1,0 +1,61 @@
+{
+  "name": "@b1nd/aid-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./bridge-kit/app": {
+      "types": "./dist/bridge-kit/app/index.d.ts",
+      "import": "./dist/bridge-kit/app/index.js"
+    },
+    "./bridge-kit/web": {
+      "types": "./dist/bridge-kit/web/index.d.ts",
+      "import": "./dist/bridge-kit/web/index.js"
+    },
+    "./navigation": {
+      "types": "./dist/navigation/index.d.ts",
+      "import": "./dist/navigation/index.js"
+    },
+    "./safe-area-provider": {
+      "types": "./dist/safe-area-provider/index.d.ts",
+      "import": "./dist/safe-area-provider/index.js"
+    },
+    "./app-state": {
+      "types": "./dist/app-state/index.d.ts",
+      "import": "./dist/app-state/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "pnpm run build",
+    "typecheck": "tsc -b"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": ">=0.75.0",
+    "react-native-reanimated": ">=4.1.1",
+    "react-native-webview": ">=13.16.1",
+    "styled-components": ">=6",
+    "zod": "^4.3.6",
+    "react-native-worklets": "0.5.1",
+    "framer-motion": ">=12.35.2"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "expo-location": {
+      "optional": true
+    }
+  }
+}
