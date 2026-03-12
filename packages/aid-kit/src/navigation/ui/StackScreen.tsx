@@ -16,13 +16,21 @@ import {
 export const StackScreen = ({ children }: PropsWithChildren) => {
   const ctx = useContext(RouteContext);
   const realPop = ctx.pop;
+  const realPush = ctx.push;
 
   const screenWidth = typeof window !== "undefined" ? window.innerWidth : 400;
   const x = useMotionValue(screenWidth);
   const dimOpacity = useTransform(x, [0, screenWidth], [0.4, 0]);
 
+  const animating = useRef(true);
+
   useEffect(() => {
-    animate(x, 0, { type: "spring", stiffness: 220, damping: 26 });
+    animate(x, 0, {
+      type: "spring",
+      stiffness: 220,
+      damping: 26,
+      onComplete: () => { animating.current = false; },
+    });
   }, [x]);
 
   const isDragging = useRef(false);
@@ -34,8 +42,10 @@ export const StackScreen = ({ children }: PropsWithChildren) => {
 
   const triggerClose = useCallback(
     (target?: string, swipeVelocity?: number) => {
+      if (animating.current) return;
       closeTargetRef.current = target;
       exiting.current = true;
+      animating.current = true;
       if (swipeVelocity !== undefined) {
         animate(x, screenWidth, {
           type: "spring",
@@ -63,7 +73,16 @@ export const StackScreen = ({ children }: PropsWithChildren) => {
     [triggerClose],
   );
 
+  const animatedPush = useCallback(
+    (path: string) => {
+      if (animating.current) return;
+      realPush(path);
+    },
+    [realPush],
+  );
+
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (animating.current) return;
     if (e.clientX > EDGE_SWIPE_ZONE) return;
     x.stop();
     isDragging.current = true;
@@ -95,12 +114,17 @@ export const StackScreen = ({ children }: PropsWithChildren) => {
     ) {
       triggerClose(undefined, velocity * 1000);
     } else {
-      animate(x, 0, { type: "spring", stiffness: 260, damping: 28 });
+      animate(x, 0, {
+        type: "spring",
+        stiffness: 260,
+        damping: 28,
+        onComplete: () => { animating.current = false; },
+      });
     }
   };
 
   return (
-    <RouteContext.Provider value={{ ...ctx, pop: animatedPop }}>
+    <RouteContext.Provider value={{ ...ctx, pop: animatedPop, push: animatedPush }}>
       <motion.div
         style={{
           position: "fixed",

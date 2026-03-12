@@ -1,23 +1,23 @@
+import { ReactNode } from "react";
 import { BridgeRequest } from "../../shared/types/dto/bridge-reqeust";
 import { Action } from "../../shared/types/enums/actions";
 import { Error } from "../../shared/types/enums/error";
-import { BridgeUiSet } from "../models/BridgeUiSet";
 
-export type BridgeUi = keyof typeof BridgeUiSet;
+export type Screens = Partial<Record<Action, ReactNode>>;
+
+export type BridgeUi = Action | "NONE";
 
 export interface BridgeUiContext {
   ui: BridgeUi;
-  open: (bridgeUi: Exclude<BridgeUi, "NONE">) => Promise<object | null>;
+  open: (bridgeUi: Action) => Promise<object | Error | null>;
   close: () => void;
-  result: object | null;
-  setResult: (result: object | null) => void;
+  result: object | Error | null;
+  setResult: (result: object | Error | null) => void;
 }
 
-export type Callback = () => Promise<object | Error>;
+export type Callback = () => Promise<object | Error | null>;
 
-export type PushCallback = (
-  send: (action: Action, data: unknown) => void,
-) => () => void;
+export type PushCallback = (send: (data: unknown) => void) => () => void;
 
 export type Handlers = Map<Action, Callback>;
 

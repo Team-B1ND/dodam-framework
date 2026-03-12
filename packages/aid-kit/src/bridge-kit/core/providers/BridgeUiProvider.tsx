@@ -1,20 +1,22 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { BridgeUiContext } from "../models/bridge-ui-context";
-import Modal from "../ui/Modal";
-import { BridgeUi } from "../types/app";
-import { BridgeUiSet } from "../models/BridgeUiSet";
+import BottomSheet from "../ui/BottomSheet";
+import { BridgeUi, Screens } from "../types/app";
+import { Action, Error, Errors } from "../../../bridge-kit/shared";
 
 interface Props extends PropsWithChildren {
   top: number;
-  bottom: number;
+  screens: Screens;
 }
 
-export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
+export const BridgeUiProvider = ({ children, top, screens }: Props) => {
   const [ui, setUi] = useState<BridgeUi>("NONE");
   const [lastUi, setLastUi] = useState<BridgeUi>("NONE");
   const [isActive, setIsActive] = useState(false);
-  const [result, setResultState] = useState<object | null>(null);
-  const resolveRef = useRef<((value: object | null) => void) | null>(null);
+  const [result, setResultState] = useState<object | Error | null>(null);
+  const resolveRef = useRef<((value: object | Error | null) => void) | null>(
+    null,
+  );
 
   useEffect(() => {
     if (ui !== "NONE") {
@@ -24,8 +26,8 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
   }, [ui]);
 
   const open = (
-    bridgeUi: Exclude<BridgeUi, "NONE">,
-  ): Promise<object | null> => {
+    bridgeUi: Action,
+  ): Promise<object | Error | null> => {
     setUi(bridgeUi);
     return new Promise((resolve) => {
       resolveRef.current = resolve;
@@ -40,7 +42,7 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
     setUi("NONE");
   };
 
-  const setResult = (res: object | null) => {
+  const setResult = (res: object | Error | null) => {
     if (resolveRef.current) {
       resolveRef.current(res);
       resolveRef.current = null;
@@ -57,14 +59,15 @@ export const BridgeUiProvider = ({ children, top, bottom }: Props) => {
   return (
     <BridgeUiContext.Provider value={{ ui, open, close, result, setResult }}>
       {children}
-      {isActive && lastUi !== "NONE" && (
-        <Modal
+      {isActive && lastUi !== "NONE" && lastUi in screens && (
+        <BottomSheet
           isVisible={ui !== "NONE"}
           onAfterClose={handleAfterClose}
+          onSwipeClose={() => setResult(Errors.CANCELLED)}
           key={lastUi}
           top={top}>
-          {BridgeUiSet[lastUi]}
-        </Modal>
+          {screens[lastUi]}
+        </BottomSheet>
       )}
     </BridgeUiContext.Provider>
   );
