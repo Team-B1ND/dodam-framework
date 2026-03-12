@@ -65,7 +65,6 @@ const Modal = ({
             },
           );
         } else {
-          // snap back instantly to 0 without spring bounce
           translateY.value = withTiming(0, { duration: 180 });
           opacity.value = withTiming(1, { duration: 180 });
         }
