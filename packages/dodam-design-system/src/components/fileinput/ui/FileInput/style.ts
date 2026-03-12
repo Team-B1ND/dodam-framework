@@ -18,6 +18,19 @@ export const Container = styled.div<{
   ${({ $customStyle }) => $customStyle};
 `;
 
+export const LabelWrapper = styled.div`
+  display: flex;
+  align-items: start;
+  gap: 4px;
+`;
+
+export const RequiredDot = styled.div`
+  width: 4px;
+  height: 4px;
+  background-color: ${colors.status.error};
+  border-radius: 16px;
+`;
+
 export const Label = styled.span<{
   $isError: boolean;
   $isDisabled?: boolean;

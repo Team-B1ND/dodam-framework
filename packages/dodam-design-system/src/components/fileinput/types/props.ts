@@ -5,6 +5,7 @@ export interface FileInputProps {
   supportingText?: string;
   isError?: boolean;
   isDisabled?: boolean;
+  required?: boolean;
   accept?: string;
   value?: File | null;
   onChange: (file: File | null) => void;
