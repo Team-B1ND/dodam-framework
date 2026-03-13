@@ -65,7 +65,6 @@ export const Dropdown = memo(
         onClick={handleToggle}
         $customStyle={customStyle}
       >
-        {/* show the selected item's display name when available */}
         <p>{items.find((i) => i.value === value)?.name ?? value}</p>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
