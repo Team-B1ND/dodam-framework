@@ -31,7 +31,7 @@ export const Dropdown = memo(
     const containerRef = useOutsideClick(isOpen, () => setIsOpen(false));
     const { dropUp, calculatePosition } = useDropdownPosition(
       containerRef,
-      items.length
+      items.length,
     );
 
     const handleToggle = useCallback(() => {
@@ -42,12 +42,12 @@ export const Dropdown = memo(
     }, [isOpen, calculatePosition]);
 
     const handleItemClick = useCallback(
-      (item: string, e: React.MouseEvent) => {
+      (item: { name: string; value: string }, e: React.MouseEvent) => {
         e.stopPropagation();
         onSelectedItemChange(item);
         setIsOpen(false);
       },
-      [onSelectedItemChange]
+      [onSelectedItemChange],
     );
 
     const optionVariants = useMemo<Variants>(
@@ -56,7 +56,7 @@ export const Dropdown = memo(
         animate: { opacity: 1, y: 0, scale: 1 },
         exit: { opacity: 0, y: dropUp ? 8 : -8, scale: 0.96 },
       }),
-      [dropUp]
+      [dropUp],
     );
 
     return (
@@ -65,7 +65,7 @@ export const Dropdown = memo(
         onClick={handleToggle}
         $customStyle={customStyle}
       >
-        <p>{value}</p>
+        <p>{items.find((i) => i.value === value)?.name ?? value}</p>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={iconTransition}
@@ -84,8 +84,11 @@ export const Dropdown = memo(
               transition={optionTransition}
             >
               {items.map((item) => (
-                <S.Option key={item} onClick={(e) => handleItemClick(item, e)}>
-                  {item}
+                <S.Option
+                  key={item.value}
+                  onClick={(e) => handleItemClick(item, e)}
+                >
+                  {item.name}
                 </S.Option>
               ))}
             </MotionOptionWrap>
@@ -93,7 +96,7 @@ export const Dropdown = memo(
         </AnimatePresence>
       </S.Container>
     );
-  }
+  },
 );
 
 Dropdown.displayName = "Dropdown";

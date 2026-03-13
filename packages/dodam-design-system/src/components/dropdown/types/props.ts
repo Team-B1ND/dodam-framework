@@ -1,8 +1,13 @@
 import { CSSObject } from "@emotion/react";
 
-export interface DropdownProps {
-  items: string[];
+export interface DropdownItem {
+  name: string;
   value: string;
-  onSelectedItemChange: (item: string) => void;
+}
+
+export interface DropdownProps {
+  items: DropdownItem[];
+  value: string;
+  onSelectedItemChange: (item: DropdownItem) => void;
   customStyle?: CSSObject;
 }
