@@ -31,7 +31,7 @@ export const RequiredDot = styled.div`
   height: 4px;
   background-color: ${colors.status.error};
   border-radius: 16px;
-`
+`;
 
 export const Label = styled.span<{
   $isFocused: boolean;
@@ -42,10 +42,10 @@ export const Label = styled.span<{
     $isDisabled
       ? hexToRgba(colors.text.disabled, 0.65)
       : $isError
-        ? colors.status.error
-        : $isFocused
-          ? colors.brand.primary
-          : colors.text.tertiary};
+      ? colors.status.error
+      : $isFocused
+      ? colors.brand.primary
+      : colors.text.tertiary};
 
   ${typoCss("Label", "Medium")};
   font-feature-settings: "ss10" on;
@@ -66,21 +66,22 @@ export const InputWrapper = styled.div<{
   padding: 4px 12px 4px 16px;
 
   border: 1px solid
-    ${({ $isFocused, $isDisabled, $isError }) =>
-      $isDisabled
-        ? hexToRgba(colors.border.disabled, 0.65)
-        : $isError
-          ? colors.status.error
-          : $isFocused
-            ? colors.brand.primary
-            : colors.border.normal};
+    ${({ $isFocused, $isError }) =>
+      $isError
+        ? colors.status.error
+        : $isFocused
+        ? colors.brand.primary
+        : colors.border.normal};
+
+  opacity: ${({ $isDisabled }) => ($isDisabled ? 0.7 : 1)};
+  cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "text")};
 
   background-color: ${({ $isFocused, $isError }) =>
     $isError
       ? hexToRgba("#E52222", 0.03)
       : $isFocused
-        ? hexToRgba("#008BFF", 0.03)
-        : "transparent"};
+      ? hexToRgba("#008BFF", 0.03)
+      : "transparent"};
 
   border-radius: ${shapes.medium};
 
@@ -131,8 +132,8 @@ export const SupportingText = styled.span<{
     $isDisabled
       ? hexToRgba(colors.text.disabled, 0.65)
       : $isError
-        ? colors.status.error
-        : colors.text.tertiary};
+      ? colors.status.error
+      : colors.text.tertiary};
   ${typoCss("Label", "Medium")};
   font-feature-settings: "ss10" on;
 `;
