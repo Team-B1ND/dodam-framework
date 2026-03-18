@@ -14,7 +14,7 @@ export const Container = styled.div<{
   align-items: flex-start;
   gap: 4px;
   width: ${({ $width }) => ($width ? `${$width}px` : "100%")};
-  height: 80px;
+  min-height: 56px;
   position: relative;
 
   ${({ $customStyle }) => $customStyle};

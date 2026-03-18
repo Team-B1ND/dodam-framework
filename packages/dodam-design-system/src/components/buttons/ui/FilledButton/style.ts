@@ -22,14 +22,14 @@ export const Container = styled.button<{
   $size: ButtonSizes;
   $role: FilledButtonRoles;
   $display: ButtonDisplay;
-  $disabled: string;
+  $disabled?: boolean;
   $buttonCustomStyle: CSSObject;
 }>`
   all: unset;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
   transition: all 0.1s linear;
 
   padding: ${({ $size }) => sizeStyles[$size].padding};
@@ -40,7 +40,7 @@ export const Container = styled.button<{
 
   background-color: ${({ $role }) => roleStyles[$role].bg};
   color: ${({ $role }) => roleStyles[$role].color};
-  opacity: ${({ $disabled }) => ($disabled === "true" ? 0.5 : 1)};
+  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
 
   ${({ $display }) => $display === "fill" && "flex: 1; min-width: 0;"}
 
