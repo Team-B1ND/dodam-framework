@@ -13,7 +13,16 @@ import {
   SWIPE_CLOSE_THRESHOLD,
 } from "../constants";
 
-export const StackScreen = ({ children }: PropsWithChildren) => {
+interface Props extends PropsWithChildren {
+  closeSignal?: number;
+  isTop?: boolean;
+}
+
+export const StackScreen = ({
+  children,
+  closeSignal = 0,
+  isTop = false,
+}: Props) => {
   const ctx = useContext(RouteContext);
   const realPop = ctx.pop;
   const realPush = ctx.push;
@@ -39,6 +48,7 @@ export const StackScreen = ({ children }: PropsWithChildren) => {
   const lastX = useRef(0);
   const lastTime = useRef(0);
   const closeTargetRef = useRef<string | undefined>(undefined);
+  const lastHandledCloseSignal = useRef(closeSignal);
 
   const triggerClose = useCallback(
     (target?: string, swipeVelocity?: number) => {
@@ -80,6 +90,13 @@ export const StackScreen = ({ children }: PropsWithChildren) => {
     },
     [realPush],
   );
+
+  useEffect(() => {
+    if (!isTop) return;
+    if (closeSignal === lastHandledCloseSignal.current) return;
+    lastHandledCloseSignal.current = closeSignal;
+    triggerClose();
+  }, [closeSignal, isTop, triggerClose]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (animating.current) return;
