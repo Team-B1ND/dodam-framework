@@ -29,7 +29,7 @@ export const Container = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled === "true" ? "default" : "pointer")};
   transition: all 0.1s linear;
 
   padding: ${({ $size }) => sizeStyles[$size].padding};

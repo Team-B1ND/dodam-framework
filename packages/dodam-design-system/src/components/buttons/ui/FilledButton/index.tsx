@@ -23,6 +23,7 @@ export const FilledButton = ({
     <MotionContainer
       $buttonCustomStyle={buttonCustomStyle}
       $disabled={disabled.toString()}
+      disabled={disabled}
       $role={role}
       $size={size}
       $display={display}
