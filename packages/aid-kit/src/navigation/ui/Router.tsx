@@ -3,7 +3,7 @@ import { Routes } from "../types";
 import { RouteContext } from "../contexts/route-context";
 import { RouteRenderer } from "./RouteRenderer";
 import { StackScreen } from "./StackScreen";
-import { useBridgeResponse } from "../../bridge-kit/app";
+import { useBridgeResponse } from "../../bridge-kit/web";
 import { motion, useAnimationControls } from "framer-motion";
 
 interface Props {
@@ -34,7 +34,7 @@ export const Router = ({ routes }: Props) => {
   useBridgeResponse("NAVIGATION_POP", async () => {
     if (stackRef.current.length === 0) {
       await containerControls.start({
-        scale: 0.8,
+        scale: 0.9,
         transition: {
           type: "tween",
           ease: [0.36, 0.66, 0.04, 1],
@@ -50,7 +50,7 @@ export const Router = ({ routes }: Props) => {
 
   return (
     <motion.div
-      initial={{ scale: 0.8 }}
+      initial={{ scale: 0.9 }}
       animate={containerControls}
       style={{
         transformOrigin: "50% 50%",

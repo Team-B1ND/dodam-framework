@@ -1,6 +1,5 @@
 export * from "../shared";
 export * from "../core/hooks/useBridgeCore";
-export * from "../core/hooks/useBridgeResponse";
 export * from "../core/providers/BridgeUiProvider";
 export * from "../core/models/BridgeCore";
 export * from "../core/models/bridge-ui-context";
