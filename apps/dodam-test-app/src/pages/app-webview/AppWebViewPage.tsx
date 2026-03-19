@@ -4,7 +4,6 @@ import { WebView } from "react-native-webview";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@shared/theme";
 import { Actions, core, useBridgeCore } from "@b1nd/aid-kit/bridge-kit/app";
-import { useRef } from "react";
 
 interface AppWebViewParams {
   appUrl: string;
@@ -19,15 +18,8 @@ export const AppWebViewPage = () => {
 	const { top, bottom } = useSafeAreaInsets();
 	const { colors } = useTheme();
 	const { webViewProps } = useBridgeCore();
-	const lastNativePopAt = useRef(0);
-	const NATIVE_POP_COOLDOWN_MS = 450;
 
 	core.mount(Actions.NAVIGATION_POP, async () => {
-		const now = Date.now();
-		if (now - lastNativePopAt.current < NATIVE_POP_COOLDOWN_MS) {
-			return null;
-		}
-		lastNativePopAt.current = now;
 		navigation.goBack();
 		return null;
 	});
