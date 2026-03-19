@@ -32,6 +32,7 @@ export const Router = ({ routes }: Props) => {
       style={{
         scale: containerScale,
         transformOrigin: "50% 50%",
+        touchAction: "pan-y",
       }}
       onPointerDown={onRootPointerDown}
       onPointerMove={onRootPointerMove}
