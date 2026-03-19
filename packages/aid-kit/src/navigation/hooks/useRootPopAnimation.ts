@@ -61,6 +61,7 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     if (stackLengthRef.current === 0) {
       await new Promise<void>((resolve) => {
         animateToMin(0.24, resolve);
+        sendPop();
       });
     } else {
       setCloseSignal((prev) => prev + 1);
