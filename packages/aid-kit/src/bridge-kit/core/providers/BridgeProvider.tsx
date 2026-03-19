@@ -67,11 +67,8 @@ export const BridgeProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     window.addEventListener("message", onMessage as EventListener);
-    document.addEventListener("message", onMessage as EventListener);
-    return () => {
+    return () =>
       window.removeEventListener("message", onMessage as EventListener);
-      document.removeEventListener("message", onMessage as EventListener);
-    };
   }, []);
 
   useEffect(() => {
