@@ -33,5 +33,5 @@ export type Tasks = Map<
 >;
 
 export interface WebViewBridge {
-  postMessage(message: string): void;
+  injectJavaScript: (script: string) => void;
 }
