@@ -1,6 +1,6 @@
 {
   "name": "@b1nd/aid-kit",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
