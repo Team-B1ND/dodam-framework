@@ -14,9 +14,12 @@ interface Params {
 export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
   const ROOT_SWIPE_CLOSE_THRESHOLD = 0.2;
   const ROOT_SCALE_DELTA = 0.14;
+  const ROOT_POP_COOLDOWN_MS = 450;
 
   const containerScale = useMotionValue(0.9);
   const containerAnimating = useRef(true);
+  const rootClosing = useRef(false);
+  const lastRootPopAt = useRef(0);
   const [closeSignal, setCloseSignal] = useState(0);
 
   const stackLengthRef = useRef(stackLength);
@@ -49,7 +52,6 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
       duration,
       onComplete: () => {
         containerAnimating.current = false;
-        sendPop();
         onComplete?.();
       },
     });
@@ -59,11 +61,29 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     animateToFull();
   }, []);
 
+  const sendRootPopOnce = () => {
+    const now = Date.now();
+    if (now - lastRootPopAt.current < ROOT_POP_COOLDOWN_MS) {
+      return false;
+    }
+
+    lastRootPopAt.current = now;
+    sendPop();
+    return true;
+  };
+
   useBridgeResponse(Actions.NAVIGATION_POP, async () => {
     if (stackLengthRef.current === 0) {
+      if (rootClosing.current) {
+        return { message: "navigation pop already in progress" };
+      }
+
+      rootClosing.current = true;
       await new Promise<void>((resolve) => {
         animateToMin(0.24, resolve);
       });
+      sendRootPopOnce();
+      rootClosing.current = false;
     } else {
       setCloseSignal((prev) => prev + 1);
     }
@@ -105,7 +125,15 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
       dx > width * ROOT_SWIPE_CLOSE_THRESHOLD;
 
     if (shouldClose) {
-      animateToMin(0.14);
+      if (rootClosing.current) {
+        return;
+      }
+
+      rootClosing.current = true;
+      animateToMin(0.14, () => {
+        sendRootPopOnce();
+        rootClosing.current = false;
+      });
       return;
     }
 

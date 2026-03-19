@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@shared/theme";
 
-const DEFAULT_URL = "";
+const DEFAULT_URL = "https://bbc4-221-168-22-205.ngrok-free.app";
 
 export const HomePage = () => {
   const navigation = useNavigation<any>();
