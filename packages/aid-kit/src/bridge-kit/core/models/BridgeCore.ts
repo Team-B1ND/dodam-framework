@@ -68,6 +68,12 @@ export class BridgeCore {
   }
 
   send(ref: WebViewBridge, res: BridgeResponse) {
-    return ref.postMessage(JSON.stringify(res));
+    const data = JSON.stringify(JSON.stringify(res));
+    return ref.injectJavaScript(`
+    window.dispatchEvent(new MessageEvent('message', {
+      data: ${data}
+    }));
+    true;
+  `);
   }
 }
