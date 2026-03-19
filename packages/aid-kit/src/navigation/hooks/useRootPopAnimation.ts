@@ -4,7 +4,6 @@ import { Actions, useBridgeResponse } from "../../bridge-kit/web";
 import {
   EDGE_SWIPE_ZONE,
   FLICK_VELOCITY_THRESHOLD,
-  SWIPE_CLOSE_THRESHOLD,
 } from "../constants";
 
 interface Params {
@@ -13,6 +12,9 @@ interface Params {
 }
 
 export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
+  const ROOT_SWIPE_CLOSE_THRESHOLD = 0.2;
+  const ROOT_SCALE_DELTA = 0.14;
+
   const containerScale = useMotionValue(0.9);
   const containerAnimating = useRef(true);
   const [closeSignal, setCloseSignal] = useState(0);
@@ -20,8 +22,7 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
   const stackLengthRef = useRef(stackLength);
   const isDraggingRoot = useRef(false);
   const startX = useRef(0);
-  const lastX = useRef(0);
-  const lastTime = useRef(0);
+  const startTime = useRef(0);
 
   useEffect(() => {
     stackLengthRef.current = stackLength;
@@ -49,7 +50,6 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
       onComplete: () => {
         containerAnimating.current = false;
         sendPop();
-        alert("이거 뜨냐 민규야");
         onComplete?.();
       },
     });
@@ -77,8 +77,7 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     if (e.clientX > EDGE_SWIPE_ZONE) return;
     isDraggingRoot.current = true;
     startX.current = e.clientX;
-    lastX.current = e.clientX;
-    lastTime.current = e.timeStamp;
+    startTime.current = e.timeStamp;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
@@ -86,29 +85,27 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     if (!isDraggingRoot.current) return;
     const width = typeof window !== "undefined" ? window.innerWidth : 400;
     const dx = Math.max(0, e.clientX - startX.current);
-    const progress = Math.min(1, dx / (width * SWIPE_CLOSE_THRESHOLD));
-    containerScale.set(1 - progress * 0.1);
-    lastX.current = e.clientX;
-    lastTime.current = e.timeStamp;
+    const progress = Math.min(1, dx / (width * ROOT_SWIPE_CLOSE_THRESHOLD));
+    containerScale.set(1 - progress * ROOT_SCALE_DELTA);
   };
 
   const onRootPointerUp = (e: PointerEvent<HTMLDivElement>) => {
     if (!isDraggingRoot.current) return;
     isDraggingRoot.current = false;
+    if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    }
 
     const width = typeof window !== "undefined" ? window.innerWidth : 400;
     const dx = Math.max(0, e.clientX - startX.current);
-    const dt = e.timeStamp - lastTime.current;
-    const velocity = dt > 0 ? (e.clientX - lastX.current) / dt : 0;
+    const dt = e.timeStamp - startTime.current;
+    const velocity = dt > 0 ? dx / dt : 0;
     const shouldClose =
       velocity >= FLICK_VELOCITY_THRESHOLD ||
-      dx > width * SWIPE_CLOSE_THRESHOLD;
+      dx > width * ROOT_SWIPE_CLOSE_THRESHOLD;
 
     if (shouldClose) {
-      animateToMin(0.14, () => {
-        sendPop();
-        animateToFull();
-      });
+      animateToMin(0.14);
       return;
     }
 
