@@ -48,6 +48,8 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
       duration,
       onComplete: () => {
         containerAnimating.current = false;
+        sendPop();
+        alert("이거 뜨냐 민규야");
         onComplete?.();
       },
     });
@@ -61,7 +63,6 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     if (stackLengthRef.current === 0) {
       await new Promise<void>((resolve) => {
         animateToMin(0.24, resolve);
-        sendPop();
       });
     } else {
       setCloseSignal((prev) => prev + 1);
