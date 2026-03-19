@@ -7,6 +7,8 @@ export const Actions = {
   NFC_WRITE: "NFC_WRITE",
   NFC_READ: "NFC_READ",
   QR_SCAN: "QR_SCAN",
+  NAVIGATION_POP: "NAVIGATION_POP",
+  HAPTIC: "HAPTIC",
   SYNC: "SYNC",
   ACK: "ACK"
 } as const;

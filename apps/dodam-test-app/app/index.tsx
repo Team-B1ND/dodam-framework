@@ -22,7 +22,7 @@ const App = () => {
 
     return () => clearInterval(interval);
   });
-  const webUrl = "https://47f6-2a09-bac1-3f20-518-00-20b-7b.ngrok-free.app";
+  const webUrl = "http://localhost:5174";
   const uri = `${webUrl}?top=${top}&bottom=${bottom}`;
 
   return <WebView {...webViewProps} source={{ uri }} scrollEnabled={false} />;

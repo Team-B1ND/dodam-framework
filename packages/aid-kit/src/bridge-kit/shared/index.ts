@@ -6,3 +6,4 @@ export * from "./types/dto/gps";
 export * from "./types/enums/actions";
 export * from "./types/enums/error";
 export * from "./types/payloads/ack";
+export * from "./types/payloads/haptic";
