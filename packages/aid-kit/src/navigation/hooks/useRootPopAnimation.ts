@@ -1,9 +1,22 @@
 import { animate, useMotionValue } from "framer-motion";
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+  type TouchEvent,
+} from "react";
 import { Actions, useBridgeResponse } from "../../bridge-kit/web";
 import {
   EDGE_SWIPE_ZONE,
-  FLICK_VELOCITY_THRESHOLD,
+  ROOT_POP_BRIDGE_DURATION,
+  ROOT_POP_COOLDOWN_MS,
+  ROOT_POP_FALLBACK_VIEWPORT_WIDTH,
+  ROOT_POP_FLICK_VELOCITY_THRESHOLD,
+  ROOT_POP_MIN_FLICK_DISTANCE,
+  ROOT_POP_SCALE_DELTA,
+  ROOT_POP_SWIPE_CLOSE_THRESHOLD,
+  ROOT_POP_SWIPE_DURATION,
 } from "../constants";
 
 interface Params {
@@ -11,45 +24,79 @@ interface Params {
   sendPop: () => void;
 }
 
-export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
-  const ROOT_SWIPE_CLOSE_THRESHOLD = 0.2;
-  const ROOT_SCALE_DELTA = 0.14;
+type InputType = "pointer" | "touch";
 
+interface GestureState {
+  active: boolean;
+  input: InputType | null;
+  startX: number;
+  startTime: number;
+  lastX: number;
+  lastTime: number;
+}
+
+interface RuntimeState {
+  isAnimating: boolean;
+  isClosing: boolean;
+  lastPopAt: number;
+  preferTouchInput: boolean;
+}
+
+export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
   const containerScale = useMotionValue(0.9);
-  const containerAnimating = useRef(true);
   const [closeSignal, setCloseSignal] = useState(0);
 
   const stackLengthRef = useRef(stackLength);
-  const isDraggingRoot = useRef(false);
-  const startX = useRef(0);
-  const startTime = useRef(0);
+  const runtimeRef = useRef<RuntimeState>({
+    isAnimating: true,
+    isClosing: false,
+    lastPopAt: 0,
+    preferTouchInput:
+      typeof navigator !== "undefined" && navigator.maxTouchPoints > 0,
+  });
+  const gestureRef = useRef<GestureState>({
+    active: false,
+    input: null,
+    startX: 0,
+    startTime: 0,
+    lastX: 0,
+    lastTime: 0,
+  });
 
   useEffect(() => {
     stackLengthRef.current = stackLength;
   }, [stackLength]);
 
+  const viewportWidth = () => {
+    return typeof window !== "undefined"
+      ? window.innerWidth
+      : ROOT_POP_FALLBACK_VIEWPORT_WIDTH;
+  };
+
   const animateToFull = (onComplete?: () => void) => {
-    containerAnimating.current = true;
+    runtimeRef.current.isAnimating = true;
     animate(containerScale, 1, {
       type: "spring",
       stiffness: 260,
       damping: 26,
       onComplete: () => {
-        containerAnimating.current = false;
+        runtimeRef.current.isAnimating = false;
         onComplete?.();
       },
     });
   };
 
-  const animateToMin = (duration = 0.24, onComplete?: () => void) => {
-    containerAnimating.current = true;
+  const animateToMin = (
+    duration = ROOT_POP_BRIDGE_DURATION,
+    onComplete?: () => void,
+  ) => {
+    runtimeRef.current.isAnimating = true;
     animate(containerScale, 0.9, {
       type: "tween",
       ease: [0.36, 0.66, 0.04, 1],
       duration,
       onComplete: () => {
-        containerAnimating.current = false;
-        sendPop();
+        runtimeRef.current.isAnimating = false;
         onComplete?.();
       },
     });
@@ -59,11 +106,100 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     animateToFull();
   }, []);
 
+  const sendRootPopOnce = () => {
+    const now = Date.now();
+    if (now - runtimeRef.current.lastPopAt < ROOT_POP_COOLDOWN_MS) {
+      return false;
+    }
+
+    runtimeRef.current.lastPopAt = now;
+    sendPop();
+    return true;
+  };
+
+  const resetGesture = () => {
+    gestureRef.current.active = false;
+    gestureRef.current.input = null;
+  };
+
+  const tryStartGesture = (
+    input: InputType,
+    clientX: number,
+    timeStamp: number,
+  ) => {
+    if (gestureRef.current.active) return false;
+    if (stackLengthRef.current > 0) return false;
+    if (runtimeRef.current.isAnimating) return false;
+    if (runtimeRef.current.isClosing) return false;
+    if (clientX > EDGE_SWIPE_ZONE) return false;
+
+    gestureRef.current = {
+      active: true,
+      input,
+      startX: clientX,
+      startTime: timeStamp,
+      lastX: clientX,
+      lastTime: timeStamp,
+    };
+    return true;
+  };
+
+  const updateGesture = (clientX: number, timeStamp: number) => {
+    if (!gestureRef.current.active) return;
+
+    gestureRef.current.lastX = clientX;
+    gestureRef.current.lastTime = timeStamp;
+
+    const dx = Math.max(0, clientX - gestureRef.current.startX);
+    const progress = Math.min(1, dx / (viewportWidth() * ROOT_POP_SWIPE_CLOSE_THRESHOLD));
+    containerScale.set(1 - progress * ROOT_POP_SCALE_DELTA);
+  };
+
+  const triggerRootClose = (duration: number) => {
+    if (runtimeRef.current.isClosing) return;
+
+    runtimeRef.current.isClosing = true;
+    animateToMin(duration, () => {
+      sendRootPopOnce();
+      runtimeRef.current.isClosing = false;
+    });
+  };
+
+  const finishGesture = (clientX: number, timeStamp: number) => {
+    if (!gestureRef.current.active) return;
+
+    const finalX = Math.max(clientX, gestureRef.current.lastX);
+    const finalTime = Math.max(timeStamp, gestureRef.current.lastTime);
+    const dx = Math.max(0, finalX - gestureRef.current.startX);
+    const dt = finalTime - gestureRef.current.startTime;
+    const velocity = dt > 0 ? dx / dt : 0;
+    const canFlickClose = dx >= ROOT_POP_MIN_FLICK_DISTANCE;
+    const shouldClose =
+      (canFlickClose && velocity >= ROOT_POP_FLICK_VELOCITY_THRESHOLD) ||
+      dx > viewportWidth() * ROOT_POP_SWIPE_CLOSE_THRESHOLD;
+
+    resetGesture();
+
+    if (shouldClose) {
+      triggerRootClose(ROOT_POP_SWIPE_DURATION);
+      return;
+    }
+
+    animateToFull();
+  };
+
   useBridgeResponse(Actions.NAVIGATION_POP, async () => {
     if (stackLengthRef.current === 0) {
+      if (runtimeRef.current.isClosing) {
+        return { message: "navigation pop already in progress" };
+      }
+
+      runtimeRef.current.isClosing = true;
       await new Promise<void>((resolve) => {
-        animateToMin(0.24, resolve);
+        animateToMin(ROOT_POP_BRIDGE_DURATION, resolve);
       });
+      sendRootPopOnce();
+      runtimeRef.current.isClosing = false;
     } else {
       setCloseSignal((prev) => prev + 1);
     }
@@ -72,43 +208,75 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
   });
 
   const onRootPointerDown = (e: PointerEvent<HTMLDivElement>) => {
-    if (stackLengthRef.current > 0) return;
-    if (containerAnimating.current) return;
-    if (e.clientX > EDGE_SWIPE_ZONE) return;
-    isDraggingRoot.current = true;
-    startX.current = e.clientX;
-    startTime.current = e.timeStamp;
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    if (runtimeRef.current.preferTouchInput) return;
+    if (!tryStartGesture("pointer", e.clientX, e.timeStamp)) return;
+
+    const target = e.currentTarget as HTMLElement;
+    if (typeof target.setPointerCapture === "function") {
+      try {
+        target.setPointerCapture(e.pointerId);
+      } catch {}
+    }
   };
 
   const onRootPointerMove = (e: PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRoot.current) return;
-    const width = typeof window !== "undefined" ? window.innerWidth : 400;
-    const dx = Math.max(0, e.clientX - startX.current);
-    const progress = Math.min(1, dx / (width * ROOT_SWIPE_CLOSE_THRESHOLD));
-    containerScale.set(1 - progress * ROOT_SCALE_DELTA);
+    if (runtimeRef.current.preferTouchInput) return;
+    if (gestureRef.current.input !== "pointer") return;
+    updateGesture(e.clientX, e.timeStamp);
   };
 
   const onRootPointerUp = (e: PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRoot.current) return;
-    isDraggingRoot.current = false;
-    if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
-      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    if (runtimeRef.current.preferTouchInput) return;
+    if (gestureRef.current.input !== "pointer") return;
+
+    const target = e.currentTarget as HTMLElement;
+    if (
+      typeof target.hasPointerCapture === "function" &&
+      typeof target.releasePointerCapture === "function"
+    ) {
+      try {
+        if (target.hasPointerCapture(e.pointerId)) {
+          target.releasePointerCapture(e.pointerId);
+        }
+      } catch {}
     }
 
-    const width = typeof window !== "undefined" ? window.innerWidth : 400;
-    const dx = Math.max(0, e.clientX - startX.current);
-    const dt = e.timeStamp - startTime.current;
-    const velocity = dt > 0 ? dx / dt : 0;
-    const shouldClose =
-      velocity >= FLICK_VELOCITY_THRESHOLD ||
-      dx > width * ROOT_SWIPE_CLOSE_THRESHOLD;
+    finishGesture(e.clientX, e.timeStamp);
+  };
 
-    if (shouldClose) {
-      animateToMin(0.14);
+  const onRootTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    if (gestureRef.current.input === "pointer") return;
+
+    const touch = e.touches[0];
+    if (!touch) return;
+    if (!tryStartGesture("touch", touch.clientX, e.timeStamp)) return;
+  };
+
+  const onRootTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    if (gestureRef.current.input !== "touch") return;
+
+    const touch = e.touches[0];
+    if (!touch) return;
+    updateGesture(touch.clientX, e.timeStamp);
+    e.preventDefault();
+  };
+
+  const onRootTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    if (gestureRef.current.input !== "touch") return;
+
+    const touch = e.changedTouches[0];
+    if (!touch) {
+      resetGesture();
+      animateToFull();
       return;
     }
 
+    finishGesture(touch.clientX, e.timeStamp);
+  };
+
+  const onRootTouchCancel = () => {
+    if (gestureRef.current.input !== "touch") return;
+    resetGesture();
     animateToFull();
   };
 
@@ -118,5 +286,9 @@ export const useRootPopAnimation = ({ stackLength, sendPop }: Params) => {
     onRootPointerDown,
     onRootPointerMove,
     onRootPointerUp,
+    onRootTouchStart,
+    onRootTouchMove,
+    onRootTouchEnd,
+    onRootTouchCancel,
   };
 };

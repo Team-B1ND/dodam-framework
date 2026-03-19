@@ -20,6 +20,10 @@ export const Router = ({ routes }: Props) => {
     onRootPointerDown,
     onRootPointerMove,
     onRootPointerUp,
+    onRootTouchStart,
+    onRootTouchMove,
+    onRootTouchEnd,
+    onRootTouchCancel,
   } = useRootPopAnimation({
     stackLength: stack.length,
     sendPop: () => {
@@ -37,7 +41,11 @@ export const Router = ({ routes }: Props) => {
       onPointerDown={onRootPointerDown}
       onPointerMove={onRootPointerMove}
       onPointerUp={onRootPointerUp}
-      onPointerCancel={onRootPointerUp}>
+      onPointerCancel={onRootPointerUp}
+      onTouchStart={onRootTouchStart}
+      onTouchMove={onRootTouchMove}
+      onTouchEnd={onRootTouchEnd}
+      onTouchCancel={onRootTouchCancel}>
       <RouteRenderer routes={routes.tabs} path={tab} />
       {stack.map((entry, i) => (
         <StackScreen

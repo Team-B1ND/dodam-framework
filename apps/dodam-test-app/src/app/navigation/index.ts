@@ -1,0 +1,1 @@
+export { RootStackNavigator } from "./RootStackNavigator";
