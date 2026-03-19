@@ -66,8 +66,12 @@ export const BridgeProvider = ({ children }: { children: React.ReactNode }) => {
       enqueue(res.type, res);
     };
 
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const target = isAndroid ? document : window;
+
+    target.addEventListener("message", onMessage as EventListener);
+    return () =>
+      target.removeEventListener("message", onMessage as EventListener);
   }, []);
 
   useEffect(() => {
