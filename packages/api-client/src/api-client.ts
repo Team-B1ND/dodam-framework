@@ -1,15 +1,18 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import {
+  BaseResponse,
   CreateApiClientOptions,
+  ErrorResponse,
   QueuedRequest,
   RetryableRequestConfig,
+  ApiClient,
 } from "./types";
 import { REFRESH_PATH } from "./constants";
 
 export const createApiClient = (
   baseURL: string,
   options: CreateApiClientOptions = {},
-): AxiosInstance => {
+): ApiClient => {
   const client = axios.create({
     baseURL,
     withCredentials: true,
@@ -38,16 +41,20 @@ export const createApiClient = (
     );
   };
 
+  const rejectWithErrorResponse = (error: AxiosError<ErrorResponse>) =>
+    Promise.reject(error.response?.data ?? error);
+
   client.interceptors.response.use(
-    (response) => response,
-    async (error: AxiosError) => {
+    (response: AxiosResponse<BaseResponse<unknown>>) =>
+      response.data.data as never,
+    async (error: AxiosError<ErrorResponse>) => {
       const originalRequest = error.config as
         | RetryableRequestConfig
         | undefined;
       const status = error.response?.status;
 
       if (!originalRequest) {
-        return Promise.reject(error);
+        return rejectWithErrorResponse(error);
       }
 
       const requestUrl = originalRequest.url ?? "";
@@ -61,7 +68,7 @@ export const createApiClient = (
         !isRefreshRequest;
 
       if (!shouldRefresh) {
-        return Promise.reject(error);
+        return rejectWithErrorResponse(error);
       }
 
       originalRequest._retry = true;
@@ -95,7 +102,18 @@ export const createApiClient = (
     },
   );
 
-  return client;
+  return {
+    get: <T>(url: string, config?: AxiosRequestConfig) =>
+      client.get<BaseResponse<T>>(url, config) as Promise<T>,
+    post: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
+      client.post<BaseResponse<T>>(url, data, config) as Promise<T>,
+    put: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
+      client.put<BaseResponse<T>>(url, data, config) as Promise<T>,
+    patch: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
+      client.patch<BaseResponse<T>>(url, data, config) as Promise<T>,
+    delete: <T>(url: string, config?: AxiosRequestConfig) =>
+      client.delete<BaseResponse<T>>(url, config) as Promise<T>,
+  };
 };
 
 export default createApiClient;
