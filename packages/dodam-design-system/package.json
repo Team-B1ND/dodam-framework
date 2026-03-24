@@ -6,10 +6,6 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
     "./animations": {
       "types": "./dist/animations/index.d.ts",
       "import": "./dist/animations/index.js"
