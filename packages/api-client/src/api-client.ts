@@ -46,7 +46,7 @@ export const createApiClient = (
 
   client.interceptors.response.use(
     (response: AxiosResponse<BaseResponse<unknown>>) =>
-      response.data.data as never,
+      response.data as never,
     async (error: AxiosError<ErrorResponse>) => {
       const originalRequest = error.config as
         | RetryableRequestConfig
@@ -104,15 +104,15 @@ export const createApiClient = (
 
   return {
     get: <T>(url: string, config?: AxiosRequestConfig) =>
-      client.get<BaseResponse<T>>(url, config) as Promise<T>,
+      client.get<BaseResponse<T>>(url, config) as unknown as Promise<BaseResponse<T>>,
     post: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
-      client.post<BaseResponse<T>>(url, data, config) as Promise<T>,
+      client.post<BaseResponse<T>>(url, data, config) as unknown as Promise<BaseResponse<T>>,
     put: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
-      client.put<BaseResponse<T>>(url, data, config) as Promise<T>,
+      client.put<BaseResponse<T>>(url, data, config) as unknown as Promise<BaseResponse<T>>,
     patch: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
-      client.patch<BaseResponse<T>>(url, data, config) as Promise<T>,
+      client.patch<BaseResponse<T>>(url, data, config) as unknown as Promise<BaseResponse<T>>,
     delete: <T>(url: string, config?: AxiosRequestConfig) =>
-      client.delete<BaseResponse<T>>(url, config) as Promise<T>,
+      client.delete<BaseResponse<T>>(url, config) as unknown as Promise<BaseResponse<T>>,
   };
 };
 
