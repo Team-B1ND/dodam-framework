@@ -16,3 +16,4 @@ export * from "./toast";
 export * from "./topNavBar";
 export * from "./table";
 export * from "./fileinput";
+export * from "./textarea";

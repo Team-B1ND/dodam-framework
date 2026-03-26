@@ -6,3 +6,4 @@ dist
 *.log
 .turbo
 .idea
+.next
