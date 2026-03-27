@@ -18,12 +18,12 @@ export const Container = styled.button<{
   align-items: center;
   justify-content: center;
   width: ${({ $display, $size }) =>
-    $display === "full" ? "100%" : $size === "medium" ? "32px" : "28px"};
+    $display === "full" ? "100%" : $size === "medium" ? "32px" : "24px"};
   min-width: ${({ $display, $size }) =>
-    $display === "full" ? "unset" : $size === "medium" ? "32px" : "28px"};
+    $display === "full" ? "unset" : $size === "medium" ? "32px" : "24px"};
   aspect-ratio: ${({ $display }) => ($display === "full" ? "unset" : "1 / 1")};
   height: ${({ $display, $size }) =>
-    $display === "full" ? ($size === "medium" ? "32px" : "28px") : "unset"};
+    $display === "full" ? ($size === "medium" ? "32px" : "24px") : "unset"};
   border-radius: ${shapes.extraSmall};
   opacity: ${({ $disabled }) => ($disabled === "true" ? 0.4 : 1)};
   cursor: ${({ $disabled }) =>
