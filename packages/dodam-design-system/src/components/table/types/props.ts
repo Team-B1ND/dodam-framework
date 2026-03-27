@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type TableKey = [string, string];
+export type TableKey = [ReactNode, string];
 
 export interface TableProps {
   keys: TableKey[]; 
