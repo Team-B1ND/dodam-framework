@@ -3,9 +3,7 @@ import {
   useBridgeResponse,
   Actions,
 } from "@b1nd/aid-kit/bridge-kit/web";
-import type {
-  BridgeResponse,
-} from "@b1nd/aid-kit/bridge-kit/web";
+import type { BridgeResponse } from "@b1nd/aid-kit/bridge-kit/web";
 import { useSafeArea } from "@b1nd/aid-kit/safe-area-provider";
 import { useRouter } from "@b1nd/aid-kit/navigation";
 import { useState } from "react";
@@ -21,8 +19,8 @@ export const HomePage = () => {
 
   useBridgeResponse(Actions.QR_SCAN, async (data) => {
     const res = data as BridgeResponse;
-    if (res.success && typeof res.data === "string") {
-      setQrResult(res.data);
+    if (res.success) {
+      setQrResult(JSON.stringify(res.data));
     } else {
       setQrResult(res.error as string);
     }
