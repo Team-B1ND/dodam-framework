@@ -2,11 +2,6 @@ import styled from "@emotion/styled";
 import { colors } from "@/colors";
 import { typoCss } from "@/typography";
 
-export const Wrapper = styled.div`
-  width: 100%;
-  overflow: auto;
-`;
-
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
