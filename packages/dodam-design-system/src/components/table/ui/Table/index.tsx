@@ -1,7 +1,7 @@
 "use client";
 
 import { TableProps } from "../../index";
-import * as S from "./style"
+import * as S from "./style";
 
 export const Table = ({ keys, data, onRowClick }: TableProps) => {
   const handleRowClick = (idx: number) => {
@@ -13,34 +13,31 @@ export const Table = ({ keys, data, onRowClick }: TableProps) => {
   }
 
   return (
-    <S.Wrapper>
-      <S.Table>
-        <thead>
-          <S.Tr>
-            {keys.map(([label, width]) => (
-              <S.Th $width={width} key={label + width}>
-                {label}
-              </S.Th>
+    <S.Table>
+      <thead>
+        <S.Tr>
+          {keys.map(([label, width]) => (
+            <S.Th $width={width} key={label?.toString() + width}>
+              {label}
+            </S.Th>
+          ))}
+        </S.Tr>
+      </thead>
+      <tbody>
+        {data.map((row, rIdx) => (
+          <S.Tr
+            key={rIdx}
+            $clickable={!!onRowClick}
+            onClick={() => handleRowClick(rIdx)}>
+            {row.map((cell, cIdx) => (
+              <S.Td $width={keys[cIdx]?.[1] ?? "AUTO"} key={cIdx}>
+                {cell}
+              </S.Td>
             ))}
           </S.Tr>
-        </thead>
-        <tbody>
-          {data.map((row, rIdx) => (
-            <S.Tr
-              key={rIdx}
-              $clickable={!!onRowClick}
-              onClick={() => handleRowClick(rIdx)}
-            >
-              {row.map((cell, cIdx) => (
-                <S.Td $width={keys[cIdx]?.[1] ?? "AUTO"} key={cIdx}>
-                  {cell}
-                </S.Td>
-              ))}
-            </S.Tr>
-          ))}
-        </tbody>
-      </S.Table>
-    </S.Wrapper>
+        ))}
+      </tbody>
+    </S.Table>
   );
 };
 
