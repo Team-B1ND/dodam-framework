@@ -20,9 +20,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     await page.evaluate(() => (window as any).bridgeTest.clearSentMessages());
   });
 
-  // ──────────────────────────────────────────────
   // 1. 초기화
-  // ──────────────────────────────────────────────
   test("BridgeProvider 마운트 시 SYNC 요청을 네이티브로 전송한다", async ({ page }) => {
     // beforeEach에서 clear하기 전 메시지를 확인하기 위해 새로 로드
     await page.goto("/");
@@ -32,9 +30,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect(sent.some((m: any) => m.type === "SYNC")).toBe(true);
   });
 
-  // ──────────────────────────────────────────────
   // 2. 웹 → 네이티브 요청
-  // ──────────────────────────────────────────────
   test("send()가 올바른 BridgeRequest 포맷으로 전송한다", async ({ page }) => {
     await page.evaluate(() => {
       (window as any).bridge.send("GPS_GET", { accuracy: "high" });
@@ -58,9 +54,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect(msgs[0].id).not.toBe(msgs[1].id);
   });
 
-  // ──────────────────────────────────────────────
   // 3. 네이티브 → 웹 응답 수신
-  // ──────────────────────────────────────────────
   test("네이티브 응답 수신 시 subscribe 핸들러가 호출된다", async ({ page }) => {
     // 핸들러 등록
     await page.evaluate(() => {
@@ -109,9 +103,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect(ack.payload.id).toBe("req-cam-1");
   });
 
-  // ──────────────────────────────────────────────
   // 4. 큐 — subscribe 전 응답 도착
-  // ──────────────────────────────────────────────
   test("핸들러 등록 전 도착한 응답은 큐에 보관 후 subscribe 시 즉시 처리된다", async ({ page }) => {
     // 핸들러 없이 응답 먼저 수신
     await simulateNativeResponse(page, {
@@ -138,9 +130,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect((result as any).data).toEqual({ tag: "0xABCD" });
   });
 
-  // ──────────────────────────────────────────────
   // 5. 만료된 응답 처리
-  // ──────────────────────────────────────────────
   test("TTL(5분) 초과 응답은 핸들러를 호출하지 않고 ACK만 전송한다", async ({ page }) => {
     await page.evaluate(() => {
       (window as any)._expiredHandlerCalled = false;
@@ -171,9 +161,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect(ack.payload.id).toBe("expired-id");
   });
 
-  // ──────────────────────────────────────────────
   // 6. SYNC 응답 처리
-  // ──────────────────────────────────────────────
   test("SYNC 응답의 completed task를 처리하고 핸들러를 호출한다", async ({ page }) => {
     await page.evaluate(() => {
       (window as any)._syncResult = null;
@@ -239,9 +227,7 @@ test.describe("Bridge: 웹 ↔ 네이티브 데이터 교환", () => {
     expect(result).toBeNull();
   });
 
-  // ──────────────────────────────────────────────
   // 7. 전체 왕복 흐름
-  // ──────────────────────────────────────────────
   test("웹 send → 네이티브 수신 → 응답 → 핸들러 호출 → ACK 전체 흐름이 동작한다", async ({ page }) => {
     // 네이티브 auto-responder 설정
     await page.evaluate(() => {
