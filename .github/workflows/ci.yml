@@ -29,3 +29,45 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+  test:
+    name: E2E Test (bridge-kit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check aid-kit changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            aid-kit:
+              - 'packages/aid-kit/src/bridge-kit/**'
+              - 'packages/aid-kit/e2e/**'
+              - 'packages/aid-kit/playwright.config.ts'
+
+      - name: Setup pnpm
+        if: steps.changes.outputs.aid-kit == 'true'
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        if: steps.changes.outputs.aid-kit == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        if: steps.changes.outputs.aid-kit == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        if: steps.changes.outputs.aid-kit == 'true'
+        run: pnpm --filter @b1nd/aid-kit exec playwright install chromium --with-deps
+
+      - name: Run tests
+        if: steps.changes.outputs.aid-kit == 'true'
+        run: pnpm --filter @b1nd/aid-kit test
+        env:
+          CI: true
