@@ -2,8 +2,13 @@ import styled from "@emotion/styled";
 import { colors } from "@/colors";
 import { typoCss } from "@/typography";
 
-export const Table = styled.table`
+export const TableWrapper = styled.div`
   width: 100%;
+  overflow-x: auto;
+`;
+
+export const Table = styled.table`
+  min-width: 100%;
   border-collapse: collapse;
   table-layout: auto;
 `;
