@@ -7,7 +7,7 @@ import * as S from "./style";
 import { colors } from "@/colors";
 import { DAYS } from "../../constants";
 import { getIsPast } from "../../utils/get-is-past";
-import { getIsFuture } from '../../utils/get-is-future';
+import { getIsFuture } from "../../utils/get-is-future";
 import { useDatePickerContent } from "../../hooks/useDatePickerContent";
 import { FilledButton } from "../../../buttons";
 
@@ -32,17 +32,17 @@ interface CalendarGridProps {
   calendar: ReturnType<typeof useDatePickerContent>["calendar"];
   selected: Date;
   disablePast: boolean;
-  disableFuture?: number;
+  maxSelectableDays?: number;
   onDayClick: (date: Date) => void;
 }
 
 const CalendarGrid = memo(
-  ({ calendar, selected, disablePast, disableFuture, onDayClick }: CalendarGridProps) => (
+  ({ calendar, selected, disablePast, maxSelectableDays, onDayClick }: CalendarGridProps) => (
     <S.Grid>
       {calendar.map((cell, i) => {
         if (!cell.day) return <div key={i} />;
         const isPast = disablePast && getIsPast(cell.date);
-        const isFuture = disableFuture !== undefined && getIsFuture(cell.date, disableFuture);
+        const isFuture = maxSelectableDays !== undefined && getIsFuture(cell.date, maxSelectableDays);
         const isDisabled = isPast || isFuture;
         return (
           <S.Day
@@ -102,7 +102,7 @@ export interface DatePickerContentProps {
   date?: Date;
   onChangeDate?: (date: Date) => void;
   disablePast?: boolean;
-  disableFuture?: number;
+  maxSelectableDays?: number;
   title?: string;
   onClose?: () => void;
 }
@@ -112,7 +112,7 @@ const DatePickerContent = memo(
     date = new Date(),
     onChangeDate,
     disablePast = false,
-    disableFuture,
+    maxSelectableDays,
     title = "날짜 선택",
     onClose,
   }: DatePickerContentProps) => {
@@ -138,7 +138,7 @@ const DatePickerContent = memo(
             calendar={calendar}
             selected={selected}
             disablePast={disablePast}
-            disableFuture={disableFuture}
+            maxSelectableDays={maxSelectableDays}
             onDayClick={handleDayClick}
           />
         </div>
@@ -157,7 +157,7 @@ export interface DatePickerProps {
   date?: Date;
   onChangeDate?: (date: Date) => void;
   disablePast?: boolean;
-  disableFuture?: number;
+  maxSelectableDays?: number;
   title?: string;
   onClose?: () => void;
   onExited?: () => void;
@@ -170,7 +170,7 @@ const DatePickerBase = memo(
     date = new Date(),
     onChangeDate,
     disablePast = false,
-    disableFuture,
+    maxSelectableDays,
     title = "날짜 선택",
     onClose,
     onExited,
@@ -206,7 +206,7 @@ const DatePickerBase = memo(
                 calendar={calendar}
                 selected={selected}
                 disablePast={disablePast}
-                disableFuture={disableFuture}
+                maxSelectableDays={maxSelectableDays}
                 onDayClick={handleDayClick}
               />
             </div>
