@@ -71,17 +71,17 @@ export const Grid = styled.div`
   grid-template-columns: repeat(7, 1fr);
 `;
 
-export const Day = styled.button<{ $selected?: boolean; $isPast?: boolean }>`
+export const Day = styled.button<{ $selected?: boolean; $disabled?: boolean }>`
   ${typoCss("Headline", "Medium")}
   height: 38px;
   border-radius: ${shapes.small};
   border: none;
-  cursor: ${({ $isPast }) => ($isPast ? "default" : "pointer")};
+  cursor: ${({ $disabled }) => ($disabled ? "default" : "pointer")};
   background: ${({ $selected }) =>
     $selected ? colors.brand.primary : "transparent"};
   color: ${({ $selected }) =>
     $selected ? colors.static.white : colors.text.tertiary};
-  opacity: ${({ $isPast }) => ($isPast ? 0.3 : 1)};
+  opacity: ${({ $disabled }) => ($disabled ? 0.3 : 1)};
 
   &:hover:not(:disabled) {
     background: ${({ $selected }) =>
