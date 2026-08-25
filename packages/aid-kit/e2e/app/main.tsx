@@ -2,6 +2,13 @@ import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
 import { BridgeProvider } from "../../src/bridge-kit/core/providers/BridgeProvider";
 import { useBridgeProvider } from "../../src/bridge-kit/core/hooks/useBridgeProvider";
+import {
+  RouteProvider,
+  Router,
+  type RouteProps,
+  type Routes,
+} from "../../src/navigation";
+import { AppStateProvider } from "../../src/app-state/providers/AppStateProvider";
 
 /**
  * 테스트용 내부 컴포넌트
@@ -18,6 +25,39 @@ function BridgeTestApp() {
   }, []);
 
   return null;
+}
+
+const NavigationHome = () => <div data-testid="navigation-home">home</div>;
+const NavigationSettings = () => (
+  <div data-testid="navigation-settings">settings</div>
+);
+const NavigationDetail = () => (
+  <div data-testid="navigation-detail">detail</div>
+);
+const NavigationLayout = ({ outlet }: RouteProps) => (
+  <div data-testid="navigation-layout">{outlet}</div>
+);
+
+const navigationRoutes: Routes = {
+  tabs: [
+    {
+      path: "/",
+      element: NavigationLayout,
+      children: [
+        { path: "/", index: true, element: NavigationHome },
+        { path: "/settings", element: NavigationSettings },
+      ],
+    },
+  ],
+  stacks: [{ path: "/detail", element: NavigationDetail }],
+};
+
+function NavigationTestApp() {
+  return (
+    <RouteProvider routes={navigationRoutes}>
+      <Router routes={navigationRoutes} />
+    </RouteProvider>
+  );
 }
 
 // window.ReactNativeWebView mock — 웹→네이티브 메시지를 캡처
@@ -53,7 +93,10 @@ function BridgeTestApp() {
 };
 
 createRoot(document.getElementById("root")!).render(
-  <BridgeProvider>
-    <BridgeTestApp />
-  </BridgeProvider>
+  <AppStateProvider>
+    <BridgeProvider>
+      <BridgeTestApp />
+      <NavigationTestApp />
+    </BridgeProvider>
+  </AppStateProvider>
 );

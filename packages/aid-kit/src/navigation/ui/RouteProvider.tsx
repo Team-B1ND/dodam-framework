@@ -10,6 +10,9 @@ interface Props {
 }
 
 export const RouteProvider = ({ routes, children }: Props) => {
+  const defaultTabPath =
+    routes.tabs.find((t) => t.index)?.path ?? routes.tabs[0].path;
+
   const [stack, setStack] = useAppState<StackEntry[]>(
     [],
     "router-provider::stack",
@@ -17,10 +20,17 @@ export const RouteProvider = ({ routes, children }: Props) => {
 
   const [tabEntry, setTabEntry] = useAppState<StackEntry>(
     {
-      path: routes.tabs.find((t) => t.index)?.path ?? routes.tabs[0].path,
+      path: defaultTabPath,
     },
     "router-provider::tab-entry",
   );
+
+  const safeStack = Array.isArray(stack)
+    ? stack.filter((entry) => isValidPath(routes.stacks, entry?.path))
+    : [];
+  const safeTab = isValidPath(routes.tabs, tabEntry?.path)
+    ? tabEntry.path
+    : defaultTabPath;
 
   const move = useCallback(
     (target: string, state?: RouteState) => {
@@ -64,7 +74,7 @@ export const RouteProvider = ({ routes, children }: Props) => {
 
   return (
     <RouteContext.Provider
-      value={{ stack, tab: tabEntry.path, move, push, pop }}>
+      value={{ stack: safeStack, tab: safeTab, move, push, pop }}>
       {children}
     </RouteContext.Provider>
   );
