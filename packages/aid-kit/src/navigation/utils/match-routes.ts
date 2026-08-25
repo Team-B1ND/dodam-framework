@@ -74,5 +74,5 @@ export const matchRoute = (
   return null;
 };
 
-export const isValidPath = (routes: RouteNode[], targetPath: string): boolean =>
-  matchRoute(routes, targetPath) !== null;
+export const isValidPath = (routes: RouteNode[], targetPath: unknown): boolean =>
+  typeof targetPath === "string" && matchRoute(routes, targetPath) !== null;
