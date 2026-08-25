@@ -9,7 +9,10 @@ interface Props {
 
 export const RouteRenderer = ({ routes, path, state }: Props) => {
   const matched = matchRoute(routes, path);
-  if (!matched) return null;
+  if (!matched) {
+    console.warn(`[aid-kit] 매칭되는 라우트가 없습니다: ${path}`);
+    return null;
+  }
 
   const { node, parent, params } = matched;
 
