@@ -6,4 +6,4 @@ export const Errors = {
   UNKNOWN: "UNKNOWN",
 } as const;
 
-export type Error = keyof typeof Errors;
+export type Error = (typeof Errors)[keyof typeof Errors];
