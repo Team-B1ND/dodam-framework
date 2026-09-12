@@ -15,7 +15,7 @@ export interface BridgeUiContext {
   setResult: (result: object | Error | null) => void;
 }
 
-export type Callback = () => Promise<object | Error | null>;
+export type Callback = (payload: unknown) => Promise<object | Error | null>;
 
 export type PushCallback = (send: (data: unknown) => void) => () => void;
 

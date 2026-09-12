@@ -49,10 +49,12 @@ export class BridgeCore {
         return this.send(ref, res);
       }
       this.tasks.set(req.id, { flag: "pending", req });
-      const result = await callback();
+      const result = await callback(req.payload);
       this.tasks.set(req.id, { flag: "completed", req, data: result });
       let res: BridgeResponse;
-      const error = Errors[result as Error] as Error | undefined;
+      const error = Object.values(Errors).includes(result as Error)
+        ? (result as Error)
+        : undefined;
       if (error) {
         res = Response(req.id, req.type, false, undefined, error);
       } else {
@@ -62,7 +64,7 @@ export class BridgeCore {
     } else {
       return this.send(
         ref,
-        Response(req.id, req.type, false, undefined, "NOT_SUPPORT"),
+        Response(req.id, req.type, false, undefined, Errors.NOT_SUPPORT),
       );
     }
   }
